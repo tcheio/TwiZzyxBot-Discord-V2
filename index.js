@@ -58,16 +58,16 @@ bot.on("messageCreate", async message => {
             console.log("Message: "+msg);
             statut = rechercheCaract(msg);
             if (statut){
-                bot.channels.cache.get('1033326900564738048').send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n<@&1014452932713922610>"); //envoie ce message dans le channel "clip"
+                bot.channels.cache.get('892842982112374804').send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n"); //envoie ce message dans le channel "clip"<@&1014452932713922610>
             }
             else {
-                bot.channels.cache.get('1033327634458882069').send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n<@&1018803719250382898>"); //envoie ce message dans le channel "lp"
+                bot.channels.cache.get('1023891712403312720').send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n"); //envoie ce message dans le channel "lp"<@&1018803719250382898>
             }
         }
         else {
             msg = message.content;
-            bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n@everyone");
-            skip = true;
+            bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n");
+            skipVideo = true;
 
         }
         
