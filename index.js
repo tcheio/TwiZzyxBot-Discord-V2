@@ -34,6 +34,7 @@ function rechercheCaract(msg){
 
 //Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
+    var now = new Date();
     if (message.channelId == '1021708905744715819'){ //Channel #twitch channel retour
         if (skipLive){
             msg = message.content;
@@ -58,17 +59,19 @@ bot.on("messageCreate", async message => {
             console.log("Message: "+msg);
             statut = rechercheCaract(msg);
             if (statut){
-                bot.channels.cache.get('892842982112374804').send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n"); //envoie ce message dans le channel "clip"<@&1014452932713922610>
+                bot.channels.cache.get('892842982112374804').send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n<@&1014452932713922610>"); //envoie ce message dans le channel "clip"
+                console.log("Une vidéo clip a été publié à "+ now.getHours()+":"+now.getMinutes());
             }
             else {
-                bot.channels.cache.get('1023891712403312720').send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n"); //envoie ce message dans le channel "lp"<@&1018803719250382898>
+                bot.channels.cache.get('1023891712403312720').send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n<@&1018803719250382898>"); //envoie ce message dans le channel "lp"
+                console.log("Une vidéo LP a été publié à "+ now.getHours()+":"+now.getMinutes());
             }
         }
         else {
             msg = message.content;
-            bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n");
+            bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n@everyone");
             skipVideo = true;
-
+            console.log("Une vrai vidéo sur la chaine secondaire a été publié à "+ now.getHours()+":"+now.getMinutes()+" et la variable skipVideo = "+skipVideo);
         }
         
     }
