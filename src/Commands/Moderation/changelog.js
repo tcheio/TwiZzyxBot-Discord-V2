@@ -1,7 +1,12 @@
 const { EmbedBuilder, ReactionCollector, User } = require('discord.js');
 const config = require('../../../config');
 
-const msg="- Fix de la commande /videoskip et /videounskip (afin d'éviter le problème des everyones en boucle)\n- Suppréssion et ajout de nouveaux emoji sur le serv → <:SuperBall:1057269743150698506> <:HyperBall:1057269781327265923> <:MardiZizi:1057269829666611283> <:MarkEvans:1057270465300791296>\n\n**De grosses nouveautés arriveront après les fêtes, je n'ai pas vraiment le temps en ce moment mais on y arrive.**";
+const msg="- Fix du problème *'undefined'* des annonces de stream (**ENFIN**) \n"+
+            "- Refonte des annonces de stream (*Plus de pseudo et de commande dans le titre du stream*) de manière à ressembler aux annonces que je faisais à la main\n"+
+            "- Ajout d'un système de logs pour les différentes annonces (*Surtout utile pour moi pour l'instant*)\n"+
+            "- Changement du channel <#1060679452146802769> qui devient un channel forum donc pour toute suggestions, il vous suffira de créer un post avec l'un des tags suivants:\n"+
+            "   >**YouTube**\n  >**Twitch**\n   >**Discord**\n  >**Autres**\n\n"+
+            "**La prochaine grosse update concernera les commandes avec l'arrivée des commandes de modération et de commandes pour vous également** (Après c'est pas pour tout de suite XD)";
 
 class command {
     constructor() {
@@ -11,10 +16,11 @@ class command {
 
     
     async execute(bot, interaction) {
+        var now = new Date();
         skipVideo = false;
         const SKIP = new EmbedBuilder()
         .setColor('#E49B0F')
-        .setTitle('⚙**__Mise à jour du 27/12/2022__**')
+        .setTitle('⚙**__Mise à jour du '+now.getDate()+'/'+(parseInt(now.getUTCMonth())+1)+'/'+now.getFullYear()+'__**')
             .setDescription(msg)
             .setTimestamp()
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
