@@ -9,5 +9,9 @@ module.exports = {
         } catch (error) {
             console.error(error)
         }
+
+        if (interaction.channelId == "1061410003300397066"){
+            bot.channels.cache.get('1061413496564219926').send("Réussite");
+        }
     }
 }
