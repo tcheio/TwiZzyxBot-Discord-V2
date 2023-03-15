@@ -1,6 +1,6 @@
 # Ignore all files with the specified name.
 # Scope is all repo folders.
-
+config.js
 
 # Ignore all files with the specified extension.
 # Scope is all repo folders.
@@ -20,3 +20,4 @@
 
 # Ignore all files in the 'logs' subfolder.
 /logs/
+config.js
