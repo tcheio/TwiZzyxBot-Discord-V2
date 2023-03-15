@@ -4,19 +4,19 @@ const config = require('../../../config');
 
 class command {
     constructor() {
-        this.name = "liveskip",
-        this.description = "Empêcher l'annonce automatique d'un stream (STAFF)"
+        this.name = "planningreset",
+        this.description = "Reset le planning de la semaine"
         this.permission = "Administrator"
     }
 
     async execute(bot, interaction) {
 
         if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
-        skipLive = false;
+        planning = "https://media.discordapp.net/attachments/1064189056927400048/1079745624628527215/planningPasDispo.png?width=1193&height=671";
+        changement = "Pour le moment aucun"
         const SKIP = new EmbedBuilder()
         .setColor('#FF0000')
-        .setTitle('✅ **__Le prochain stream ne sera pas annoncé__**')
-            .setDescription("Le prochain stream n'aura pas d'annonce auto.")
+        .setTitle('✅ **__Le planning a été réinitialisé__**')
             .setTimestamp()
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 

@@ -1,14 +1,16 @@
-const { EmbedBuilder, ReactionCollector, User } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
 
 class command {
     constructor() {
         this.name = "videoskip",
-        this.description = "Changer le channel d'annonce vidéo (STAFF)"
+        this.description = "Changer le channel d'annonce vidéo (STAFF)",
+        this.permission = "Administrator"
     }
 
     async execute(bot, interaction) {
+        if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
         skipVideo = false;
         const SKIP = new EmbedBuilder()
         .setColor('#FF0000')
@@ -20,6 +22,17 @@ class command {
         interaction.reply({ embeds: [SKIP] });
         console.log("Une vidéo a été changé de destination")
     }
-}
 
+    else {
+        const Embed = new EmbedBuilder()
+        .setColor('Random')
+        .setTitle('👮‍♂️ **Action de modération**')
+        .setTimestamp()
+        .setFooter({ text: config.clients.name, iconURL: config.clients.logo})
+        .setDescription("Tu n'as pas la permission d'éxécuter cette commande");
+        interaction.reply({ embeds: [Embed] });
+
+        }
+}
+}
 module.exports = command
