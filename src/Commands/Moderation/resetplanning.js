@@ -6,7 +6,7 @@ class command {
     constructor() {
         this.name = "planningreset",
         this.description = "Reset le planning de la semaine"
-        this.permission = "Administrator"
+        this.permission = "ManageMessages"
     }
 
     async execute(bot, interaction) {

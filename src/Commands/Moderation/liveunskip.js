@@ -7,7 +7,7 @@ class command {
     constructor() {
         this.name = "liveunskip",
         this.description = "Réactiver l'annonce automatique d'un stream (STAFF)",
-        this.permission = "Administrator"
+        this.permission = "ManageMessages"
     }
 
 

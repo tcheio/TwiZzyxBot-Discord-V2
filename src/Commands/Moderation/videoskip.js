@@ -6,7 +6,7 @@ class command {
     constructor() {
         this.name = "videoskip",
         this.description = "Changer le channel d'annonce vidéo (STAFF)",
-        this.permission = "Administrator"
+        this.permission = "ManageMessages"
     }
 
     async execute(bot, interaction) {

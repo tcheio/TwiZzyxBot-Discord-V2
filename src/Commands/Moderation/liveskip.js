@@ -6,7 +6,7 @@ class command {
     constructor() {
         this.name = "liveskip",
         this.description = "Empêcher l'annonce automatique d'un stream (STAFF)"
-        this.permission = "Administrator"
+        this.permission = "ManageMessages"
     }
 
     async execute(bot, interaction) {

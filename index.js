@@ -132,10 +132,7 @@ changement = "Pour le moment aucun";
         pokemon = "https://images-ext-2.discordapp.net/external/horKKxFAj8ZRHeDJS8Xcx0N0ngEIMKJPpU0TqgOE4kQ/https/i.ibb.co/vx7mPX7/GIF-POKEMON.gif";
         lyoko = "https://images-ext-2.discordapp.net/external/Y8Q6iyEymL5dCdN-QQrAWjbq_xQE6EUD1acDe8OiiXY/https/i.ibb.co/TrDkV4D/GIF-CODE-LYOKO.gif";
         autre = ["https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"];
-    
-        tabAllStream = [" 🐺LG UHC "," 🍥NARUTO UHC "," 🍌MARDI Z*ZI "," 👺DEMON SLAYER UHC "," 🏰KILL LA KILL UHC "," 🃏EIGHTY SIX UHC "," ☠️DEATH NOTE UHC ",
-                        " 🔎SHERLOCK UHC "," 🏴‍☠️ONE PIECE UHC "," 💥THE BOYS UHC "," ⚔️ATTACK ON TITAN UHC "," ⚽INAZUMA ELEVEN 3: Les Ogres attaquent "," ⚽INAZUMA ELEVEN GO STRIKERS 2013 ",
-                        " 🔎AMONG US ", " 🏰SKY DEFENDER "," 🧪FMA UHC "," 🖥️CODE LYOKO TIME ", " 🐲POKEMON ROSA RANDOM "," 🐲POKEMON RUBIS OMEGA ULTRA RANDOM "];
+        
         if (jeu == "Minecraft"){                
             for (i = 0; i < tabAllStream.length; i++){
                     if (titre == " 🍥NARUTO UHC "){
@@ -217,7 +214,7 @@ changement = "Pour le moment aucun";
                 else if (titre == " 🔎AMONG US "){
                     return among;
                 }
-                else if (titre == " 🍌MARDI Z*ZI " || titre == " MARDI Z\*ZI "){
+                else if (titre == " 🍌MARDI Z#ZI " || titre == " 🍌MARDI ZlZI "){
                     random = Math.floor(Math.random() * (mardi.length));
                     return mardi[random];
                 }
@@ -234,7 +231,7 @@ changement = "Pour le moment aucun";
 
 //Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
-    if (message.channelId == '1061413496564219926'){ //Channel #twitch channel retour
+    if (message.channelId == '1033326859909337141'){ //Channel #twitch channel retour
         if (skipLive){
             msg = message.content;
             titre = titreTravail(msg);
@@ -254,8 +251,8 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get("748855744274890772").send({ embeds: [TWITCH] });
-                bot.channels.cache.get("748855744274890772").send("<@&748220271839805520>")
+                bot.channels.cache.get("1033326900564738048").send({ embeds: [TWITCH] });
+                bot.channels.cache.get("1033326900564738048").send("<@&748220271839805520>")
                 .then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
@@ -263,7 +260,7 @@ bot.on("messageCreate", async message => {
 
             //log serveur
             console.log("Un live a été publié à "+temps());
-            bot.channels.cache.get('1060946019333976204').send("Un live a été publié à "+temps());
+            //bot.channels.cache.get('1060946019333976204').send("Un live a été publié à "+temps());
         }
 
         else {
