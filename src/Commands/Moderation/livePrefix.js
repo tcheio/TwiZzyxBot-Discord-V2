@@ -21,7 +21,7 @@ class command {
         skipVideo = false;
         const SKIP = new EmbedBuilder()
         .setColor('#CB7AFF') 
-        .setTitle('<:Twitch:748225816973803562>**__Préfixe à mettte en titre de stream:__**')
+        .setTitle('<:Twitch:748225816973803562>**__Préfixe à mettre en titre de stream:__**')
             .setDescription(msg)
             .setTimestamp()
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});

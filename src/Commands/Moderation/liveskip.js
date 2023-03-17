@@ -5,7 +5,8 @@ const config = require('../../../config');
 class command {
     constructor() {
         this.name = "liveskip",
-        this.description = "Empêcher l'annonce automatique d'un stream (STAFF)"
+        this.description = "Empêcher l'annonce automatique d'un stream (STAFF)",
+        this.category = "Moderation",
         this.permission = "ManageMessages"
     }
 
