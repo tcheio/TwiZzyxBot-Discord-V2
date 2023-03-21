@@ -1,9 +1,9 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
-const msg="- **Fix des perms commandes** (Le staff peut enfin utiliser les commandes de STAFF"+
-          "- **Fix des annonces de shorts (Vraiment une petite bêtises à tout niquer)"+
-          "- **Fix des annonces Mardi Zizi (Un caractère anti slash était ajouter qui est innexploitable) -> Désormais les MZ seront nomme soit `Mardi Z#zi` ou `Mardi Zlzi`\n\n"+
+const msg="- **Fix des perms commandes** (Le staff peut enfin utiliser les commandes de STAFF\n"+
+          "- **Fix des annonces de shorts (Vraiment une petite bêtises à tout niquer)\n"+
+          "- **Fix des annonces Mardi Zizi (Un caractère anti slash était ajouter qui est innexploitable) -> Désormais les MZ seront nomme soit `Mardi Z#zi` ou `Mardi Zlzi` et le pire c'est que j'ai fais ça pour rien\n\n"+
 
           'Cette version du bot est donc normalement terminé à "100%" (Sauf correctif très mineur et ajout de nouveau stream type). Je travaille déjà sur la prochaine donc je suis toujours preneur de vos idées de commandes que vous souhaitez voir.'
 
