@@ -321,6 +321,17 @@ bot.on("messageCreate", async message => {
         console.log("Un changement de programme a eu lieu: "+changement)
         bot.channels.cache.get('1060946019333976204').send("Un changement de programme a eu lieu: "+changement+temps());
     }
+
+    else if (message.channelId == "1096091134939377865")
+    {
+        if(message.author.bot()){
+
+        }
+
+        else{
+            
+        }
+    }
 })
 
 require('./src/Structure//Handler/Event')(bot);
