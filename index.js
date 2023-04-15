@@ -329,7 +329,11 @@ bot.on("messageCreate", async message => {
         }
 
         else{
+            charg = message.content;
+            msg = charg.split(" ");
             
+            
+
         }
     }
 })
