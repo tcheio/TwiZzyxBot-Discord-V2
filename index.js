@@ -22,7 +22,15 @@ skipLive = true;
 planning = "https://media.discordapp.net/attachments/1064189056927400048/1079745624628527215/planningPasDispo.png?width=1193&height=671";
 changement = "Pour le moment aucun";
 
-
+    function maxIntent(tab){
+        max = 0;
+        for (i=0; i<tab.length;i++){
+            if (tab[i] > max){
+                max = i+1;
+            }
+        }
+        return max;
+    }
     function rechercheCaract(msg){
         const msgBis = msg.split(" ");
             if (msgBis[msgBis.length-2] == "#shorts"){
@@ -119,7 +127,7 @@ changement = "Pour le moment aucun";
         ds = ["https://media.discordapp.net/attachments/1064189056927400048/1064816706641465354/DS_UHC_-_Nezuko_by_Hasuki.png?width=1193&height=671", "https://media.discordapp.net/attachments/1064189056927400048/1064816707006378004/DS_UHC_-_Tomioka.png?width=1193&height=671"];
         sh = ["https://media.discordapp.net/attachments/1064189056927400048/1064816627385901156/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064816627700482078/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671"];
         op = ["https://media.discordapp.net/attachments/1064189056927400048/1064816803622162442/OP_UHC_-_Sengoku.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064816804058386482/OP_UHC_-_Marco_by_SISSOU.png?width=1193&height=671"];
-        tb = ["https://media.discordapp.net/attachments/1064189056927400048/1064816849470103603/THE_BOYS_UHC_-_VOUGHT.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064816849851777064/TB_UHC_-_Vought_2.png?width=1193&height=671"];
+        tb = ["https://media.discordapp.net/attachments/1064189056927400048/1064816849470103603/THE_BOYS_UHC_-_VOUGHT.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064816849851777064/TB_UHC_-_Vought_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1088749046635704411/Twix_minia.png?width=1193&height=671"];
         skydef = "https://media.discordapp.net/attachments/1064668600285282315/1067859958227542096/GIF_SKY_DEF.gif";
         aot = ["https://media.discordapp.net/attachments/1064189056927400048/1069695407317319771/AOT_UHC_-_KEITH_SHADIS.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1081163236973477968/AOT_UHC_-_EREN_FLOP.png?width=1193&height=671"];
         fma = ["https://media.discordapp.net/attachments/1064189056927400048/1073686652721041448/FMA_UHC_-_Kimblee.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1073686653073358938/FMA_UHC_-_VAN.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1073686653442469979/FMA_UHC_-_FATHER.png?width=1193&height=671"];
@@ -231,7 +239,7 @@ changement = "Pour le moment aucun";
 
 //Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
-    if (message.channelId == '1033326859909337141'){ //Channel #twitch channel retour
+    if (message.channelId == '1096735287561965568'){ //Channel #twitch channel retour
         if (skipLive){
             msg = message.content;
             titre = titreTravail(msg);
@@ -251,8 +259,8 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get("1033326900564738048").send({ embeds: [TWITCH] });
-                bot.channels.cache.get("1033326900564738048").send("<@&748220271839805520>")
+                bot.channels.cache.get("1096735321456136222").send({ embeds: [TWITCH] });
+                bot.channels.cache.get("1096735321456136222").send("<@&748220271839805520>")
                 .then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
@@ -322,20 +330,55 @@ bot.on("messageCreate", async message => {
         bot.channels.cache.get('1060946019333976204').send("Un changement de programme a eu lieu: "+changement+temps());
     }
 
-    else if (message.channelId == "1096091134939377865")
-    {
-        if(message.author.bot()){
-
-        }
+    //Detection des intensions Demo
+    else if (message.channelId == "1096091134939377865"){
+        intention = [0,0,0,0];
+        dicoFeur = ["quoi","kwa","koi"];
+        dicoQuestion = ["comment","pourquoi","qui"];
+        dicoAide = ["besoin","aide","help"];
+        dicoJeu = ["jeu",'jouer','game'];
+        if(message.author.bot) return;
 
         else{
             charg = message.content;
             msg = charg.split(" ");
-            
-            
-
+            console.log(msg.length);
+            for (i = 0; i < msg.length; i++){
+                for(j = 0; j < dicoFeur.length; j++){
+                    if(msg[i] == dicoFeur[j]){
+                        intention[0] += 1;
+                    }
+                    else if(msg[i] == dicoQuestion[j]){
+                        intention[1] += 1;
+                    }
+                    else if(msg[i] == dicoAide[j]){
+                        intention[2] += 1;
+                    }
+                    else if(msg[i] == dicoJeu[j]){
+                        intention[3] += 1;
+                    }
+            }
         }
+        rep = maxIntent(intention);
+
+        switch (rep) {
+            case 1:
+                message.reply("https://images-ext-1.discordapp.net/external/gv_ngfsYJ0zk_r0QKZaioOodUKrxc6xDMsVyeODB8tg/https/media.tenor.com/zvg8w0FkecYAAAPo/feur-theobabac.mp4");
+                break;
+            case 2:
+                message.reply("T'a l'air choqué, calme toi frère.");
+                break;
+            case 3:
+                message.reply("Je suis à ton service pour t'aider.");
+                break;
+            case 4:
+                message.reply("J'aimerai jouer avec toi mais j'ai pas de mains");
+                break;
+            default:
+        
     }
+}
+}
 })
 
 require('./src/Structure//Handler/Event')(bot);
