@@ -244,7 +244,7 @@ changement = "Pour le moment aucun";
 
 //Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
-    if (message.channelId == '1096735287561965568'){ //Channel #twitch channel retour
+    if (message.channelId == '1061413496564219926'){ //Channel #twitch channel retour
         if (skipLive){
             msg = message.content;
             titre = titreTravail(msg);
@@ -265,8 +265,8 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get("1096091134939377865").send({ embeds: [TWITCH] });
-                bot.channels.cache.get("1096091134939377865").send("<@&748220271839805520>")
+                bot.channels.cache.get("748855744274890772").send({ embeds: [TWITCH] });
+                bot.channels.cache.get("748855744274890772").send("<@&748220271839805520>")
                 .then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
