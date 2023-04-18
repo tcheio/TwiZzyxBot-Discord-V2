@@ -163,7 +163,7 @@ changement = "Pour le moment aucun";
                         return ds[random];
                     }
                     
-                    else if (titre == " 🏰KILL LA KILL UHC "){
+                    else if (titre == " 🏰KLK UHC " || titre == " 🏰KLK UHC V2 "){
                         return klk;
                     }
                     
@@ -210,6 +210,10 @@ changement = "Pour le moment aucun";
                 if (jeubis[0] == "Pokémon"){
                     return pokemon;
                 }
+
+                else if (jeubis[0] == "Batman:"){
+                    return batman;
+                }
                 
                 else {
                     if (titre == " ⚽INAZUMA ELEVEN 3: Les Ogres attaquent " || titre == " ⚽INAZUMA ELEVEN GO STRIKERS 2013 "){
@@ -222,9 +226,13 @@ changement = "Pour le moment aucun";
                 else if (titre == " 🔎AMONG US "){
                     return among;
                 }
-                else if (titre == " 🍌MARDI Z#ZI " || titre == " 🍌MARDI ZlZI "){
+                else if (titre == " 🍌MARDI Z*ZI " || titre == " MARDI Z\*ZI "){
                     random = Math.floor(Math.random() * (mardi.length));
                     return mardi[random];
+                }
+
+                else if (titre == " 🦇Batman Arkham Asylum "){
+                    return batman;
                 }
                 //Cas par defaut
                 random = Math.floor(Math.random() * (autre.length));
