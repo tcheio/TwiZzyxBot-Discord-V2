@@ -2,6 +2,21 @@ const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 const Permissions = require('../../Permissions');
 
+function temps(){
+    var now = new Date();
+    //Traitement Minute 
+    minute = now.getMinutes().toString();
+    if (minute.length == 1){ minute = "0"+now.getMinutes(); }
+
+    //Traitement Mois
+    mois = parseInt((now.getUTCMonth()+1))
+    mois = mois.toString();
+    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
+
+    tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
+
+    return tempsDate;
+}
 
 class command {
     constructor() {
@@ -23,7 +38,7 @@ class command {
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
             
             interaction.reply({ embeds: [SKIP] });
-            console.log("Une vidéo a été changé de destination")
+            console.log("Les annonces de live sont à nouveau en automatique.")
         }
         else {
             const Embed = new EmbedBuilder()
@@ -35,6 +50,8 @@ class command {
             interaction.reply({ embeds: [Embed] });
     
             }
+
+            bot.channels.cache.get('1060946019333976204').send("Les annonces de live ont été remis en automatique par "+interaction.author+", à "+temps());
     }
 }
 
