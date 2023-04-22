@@ -9,9 +9,9 @@ module.exports = {
         console.log('\x1b[33m' + `Connectés à ${client.user.username} !\n` + '\x1b[33m' + `-> Le bot est utilisé sur ${client.guilds.cache.size} serveurs !`);
 
 
-        tabAllStream = [" 🐺LG UHC "," 🍥NARUTO UHC "," 🍌MARDI Z*ZI "," 👺DEMON SLAYER UHC "," 🏰KLK UHC "," 🏰KLK UHC V2 "," 🃏EIGHTY SIX UHC "," ☠️DEATH NOTE UHC ",
-                        " 🔎SHERLOCK UHC "," 🏴‍☠️ONE PIECE UHC "," 💥THE BOYS UHC "," ⚔️ATTACK ON TITAN UHC "," ⚽INAZUMA ELEVEN 3: Les Ogres attaquent "," ⚽INAZUMA ELEVEN GO STRIKERS 2013 ",
-                        " 🔎AMONG US ", " 🏰SKY DEFENDER "," 🧪FMA UHC "," 🖥️CODE LYOKO TIME ", " 🦇Batman Arkham Asylum "];
+        tabAllStream = [" 🐺LG UHC "," 🍥NARUTO UHC "," 👺DEMON SLAYER UHC "," 🏰KLK UHC "," 🏰KLK UHC V2 "," 🃏EIGHTY SIX UHC "," ☠️DEATH NOTE UHC ",
+                        " 🔎SHERLOCK UHC "," 🏴‍☠️ONE PIECE UHC "," 💥THE BOYS UHC "," ⚔️ATTACK ON TITAN UHC "," 🧪FMA UHC ","\n:video_game:**__Multigaming:__**"," ⚽INAZUMA ELEVEN 3: Les Ogres attaquent "," ⚽INAZUMA ELEVEN GO STRIKERS 2013 ",
+                        " 🔎AMONG US ", " 🏰SKY DEFENDER "," 🖥️CODE LYOKO TIME ", " 🦇Batman Arkham Asylum "," 🍌MARDI Z*ZI "];
 
         msg = "\n\n**Ils sont à mettre obligatoirement dans le titre de stream à la place suivante:**\n"+
         "TwiZzyx - `préfixe ici` - Description | (!commande)\n\n<:minecraft:1057270445658869830>**__UHC__**\n";
