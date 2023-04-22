@@ -37,7 +37,7 @@ class command {
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
         interaction.reply({ embeds: [SKIP] });
-        console.log("Une vidéo a été changé de destination")
+        console.log("Un live a été changé de destination")
         }
         else {
         const Embed = new EmbedBuilder()

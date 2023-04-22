@@ -22,6 +22,7 @@ skipLive = true;
 planning = "https://media.discordapp.net/attachments/1064189056927400048/1079745624628527215/planningPasDispo.png?width=1193&height=671";
 changement = "Pour le moment aucun";
 
+
     function maxIntent(tab){
         max = 0;
         for (i=0; i<tab.length;i++){

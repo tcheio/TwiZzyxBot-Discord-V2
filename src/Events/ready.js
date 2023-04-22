@@ -6,6 +6,7 @@ const tabStream = require("../../index");
 module.exports = {
     name: 'ready',
     execute(client) {
+        remindPlanning = [];
         console.log('\x1b[33m' + `Connectés à ${client.user.username} !\n` + '\x1b[33m' + `-> Le bot est utilisé sur ${client.guilds.cache.size} serveurs !`);
 
 
@@ -44,6 +45,8 @@ module.exports = {
         const inter = activities[Math.floor(Math.random()*activities.length)];
         client.user.setActivity(inter, { type: ActivityType.Streaming})},5000
         );
+
+
 
 
         
