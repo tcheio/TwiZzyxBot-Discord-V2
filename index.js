@@ -121,25 +121,28 @@ changement = "Pour le moment aucun";
 
     function chercheMinia(titre,jeu){
         console.log(titre);
-        mardi = ["https://media.discordapp.net/attachments/1064668600285282315/1064679234506858558/MARDI_ZIZI_LOGO_1.gif","https://media.discordapp.net/attachments/1064668600285282315/1064815378431213588/MARDI_ZIZI_LOGO_2.gif"];
-        lg = ["https://media.discordapp.net/attachments/1064189056927400048/1064659083199774911/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064668057978536097/LG_UHC_-_IPDL.png?width=1193&height=671"];
-        naruto = ["https://media.discordapp.net/attachments/1064189056927400048/1064189088242085968/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064668138735665273/Naruto_UHC_-Sasuke.png?width=1193&height=671"];
-        klk = "https://media.discordapp.net/attachments/1064189056927400048/1064816769715413034/KLK_UHC_-_Nouveau_mode_de_jeu_maiko.png?width=1193&height=671";
-        ds = ["https://media.discordapp.net/attachments/1064189056927400048/1064816706641465354/DS_UHC_-_Nezuko_by_Hasuki.png?width=1193&height=671", "https://media.discordapp.net/attachments/1064189056927400048/1064816707006378004/DS_UHC_-_Tomioka.png?width=1193&height=671"];
-        sh = ["https://media.discordapp.net/attachments/1064189056927400048/1064816627385901156/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064816627700482078/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671"];
-        op = ["https://media.discordapp.net/attachments/1064189056927400048/1064816803622162442/OP_UHC_-_Sengoku.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064816804058386482/OP_UHC_-_Marco_by_SISSOU.png?width=1193&height=671"];
-        tb = ["https://media.discordapp.net/attachments/1064189056927400048/1064816849470103603/THE_BOYS_UHC_-_VOUGHT.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1064816849851777064/TB_UHC_-_Vought_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1088749046635704411/Twix_minia.png?width=1193&height=671"];
+        //UHC
+        lg = ["https://media.discordapp.net/attachments/1101573944538042458/1101574376220004512/LG_UHC_-_Grand_Mechant_Loup.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574348550193292/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574300286337185/LG_UHC_-_ERMITE_ZIZANIE.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1193&height=671"];
+        naruto = ["https://media.discordapp.net/attachments/1101573990193053736/1104378814299132025/Twix_Ragyo.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
+        klk = ["https://media.discordapp.net/attachments/1101573990193053736/1101574904022847508/KLK_UHC_-_Nouveau_mode_de_jeu_maiko.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1101574916337311825/KLK_UHC_-_Jujutsusare.png?width=1193&height=671",""];
+        ds = ["https://media.discordapp.net/attachments/1101573959666905150/1101574749634695268/maxresdefault.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574478338736239/DS_UHC_-_Nezuko_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574460013813801/DS_UHC_-_Tomioka.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574436651544576/DS_UHC_-_NAKIME_by_SISSOU.png?width=1193&height=671"];
+        sh = ["https://media.discordapp.net/attachments/1101574004483051590/1101574983458766908/Twix_Boom.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574971786002562/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574959492501645/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671"];
+        op = ["https://media.discordapp.net/attachments/1101574086083231814/1101575522565234869/OP_UHC_-_Marco_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574086083231814/1101575508916973718/OP_UHC_-_Sengoku.png?width=1193&height=671"];
+        tb = ["https://media.discordapp.net/attachments/1101574172838199400/1101575734033645709/THE_BOYS_UHC_-_VOUGHT.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575747333791824/TB_UHC_-_Vought_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575809145262150/Twix_minia.png?width=1193&height=671"];
         skydef = "https://media.discordapp.net/attachments/1064668600285282315/1067859958227542096/GIF_SKY_DEF.gif";
-        aot = ["https://media.discordapp.net/attachments/1064189056927400048/1069695407317319771/AOT_UHC_-_KEITH_SHADIS.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1081163236973477968/AOT_UHC_-_EREN_FLOP.png?width=1193&height=671"];
-        fma = ["https://media.discordapp.net/attachments/1064189056927400048/1073686652721041448/FMA_UHC_-_Kimblee.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1073686653073358938/FMA_UHC_-_VAN.png?width=1193&height=671","https://media.discordapp.net/attachments/1064189056927400048/1073686653442469979/FMA_UHC_-_FATHER.png?width=1193&height=671"];
+        aot = ["https://media.discordapp.net/attachments/1101573974569271468/1101574857549942784/Twix_AOT_finit-1.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573974569271468/1101574846854471760/AOT_UHC_-_EREN_FLOP.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573974569271468/1101574836431634472/AOT_UHC_-_KORD.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573974569271468/1101574825471918140/AOT_UHC_-_KEITH_SHADIS.png?width=1193&height=671"];
+        fma = ["https://media.discordapp.net/attachments/1101574158753726564/1101575662424309870/FMA_UHC_-_FATHER.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1101575652139868241/FMA_UHC_-_Kimblee.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1101575637774385152/FMA_UHC_-_VAN.png?width=1193&height=671"];
         es = "https://media.discordapp.net/attachments/1064189056927400048/1077866858834821120/maxresdefault.png?width=1193&height=671"; 
-        dn = "https://media.discordapp.net/attachments/1064189056927400048/1079021078292222022/maxresdefault.png?width=1193&height=671"
+        dn = ["https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671"];
 
+        //AUTRES
         mc = "https://images-ext-2.discordapp.net/external/5EgjXqovZZbX-J2JzsThelYNqjfXGnurl3FhTd9_AZw/https/i.ibb.co/Hpfvh2b/GIF-MC.gif";
         among = "https://media.discordapp.net/attachments/1064668600285282315/1066800722861109349/Among_us.gif";
         IE = "https://media.discordapp.net/attachments/1064668600285282315/1066800631274283089/IE.gif";
+        mardi = ["https://media.discordapp.net/attachments/1064668600285282315/1064679234506858558/MARDI_ZIZI_LOGO_1.gif","https://media.discordapp.net/attachments/1064668600285282315/1064815378431213588/MARDI_ZIZI_LOGO_2.gif"];
         pokemon = "https://images-ext-2.discordapp.net/external/horKKxFAj8ZRHeDJS8Xcx0N0ngEIMKJPpU0TqgOE4kQ/https/i.ibb.co/vx7mPX7/GIF-POKEMON.gif";
         lyoko = "https://images-ext-2.discordapp.net/external/Y8Q6iyEymL5dCdN-QQrAWjbq_xQE6EUD1acDe8OiiXY/https/i.ibb.co/TrDkV4D/GIF-CODE-LYOKO.gif";
+        batman = "https://media.discordapp.net/attachments/1064668600285282315/1097593503468503080/GIF_BATMA.gif";
         autre = ["https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"];
         
         if (jeu == "Minecraft"){                
@@ -165,7 +168,8 @@ changement = "Pour le moment aucun";
                     }
                     
                     else if (titre == " 🏰KLK UHC " || titre == " 🏰KLK UHC V2 "){
-                        return klk;
+                        random = Math.floor(Math.random() * (klk.length));
+                        return klk[random];
                     }
                     
                     else if (titre == " 🔎SHERLOCK UHC "){
@@ -189,11 +193,13 @@ changement = "Pour le moment aucun";
                     }
                     
                     else if (titre == " ⚔️ATTACK ON TITAN UHC "){
-                        return aot;
+                        random = Math.floor(Math.random() * (aot.length));
+                        return aot[random];
                     }
 
                     else if (titre == " ☠️DEATH NOTE UHC "){
-                        return dn;
+                        random = Math.floor(Math.random() * (dn.length));
+                        return dn[random];
                     }
 
                     else if (titre == " 🃏EIGHTY SIX UHC "){
