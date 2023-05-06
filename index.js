@@ -288,6 +288,14 @@ bot.on("messageCreate", async message => {
         
     }
 
+    else if (message.channelId == '1104368803523072010'){ //Channel #tiktok
+        msg = message.content;
+        bot.channels.cache.get('1033326900564738048').send(msg); //envoie ce message dans le channel "video"
+        //log serveur
+        console.log("Une vidéo a été publié à "+temps());
+        bot.channels.cache.get('1060978198927654933').send("Une vidéo a été publié à "+temps()); //CHANNEL log
+    }
+
     else if (message.channelId == '1061410003300397066'){ //Channel #clip-lp
         if (skipVideo) {
             msg = message.content;
