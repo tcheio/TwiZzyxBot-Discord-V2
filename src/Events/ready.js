@@ -31,7 +31,7 @@ module.exports = {
         prefix.setTimestamp()
         prefix.setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
-        client.channels.cache.get("1033326900564738048").send({ embeds: [prefix] });
+        client.channels.cache.get("1064817596261728356").send({ embeds: [prefix] });
 
         const activities = [
             "twitch.tv/twizzyxpassympa",
