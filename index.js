@@ -114,7 +114,7 @@ changement = "Pour le moment aucun";
         mois = mois.toString();
         if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
 
-        tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
+        tempsDate = (now.getHours()-1)+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
 
         return tempsDate;
     }
