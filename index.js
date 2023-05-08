@@ -333,6 +333,12 @@ bot.on("messageCreate", async message => {
         
     }
 
+    else if (message.channelId == '1104368803523072010'){ //Channel #videos
+        bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
+        console.log("Une vidéo a été publié à "+temps());
+        bot.channels.cache.get('1060946019333976204').send("Une vidéo a été publié à "+temps()); 
+    }
+
     else if (message.channelId == '1079743531603730472'){ //Channel #tiktok
         msg = message.content;
         bot.channels.cache.get('892842982112374804').send("<:TikTok:828529933591904296>  __**NOUVEAU TIKTOK**__\n\n"+msg+"\n\n||<@&748220128235094017>||"); //envoie ce message dans le channel "stream"
