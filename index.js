@@ -334,7 +334,7 @@ bot.on("messageCreate", async message => {
     }
 
     else if (message.channelId == '1104368803523072010'){ //Channel #videos
-        bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
+        bot.channels.cache.get('1033326900564738048').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
         console.log("Une vidéo a été publié à "+temps());
         bot.channels.cache.get('1060946019333976204').send("Une vidéo a été publié à "+temps()); 
     }
