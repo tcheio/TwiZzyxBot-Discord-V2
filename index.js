@@ -167,7 +167,7 @@ changement = "Pour le moment aucun";
                         return ds[random];
                     }
                     
-                    else if (titre == " 🏰KLK UHC " || titre == " 🏰KLK UHC V2 "){
+                    else if (titre == " ✂️KLK UHC " || titre == " ✂️KLK UHC V2 "){
                         random = Math.floor(Math.random() * (klk.length));
                         return klk[random];
                     }
