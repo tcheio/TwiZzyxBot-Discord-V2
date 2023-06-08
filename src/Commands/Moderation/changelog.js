@@ -1,11 +1,15 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
-const msg="- **Fix des perms commandes** (Le staff peut enfin utiliser les commandes de STAFF\n"+
-          "- **Fix des annonces de shorts (Vraiment une petite bêtises à tout niquer)\n"+
-          "- **Fix des annonces Mardi Zizi (Un caractère anti slash était ajouter qui est innexploitable) -> Désormais les MZ seront nomme soit `Mardi Z#zi` ou `Mardi Zlzi` et le pire c'est que j'ai fais ça pour rien\n\n"+
+const msg="- Ajout des annonces automatiques pour les vidéos sur la chaine principal\n"+
+          "- Changement emojis pour certains streams (*On s'en branle en vrai*)\n"+
+          "- Ajout d'une nouvelle intégration mais on en reparle dans quelques jours\n"+
+          "- Modification du grade `Planning - Twitch` en <@&748220271839805520> (*On en reparlera aussi*)\n\n"+
+          "- Modification dans les préfixes de certains streams (*Uniquement pour le staff*))\n"+
+          "- Les repings de streams seront effectué par le bot désormais avec l'action d'un staff (*Uniquement pour le staff*))\n"+
+          "- Fix des logs avec les bonnes heures (*Toujours une heure de plus ou de moins*)\n\n"+
 
-          'Cette version du bot est donc normalement terminé à "100%" (Sauf correctif très mineur et ajout de nouveau stream type). Je travaille déjà sur la prochaine donc je suis toujours preneur de vos idées de commandes que vous souhaitez voir.'
+          "Il s'agit d'une pre-version, celle que j'avais prévu est beaucoup plus grosse juste j'ai eu la flemme de bosser plus"
 
 class command {
     constructor() {
@@ -22,7 +26,7 @@ class command {
         skipVideo = false;
         const SKIP = new EmbedBuilder()
         .setColor('#E49B0F')
-        .setTitle('⚙**__Mise à jour du '+now.getDate()+'/'+(parseInt(now.getUTCMonth())+1)+'/'+now.getFullYear()+'__**')
+        .setTitle('⚙**__Mise à jour du '+now.getDate()+'/'+(parseInt(now.getUTCMonth())+1)+'/'+now.getFullYear()+'__** - __**PRE V2.2**__')
             .setDescription(msg)
             .setTimestamp()
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});

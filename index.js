@@ -114,7 +114,7 @@ changement = "Pour le moment aucun";
         mois = mois.toString();
         if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
 
-        tempsDate = (now.getHours()-1)+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
+        tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
 
         return tempsDate;
     }
@@ -274,8 +274,8 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get("1096735321456136222").send({ embeds: [TWITCH] });
-                bot.channels.cache.get("1096735321456136222").send("<@&748220271839805520>")
+                bot.channels.cache.get("748855744274890772").send({ embeds: [TWITCH] });
+                bot.channels.cache.get("748855744274890772").send("<@&748220271839805520>")
                 .then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
@@ -283,7 +283,7 @@ bot.on("messageCreate", async message => {
 
             //log serveur
             console.log("Un live a été publié à "+temps());
-            //bot.channels.cache.get('1060946019333976204').send("Un live a été publié à "+temps());
+            bot.channels.cache.get('1060946019333976204').send("Un live a été publié à "+temps());
         }
 
         else {
@@ -293,6 +293,70 @@ bot.on("messageCreate", async message => {
         }
         
     }
+
+    else if (message.channelId == '1116315244235599872'){ //Channel #kick
+        msg = message.content;
+        titre = titreTravail(msg);
+        jeu = chercheJeu(msg);
+        desc = descriptionTravail(msg);
+        minia = chercheMinia(titre,jeu);
+            const KICK = new EmbedBuilder()
+                    .setColor('#03BF00')
+                    .setTitle("**"+titre+"**")
+                    .setDescription(desc)
+                    .setURL("https://www.twitch.tv/twizzyxpassympa")
+                    .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671', url: 'https://kick.com/twizzyxpassympa' })
+                    .addFields(
+                        {name: '<:Kick:1116315078552199199>TwiZzyx est en stream sur Kick', value: "C'est zinzin" },
+                        {name: "Joue à", value: jeu})
+                    .setThumbnail("https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671")
+                    .setImage(minia)
+                    .setTimestamp()
+                    .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+                bot.channels.cache.get("748855744274890772").send({ embeds: [KICK] });
+                bot.channels.cache.get("748855744274890772").send("<@&748220271839805520>")
+                .then(sentMessage => {
+                    sentMessage.delete({ timeout: 1000 });
+                })
+                .catch(console.error);;
+
+            //log serveur
+            console.log("Un live a été publié à "+temps());
+            bot.channels.cache.get('1060946019333976204').send("Un live a été publié à "+temps());
+        
+    }
+
+    else if (message.channelId == '1116320116322336870'){ //Channel #reping-stream
+            msg = message.content;
+            titre = titreTravail(msg);
+            jeu = chercheJeu(msg);
+            desc = descriptionTravail(msg);
+            minia = chercheMinia(titre,jeu);
+                const TWITCH = new EmbedBuilder()
+                    .setColor('#9B00FF')
+                    .setTitle("**"+titre+"**")
+                    .setDescription(desc)
+                    .setURL("https://www.twitch.tv/twizzyxpassympa")
+                    .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671', url: 'https://www.twitch.tv/twizzyxpassympa' })
+                    .addFields(
+                        {name: '<:Twitch:748225816973803562>TwiZzyx est toujours en stream sur Twitch', value: "Il ne s'arrête jamais ou quoi là" },
+                        {name: "Joue à", value: jeu})
+                    .setThumbnail("https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671")
+                    .setImage(minia)
+                    .setTimestamp()
+                    .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+                bot.channels.cache.get("748855744274890772").send({ embeds: [TWITCH] });
+                bot.channels.cache.get("748855744274890772").send("<@&748220271839805520>")
+                .then(sentMessage => {
+                    sentMessage.delete({ timeout: 1000 });
+                })
+                .catch(console.error);;
+
+            //log serveur
+            console.log("Un reping de live a été publié à "+temps());
+            bot.channels.cache.get('1060946019333976204').send("Un reping de live a été publié à "+temps());
+        }
+
 
     else if (message.channelId == '1104368803523072010'){ //Channel #tiktok
         msg = message.content;
@@ -333,8 +397,9 @@ bot.on("messageCreate", async message => {
         
     }
 
-    else if (message.channelId == '1104368803523072010'){ //Channel #videos
-        bot.channels.cache.get('1033326900564738048').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
+    else if (message.channelId == '1033326859909337141'){ //Channel #videos
+        msgVideo = message.content;
+        bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msgVideo+"\n\n||@everyone||");
         console.log("Une vidéo a été publié à "+temps());
         bot.channels.cache.get('1060946019333976204').send("Une vidéo a été publié à "+temps()); 
     }
