@@ -254,7 +254,7 @@ changement = "Pour le moment aucun";
 
 //Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
-    if (message.channelId == '1096735287561965568'){ //Channel #twitch channel retour
+    if (message.channelId == '1061413496564219926'){ //Channel #twitch channel retour
         if (skipLive){
             msg = message.content;
             titre = titreTravail(msg);
@@ -397,7 +397,7 @@ bot.on("messageCreate", async message => {
         
     }
 
-    else if (message.channelId == '1033326859909337141'){ //Channel #videos
+    else if (message.channelId == '1104368803523072010'){ //Channel #videos
         msgVideo = message.content;
         bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msgVideo+"\n\n||@everyone||");
         console.log("Une vidéo a été publié à "+temps());
