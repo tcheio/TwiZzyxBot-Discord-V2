@@ -1,12 +1,27 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
+function temps(){
+    var now = new Date();
+    //Traitement Minute 
+    minute = now.getMinutes().toString();
+    if (minute.length == 1){ minute = "0"+now.getMinutes(); }
+
+    //Traitement Mois
+    mois = parseInt((now.getUTCMonth()+1))
+    mois = mois.toString();
+    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
+
+    tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
+
+    return tempsDate;
+}
 
 class command {
     constructor() {
         this.name = "planningreset",
         this.description = "Reset le planning de la semaine"
-        this.permission = "Administrator"
+        this.permission = "ManageMessages"
     }
 
     async execute(bot, interaction) {
@@ -33,6 +48,7 @@ class command {
         interaction.reply({ embeds: [Embed] });
 
         }
+        bot.channels.cache.get('1060946019333976204').send("Le planning a été reset par "+interaction.author+", à "+temps());
     }
 }
 

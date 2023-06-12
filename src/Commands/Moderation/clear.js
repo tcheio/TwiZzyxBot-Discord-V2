@@ -1,6 +1,22 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
+function temps(){
+    var now = new Date();
+    //Traitement Minute 
+    minute = now.getMinutes().toString();
+    if (minute.length == 1){ minute = "0"+now.getMinutes(); }
+
+    //Traitement Mois
+    mois = parseInt((now.getUTCMonth()+1))
+    mois = mois.toString();
+    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
+
+    tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
+
+    return tempsDate;
+}
+
 class command {
     constructor() {
         this.name = "clear",
@@ -42,12 +58,14 @@ class command {
 
                 await Channel.bulkDelete(TargetMessages, true).then((msg) => {
                     interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages du membre ${user.toString()}** !`)], ephemeral: false });
+                    bot.channels.cache.get('1060946019333976204').send(args+" message(s) ont été supprimé par"+interaction.author+", à "+temps());
                 }).catch((err) => {
                     interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
                 });
             } else if(args >= 1 && args <= 100){
                 await interaction.channel.bulkDelete(args, true).then((msg) => {
                     interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages** !`)], ephemeral: false });
+                    bot.channels.cache.get('1060946019333976204').send(args+" message(s) ont été supprimé par "+interaction.author+", à "+temps());
                 }).catch((err) => {
                     interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
                 });
@@ -57,6 +75,7 @@ class command {
         } else {
             interaction.reply({ embeds: [Embed.setDescription(`❌ | **Tu n'as pas la permission d'exécuter cette commande** !`)], ephemeral: false });
         }
+
     }
 }
 
