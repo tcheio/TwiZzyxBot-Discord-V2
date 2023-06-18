@@ -11,7 +11,7 @@ module.exports = {
 
 
         tabAllStream = [" 🐺LG UHC "," 🍥NARUTO UHC "," 👺DEMON SLAYER UHC "," ✂️KLK UHC "," ✂️KLK UHC V2 "," 🃏EIGHTY SIX UHC "," ☠️DEATH NOTE UHC ",
-                        " 🔎SHERLOCK UHC "," 🏴‍☠️ONE PIECE UHC "," 💥THE BOYS UHC "," ⚔️ATTACK ON TITAN UHC "," 🧪FMA UHC ", " 🏰SKY DEFENDER "," 👹JJK UHC ","\n:video_game:**__Multigaming:__**"," ⚽INAZUMA ELEVEN 3: Les Ogres attaquent "," ⚽INAZUMA ELEVEN GO STRIKERS 2013 ",
+                        " 🔎SHERLOCK UHC "," 🏴‍☠️ONE PIECE UHC "," 💥THE BOYS UHC "," ⚔️ATTACK ON TITAN UHC "," ⚔️AOT UHC "," 🧪FMA UHC ", " 🏰SKY DEFENDER "," 👹JJK UHC "," ⛏️SURVIE HARDCORE "," 🪓SURVIE HARDCORE ","\n:video_game:**__Multigaming:__**"," ⚽INAZUMA ELEVEN 3: Les Ogres attaquent "," ⚽INAZUMA ELEVEN GO STRIKERS 2013 ",
                         " 🔎AMONG US "," 🖥️CODE LYOKO TIME ", " 🦇Batman Arkham Asylum "," 🍌MARDI Z*ZI "];
 
         msg = "\n\n**Ils sont à mettre obligatoirement dans le titre de stream à la place suivante:**\n"+
