@@ -1,12 +1,27 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
+function temps(){
+    var now = new Date();
+    //Traitement Minute 
+    minute = now.getMinutes().toString();
+    if (minute.length == 1){ minute = "0"+now.getMinutes(); }
+
+    //Traitement Mois
+    mois = parseInt((now.getUTCMonth()+1))
+    mois = mois.toString();
+    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
+
+    tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
+
+    return tempsDate;
+}
 
 class command {
     constructor() {
         this.name = "videoskip",
         this.description = "Changer le channel d'annonce vidéo (STAFF)",
-        this.permission = "Administrator"
+        this.permission = "ManageMessages"
     }
 
     async execute(bot, interaction) {
@@ -33,6 +48,8 @@ class command {
         interaction.reply({ embeds: [Embed] });
 
         }
+
+        bot.channels.cache.get('1060946019333976204').send("Une vidéo a été changer de destination (<#748247106980020236> → <#1023891712403312720>) par "+interaction.author+", à "+temps());
 }
 }
 module.exports = command

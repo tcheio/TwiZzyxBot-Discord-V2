@@ -33,6 +33,7 @@ module.exports = {
 
         client.channels.cache.get("1064817596261728356").send({ embeds: [prefix] });
 
+
         const activities = [
             "twitch.tv/twizzyxpassympa",
             "Vidéo tous les samedis à 15H",
