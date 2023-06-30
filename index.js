@@ -248,7 +248,7 @@ changement = "Pour le moment aucun";
                     return IE;
                 }
                 
-                else if (jeubis[0] == "Among" && jeubis[1] == "US"){
+                else if (jeubis[0] == "Among" && jeubis[1] == "Us"){
                     return among;
                 }
 
