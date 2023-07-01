@@ -135,6 +135,8 @@ changement = "Pour le moment aucun";
         es = "https://media.discordapp.net/attachments/1064189056927400048/1077866858834821120/maxresdefault.png?width=1193&height=671"; 
         dn = ["https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1116825506726281257/maxresdefault.png?width=1193&height=671"];
         jjk = "https://media.discordapp.net/attachments/1111982327967535164/1117797850345132052/JJK_UHC_-_Nobara_by_Sissou.png?width=1193&height=671";
+        dawa = ["https://media.discordapp.net/attachments/1064668600285282315/1124759438188888064/cf45b92782ab0c90d2e29bb27961f0a4.gif","https://media.discordapp.net/attachments/1064668600285282315/1124759438583144508/AA0k.gif"];
+        madoka = "https://media.discordapp.net/attachments/1111982327967535164/1124752990310510652/Twix_Madoka1_1.png?width=1193&height=671";
         mchard = "https://media.discordapp.net/attachments/1120085675463692349/1120085725891805316/MC_HARDCORE.png?width=1193&height=671";
 
         //AUTRES
@@ -214,6 +216,15 @@ changement = "Pour le moment aucun";
 
                     else if (titre == " 👹JJK UHC "){
                         return jjk;
+                    }
+
+                    else if (titre == " 🤡FDP UHC "  || titre == " 🤡DAWA UHC "){
+                        random = Math.floor(Math.random() * (dawa.length));
+                        return dawa[random];
+                    }
+
+                    else if (titre == " 🪄MADOKA UHC "){
+                        return madoka;
                     }
                     
                     else if (titre == " ⛏️SURVIE HARDCORE "  || titre == " 🪓SURVIE HARDCORE "){
