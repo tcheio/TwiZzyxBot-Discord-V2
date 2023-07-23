@@ -20,6 +20,7 @@ bot.commands = new Collection();
 skipVideo = true;
 NoneVideo = true;
 skipLive = true;
+AllLive = true;
 
 
     function maxIntent(tab){
@@ -296,18 +297,17 @@ skipLive = true;
 //Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
     if (message.channelId == '1061413496564219926'){ //Channel #twitch channel retour
+        mention = "<@&748220271839805520>";
         if (skipLive){
+            if (AllLive == false){
+                AllLive = true;
+                mention = "@everyone";
+            }
             msg = message.content;
             titre = titreTravail(msg);
             jeu = chercheJeu(msg);
             desc = descriptionTravail(msg);
             minia = chercheMinia(titre,jeu);
-            if (titre == " 📺TWIZZYX DIRECT "){
-                mention = "@everyone";
-            }
-            else {
-                mention = "<@&748220271839805520>"
-            }
             console.log(minia);
                 const TWITCH = new EmbedBuilder()
                     .setColor('#9B00FF')
@@ -327,17 +327,18 @@ bot.on("messageCreate", async message => {
                     sentMessage.delete({ timeout: 1000 });
                 })
                 .catch(console.error);;
-
+    
             //log serveur
             console.log("Un live a été publié à "+temps());
             bot.channels.cache.get('1060946019333976204').send("Un live a été publié à "+temps());
         }
 
-        else {
+        else if (skipLive == false){
             skipLive = true;
             //Message dans le général staff
-            bot.channels.cache.get('1060946019333976204').send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
+            bot.channels.cache.get('1096735321456136222').send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
         }
+        
         
 
     }
@@ -382,7 +383,7 @@ bot.on("messageCreate", async message => {
         bot.channels.cache.get('1060978198927654933').send("Une vidéo a été publié à "+temps()); //CHANNEL log
     }
 
-    else if (message.channelId == '1096091134939377865'){ //Channel #clip-lp
+    else if (message.channelId == '1061410003300397066'){ //Channel #clip-lp
         if (skipVideo && NoneVideo) {
             msg = message.content;
             console.log("Message: "+msg);
@@ -395,7 +396,7 @@ bot.on("messageCreate", async message => {
                 }
 
             else {
-                bot.channels.cache.get('1096735287561965568').send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n||<@&1018803719250382898>||"); //envoie ce message dans le channel "lp"
+                bot.channels.cache.get('1023891712403312720').send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n||<@&1018803719250382898>||"); //envoie ce message dans le channel "lp"
                 //log serveur
                 console.log("Une vidéo LP a été publié à "+temps());
                 //bot.channels.cache.get('1060946019333976204').send("Une vidéo LP a été publié à "+temps()); 
@@ -403,12 +404,12 @@ bot.on("messageCreate", async message => {
         }
                 
             else if(skipVideo == true && NoneVideo == false){
-                bot.channels.cache.get('1096735321456136222').send("Une vidéo aurait du être annoncé <@209395375474212865> et la variable NoneVideo est de nouveau en "+NoneVideo); 
+                bot.channels.cache.get('749975416944721940').send("Une vidéo aurait du être annoncé <@209395375474212865> et la variable NoneVideo est de nouveau en "+NoneVideo); 
             }
 
             else {
                 msg = message.content;
-                bot.channels.cache.get('1096735321456136222').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
+                bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
                 skipVideo = true;
                 //log serveur
                 console.log("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo);
@@ -431,18 +432,6 @@ bot.on("messageCreate", async message => {
         //log serveur
         console.log("Un Tiktok a été publié à "+temps());
         bot.channels.cache.get('1060946019333976204').send("Un Tiktok a été publié à "+temps()); //CHANNEL log
-    }
-
-    else if (message.channelId == "1061410762628808734"){ //Application du nouveau Planning
-        planning = message.content;
-        console.log("Vous avez mis à jour le planning pour la commande /planning")
-        bot.channels.cache.get('1060946019333976204').send("Vous avez mis à jour le planning pour la commande /planning à "+temps());
-    }
-
-    else if (message.channelId == "1079897267470868651"){
-        changement = message.content;
-        console.log("Un changement de programme a eu lieu: "+changement)
-        bot.channels.cache.get('1060946019333976204').send("Un changement de programme a eu lieu: "+changement+temps());
     }
 
     //Detection des intensions Demo

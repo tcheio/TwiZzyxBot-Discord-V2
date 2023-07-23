@@ -19,8 +19,8 @@ function temps(){
 
 class command {
     constructor() {
-        this.name = "video",
-        this.description = "Changer le channel d'annonce vidéo (STAFF)",
+        this.name = "live",
+        this.description = "Change la manière d'annoncer un stream",
         this.permission = "ManageMessages"
         this.options = [
             { 
@@ -36,44 +36,44 @@ class command {
         if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
             const args = interaction.options.getString('fonc');
             
-            if (args == "yt"){
-            skipVideo = false;
-            const SKIP = new EmbedBuilder()
-            .setColor('#FF0000')
-            .setTitle('✅ **__Vidéo changé de destination__**')
-                .setDescription("La prochaine vidéo est changé de destination (<#1023891712403312720> → <#748247106980020236>)")
-                .setTimestamp()
-                .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-
-            interaction.reply({ embeds: [SKIP] });
-            console.log("Une vidéo a été changé de destination")
-            }
-
-            else if (args == "lp"){
-                skipVideo = true;
+            if (args == "all"){
+                AllLive = false;
                 const SKIP = new EmbedBuilder()
                 .setColor('#FF0000')
-                .setTitle('✅ **__Vidéo changé de destination__**')
-                    .setDescription("La prochaine vidéo est changé de destination (<#748247106980020236> → <#1023891712403312720>)")
+                .setTitle('✅ **__Le stream sera annoncé à tous__**')
+                    .setDescription("Le prochain stream sera annoncé avec une mention everyone.")
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
                 interaction.reply({ embeds: [SKIP] });
-                console.log("Une vidéo a été changé de destination")
+                console.log("Un live a changé de mention.");
+            }
+
+            else if (args == "normal"){
+                AllLive = true;
+                const SKIP = new EmbedBuilder()
+                .setColor('#FF0000')
+                .setTitle('✅ **__Le stream sera annoncé à tous__**')
+                    .setDescription("Le prochain stream sera annoncé comme d'habitude.")
+                    .setTimestamp()
+                    .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+
+                interaction.reply({ embeds: [SKIP] });
+                console.log("Un live a changé de mention.");
         
             }
 
             else if (args == "cancel"){
-                NoneVideo = false;
+                skipLive = false;
                 const SKIP = new EmbedBuilder()
                 .setColor('#FF0000')
-                .setTitle('✅ **__Annonce vidéo annulé__**')
-                    .setDescription("La prochaine vidéo ne sera pas annoncée")
-                    .setTimestamp()
-                    .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+                .setTitle('✅ **__Le prochain stream ne sera pas annoncé__**')
+                .setDescription("Le prochain stream n'aura pas d'annonce auto.")
+                .setTimestamp()
+                .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
                 interaction.reply({ embeds: [SKIP] });
-                console.log("La prochaine vidéo ne sera pas annoncée")
+                console.log("Un live a été changé de destination")
             }
         }
 
