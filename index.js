@@ -32,6 +32,7 @@ AllLive = true;
         }
         return max;
     }
+
     function rechercheCaract(msg){
         const msgBis = msg.split(" ");
             if (msgBis[msgBis.length-2] == "#shorts"){
@@ -125,7 +126,7 @@ AllLive = true;
         lg = ["https://media.discordapp.net/attachments/1101573944538042458/1101574376220004512/LG_UHC_-_Grand_Mechant_Loup.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574348550193292/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574300286337185/LG_UHC_-_ERMITE_ZIZANIE.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1193&height=671"];
         naruto = ["https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
         klk = ["https://media.discordapp.net/attachments/1101573990193053736/1101574904022847508/KLK_UHC_-_Nouveau_mode_de_jeu_maiko.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1101574916337311825/KLK_UHC_-_Jujutsusare.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1104378814299132025/Twix_Ragyo.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1127895984240857099/Twix_Satsuki.png?width=1193&height=671"];
-        ds = ["https://media.discordapp.net/attachments/1101573959666905150/1101574749634695268/maxresdefault.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574478338736239/DS_UHC_-_Nezuko_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574460013813801/DS_UHC_-_Tomioka.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574436651544576/DS_UHC_-_NAKIME_by_SISSOU.png?width=1193&height=671"];
+        ds = ["https://media.discordapp.net/attachments/1101573959666905150/1132968955095560202/Twix_Zenitsu.png?width=1177&height=662","https://media.discordapp.net/attachments/1101573959666905150/1101574749634695268/maxresdefault.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574478338736239/DS_UHC_-_Nezuko_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574460013813801/DS_UHC_-_Tomioka.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574436651544576/DS_UHC_-_NAKIME_by_SISSOU.png?width=1193&height=671"];
         sh = ["https://media.discordapp.net/attachments/1101574004483051590/1101574983458766908/Twix_Boom.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574971786002562/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574959492501645/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1114498223923544155/Twix_Journaliste_Sherlock.png?width=1193&height=671"];
         op = ["https://media.discordapp.net/attachments/1101574086083231814/1101575522565234869/OP_UHC_-_Marco_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574086083231814/1101575508916973718/OP_UHC_-_Sengoku.png?width=1193&height=671"];
         tb = ["https://media.discordapp.net/attachments/1101574172838199400/1101575734033645709/THE_BOYS_UHC_-_VOUGHT.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575747333791824/TB_UHC_-_Vought_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575809145262150/Twix_minia.png?width=1193&height=671"];
@@ -137,7 +138,7 @@ AllLive = true;
         jjk = "https://media.discordapp.net/attachments/1111982327967535164/1117797850345132052/JJK_UHC_-_Nobara_by_Sissou.png?width=1193&height=671";
         dawa = ["https://media.discordapp.net/attachments/1064668600285282315/1124759438188888064/cf45b92782ab0c90d2e29bb27961f0a4.gif","https://media.discordapp.net/attachments/1064668600285282315/1124759438583144508/AA0k.gif"];
         madoka = "https://media.discordapp.net/attachments/1111982327967535164/1124752990310510652/Twix_Madoka1_1.png?width=1193&height=671";
-        survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1193&height=671"];
+        survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1177&height=662s"];
 
         //AUTRES
         mc = "https://images-ext-2.discordapp.net/external/5EgjXqovZZbX-J2JzsThelYNqjfXGnurl3FhTd9_AZw/https/i.ibb.co/Hpfvh2b/GIF-MC.gif";
@@ -232,7 +233,7 @@ AllLive = true;
                     
                     else if (titreBis[1] == "🪓SURVIE"  || titre == " 🪓SURVIE HARDCORE "){
                         random = Math.floor(Math.random() * (survie.length));
-                        return survie;
+                        return survie[random];
                     }
 
                     else {
@@ -296,7 +297,7 @@ AllLive = true;
 
 //Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
-    if (message.channelId == '1061413496564219926'){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -322,28 +323,28 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get("748855744274890772").send({ embeds: [TWITCH] });
-                bot.channels.cache.get("748855744274890772").send(mention).then(sentMessage => {
+                bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
+                bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
                 .catch(console.error);;
     
             //log serveur
             console.log("Un live a été publié à "+temps());
-            bot.channels.cache.get('1060946019333976204').send("Un live a été publié à "+temps());
+            bot.channels.cache.get(config.channel.log).send("Un live a été publié à "+temps());
         }
 
         else if (skipLive == false){
             skipLive = true;
             //Message dans le général staff
-            bot.channels.cache.get('1096735321456136222').send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
+            bot.channels.cache.get(config.channel.generalStaff).send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
         }
         
         
 
     }
 
-    else if (message.channelId == '1116320116322336870'){ //Channel #reping-stream
+    else if (message.channelId == config.channel.reping){ //Channel #reping-stream
             msg = message.content;
             titre = titreTravail(msg);
             jeu = chercheJeu(msg);
@@ -362,28 +363,19 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get("748855744274890772").send({ embeds: [TWITCH] });
-                bot.channels.cache.get("748855744274890772").send("<@&748220271839805520>")
-                .then(sentMessage => {
-                    sentMessage.delete({ timeout: 1000 });
-                })
-                .catch(console.error);;
+                    bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
+                    bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+                        sentMessage.delete({ timeout: 1000 });
+                    })
+                    .catch(console.error);;
 
             //log serveur
             console.log("Un reping de live a été publié à "+temps());
-            bot.channels.cache.get('1060946019333976204').send("Un reping de live a été publié à "+temps());
+            bot.channels.cache.get(config.channel.log).send("Un reping de live a été publié à "+temps());
         }
 
 
-    else if (message.channelId == '1104368803523072010'){ //Channel #tiktok
-        msg = message.content;
-        bot.channels.cache.get('1033326900564738048').send(msg); //envoie ce message dans le channel "video"
-        //log serveur
-        console.log("Une vidéo a été publié à "+temps());
-        bot.channels.cache.get('1060978198927654933').send("Une vidéo a été publié à "+temps()); //CHANNEL log
-    }
-
-    else if (message.channelId == '1061410003300397066'){ //Channel #clip-lp
+    else if (message.channelId == config.channel.youtube){ //Channel #clip-lp
         if (skipVideo && NoneVideo) {
             msg = message.content;
             console.log("Message: "+msg);
@@ -419,19 +411,19 @@ bot.on("messageCreate", async message => {
         
     
 
-    else if (message.channelId == '1104368803523072010'){ //Channel #videos
+    else if (message.channelId == config.channel.chainePrincipal){ //Channel #videos
         msgVideo = message.content;
-        bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msgVideo+"\n\n||@everyone||");
+        bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msgVideo+"\n\n||@everyone||");
         console.log("Une vidéo a été publié à "+temps());
-        bot.channels.cache.get('1060946019333976204').send("Une vidéo a été publié à "+temps()); 
+        bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+temps()); 
     }
 
-    else if (message.channelId == '1079743531603730472'){ //Channel #tiktok
+    else if (message.channelId == config.channel.tiktokT){ //Channel #tiktok
         msg = message.content;
-        bot.channels.cache.get('892842982112374804').send("<:TikTok:828529933591904296>  __**NOUVEAU TIKTOK**__\n\n"+msg+"\n\n||<@&748220128235094017>||"); //envoie ce message dans le channel "stream"
+        bot.channels.cache.get(config.channel.tiktok).send("<:TikTok:828529933591904296>  __**NOUVEAU TIKTOK**__\n\n"+msg+"\n\n||<@&748220128235094017>||"); //envoie ce message dans le channel "stream"
         //log serveur
         console.log("Un Tiktok a été publié à "+temps());
-        bot.channels.cache.get('1060946019333976204').send("Un Tiktok a été publié à "+temps()); //CHANNEL log
+        bot.channels.cache.get(config.channel.log).send("Un Tiktok a été publié à "+temps()); //CHANNEL log
     }
 
     //Detection des intensions Demo
