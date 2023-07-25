@@ -1,4 +1,4 @@
-const { ActivityType, EmbedBuilder } = require('discord.js');
+const { ActivityType, EmbedBuilder, Promise, } = require('discord.js');
 const config = require('../../config');
 const tabStream = require("../../index");
 
@@ -6,7 +6,9 @@ const tabStream = require("../../index");
 module.exports = {
     name: 'ready',
     execute(client) {
-        remindPlanning = [];
+        
+        
+        
         console.log('\x1b[33m' + `Connectés à ${client.user.username} !\n` + '\x1b[33m' + `-> Le bot est utilisé sur ${client.guilds.cache.size} serveurs !`);
 
 
@@ -18,9 +20,6 @@ module.exports = {
         "TwiZzyx - `préfixe ici` - Description | (!commande)\n\n<:minecraft:1057270445658869830>**__MINECRAFT:__**\n";
 
         var now = new Date();
-        channel = "1033326900564738048";
-        //client.channel.delete;
-
         const prefix = new EmbedBuilder()
         .setColor('#CB7AFF') 
         .setTitle('<:Twitch:748225816973803562>**__Préfixe à mettre en titre de stream:__**');
@@ -31,7 +30,7 @@ module.exports = {
         prefix.setTimestamp()
         prefix.setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
-        //client.channels.cache.get("1064817596261728356").send({ embeds: [prefix] });
+        client.channels.cache.get(config.channel.start).send({ embeds: [prefix] });
 
 
         const activities = [
