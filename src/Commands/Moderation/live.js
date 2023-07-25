@@ -24,17 +24,17 @@ class command {
         this.permission = "ManageMessages"
         this.options = [
             { 
-                type: 3, 
-                name: "fonc", 
+                type: 10, 
+                name: "action", 
                 description: "Comportement de l'annonce", 
-                require: true,
+                required: true,
             },
         ]
     }
 
     async execute(bot, interaction) {
         if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
-            const args = interaction.options.getString('fonc');
+            const args = interaction.options.getString('action');
             
             if (args == "all"){
                 AllLive = false;

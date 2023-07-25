@@ -23,12 +23,13 @@ class command {
         this.description = "Permet de créer une annonce d'animation",
         this.category = "Moderation",
         this.permission = "Gérer les messages",
+
         this.options = [
             { 
-                type: 3, 
+                type: 10, 
                 name: "mdj", 
                 description: "Jeu/Mini jeux", 
-                require: true,
+                required: true,
             },
         ]
     }
@@ -81,21 +82,39 @@ class command {
             }
 
             else if (args == "bus"){
-                nom = "**Business Tour**";
-                slotMin = "2";
-                slotMax = 4;
-                requis = "- Business Tour\n- Vocal Discord";
-                minia = "";
+                const annonce = new EmbedBuilder()
+                .setColor('9B00FF')
+                .setTitle("**Business Tour**")
+                .setDescription("** 2 places minimum** / **4 places maximum**")
+                .addFields({name: ':warning:**__Prérequis:__**', value: "- Business Tour\n- Vocal Discord"})
+                //.setImage("")
+                .setTimestamp()
+                .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+                
             }
 
             else if (args == "lg"){
-                nom = "*🐺LG UHC**";
-                slotMin = 18;
-                slotMax = 24;
-                requis = "- Minecraft prenium\n- Mumble Link";
-                minia = "";
+                const annonce = new EmbedBuilder()
+                .setColor('9B00FF')
+                .setTitle("**🐺LG UHC**")
+                .setDescription("** 18 places minimum** / **24 places maximum**")
+                .addFields({name: ':warning:**__Prérequis:__**', value: "- Minecraft prenium\n- Mumble Link"})
+                .setImage("https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1177&height=662")
+                .setTimestamp()
+                .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+                interaction.reply({ embeds: [annonce] });
             }
-            
+
+
+            else if (args == "help"){
+                const annonce = new EmbedBuilder()
+                .setColor('9B00FF')
+                .setTitle("**Liste de toutes les animations disponible sur le discord**")
+                .setDescription("`lg` ➔ Loup Garou UHC \n`lgmc` ➔ Loup Garou Minecraft\n`uno` ➔ UNO\n`bus` ➔ Business Tour\n`among` ➔ Among US")
+                .setTimestamp()
+                .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+                interaction.reply({ embeds: [annonce] });
+            }
             
         }
 }}
