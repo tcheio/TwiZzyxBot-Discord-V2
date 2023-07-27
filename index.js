@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits, Collection, EmbedBuilder } = require('discord.js');
 const { cp, stat } = require('fs');
 const config = require('./config');
+const { channel } = require('diagnostics_channel');
 
 const bot = new Client({ 
     intents: [
@@ -294,8 +295,6 @@ AllLive = true;
     }
 
 
-
-//Message d'annonce Live/Tiktok/LP/Clips
 bot.on("messageCreate", async message => {
     if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
@@ -343,7 +342,6 @@ bot.on("messageCreate", async message => {
         
 
     }
-
     else if (message.channelId == config.channel.reping){ //Channel #reping-stream
             msg = message.content;
             titre = titreTravail(msg);
@@ -372,52 +370,46 @@ bot.on("messageCreate", async message => {
             //log serveur
             console.log("Un reping de live a été publié à "+temps());
             bot.channels.cache.get(config.channel.log).send("Un reping de live a été publié à "+temps());
-        }
-
-
+    }
     else if (message.channelId == config.channel.youtube){ //Channel #clip-lp
         if (skipVideo && NoneVideo) {
             msg = message.content;
             console.log("Message: "+msg);
             statut = rechercheCaract(msg);
             if (statut){
-                bot.channels.cache.get('1014439891297386516').send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n||<@&1014452932713922610>||"); //envoie ce message dans le channel "clip"
+                bot.channels.cache.get(config.channel.clipytb).send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n||<@&1014452932713922610>||"); //envoie ce message dans le channel "clip"
                 //log serveur
                 console.log("Un clip a été publié à "+temps());
-                bot.channels.cache.get('1060946019333976204').send("Un clip a été publié à "+temps()); 
+                bot.channels.cache.get(config.channel.log).send("Un clip a été publié à "+temps()); 
                 }
 
             else {
-                bot.channels.cache.get('1023891712403312720').send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n||<@&1018803719250382898>||"); //envoie ce message dans le channel "lp"
+                bot.channels.cache.get(config.channel.lp).send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n||<@&1018803719250382898>||"); //envoie ce message dans le channel "lp"
                 //log serveur
                 console.log("Une vidéo LP a été publié à "+temps());
-                //bot.channels.cache.get('1060946019333976204').send("Une vidéo LP a été publié à "+temps()); 
+                bot.channels.cache.get(config.channel.log).send("Une vidéo LP a été publié à "+temps()); 
             }
         }
                 
             else if(skipVideo == true && NoneVideo == false){
-                bot.channels.cache.get('749975416944721940').send("Une vidéo aurait du être annoncé <@209395375474212865> et la variable NoneVideo est de nouveau en "+NoneVideo); 
+                bot.channels.cache.get(config.channel.retour).send("Une vidéo aurait du être annoncé <@209395375474212865> et la variable NoneVideo est de nouveau en "+NoneVideo); 
             }
 
             else {
                 msg = message.content;
-                bot.channels.cache.get('748247106980020236').send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
+                bot.channels.cache.get(config.channel.chainePrincipal).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
                 skipVideo = true;
                 //log serveur
                 console.log("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo);
-                //bot.channels.cache.get('1060946019333976204').send("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo); 
+                bot.channels.cache.get('1060946019333976204').send("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo); 
             }
-        }
-        
-    
-
+    }    
     else if (message.channelId == config.channel.chainePrincipal){ //Channel #videos
         msgVideo = message.content;
         bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msgVideo+"\n\n||@everyone||");
         console.log("Une vidéo a été publié à "+temps());
         bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+temps()); 
     }
-
     else if (message.channelId == config.channel.tiktokT){ //Channel #tiktok
         msg = message.content;
         bot.channels.cache.get(config.channel.tiktok).send("<:TikTok:828529933591904296>  __**NOUVEAU TIKTOK**__\n\n"+msg+"\n\n||<@&748220128235094017>||"); //envoie ce message dans le channel "stream"
@@ -426,55 +418,6 @@ bot.on("messageCreate", async message => {
         bot.channels.cache.get(config.channel.log).send("Un Tiktok a été publié à "+temps()); //CHANNEL log
     }
 
-    //Detection des intensions Demo
-    else if (message.channelId == "1096091134939377865"){
-        intention = [0,0,0,0];
-        dicoFeur = ["quoi","kwa","koi"];
-        dicoQuestion = ["comment","pourquoi","qui"];
-        dicoAide = ["besoin","aide","help"];
-        dicoJeu = ["jeu",'jouer','game'];
-        if(message.author.bot) return;
-
-        else{
-            charg = message.content;
-            msg = charg.split(" ");
-            console.log(msg.length);
-            for (i = 0; i < msg.length; i++){
-                for(j = 0; j < dicoFeur.length; j++){
-                    if(msg[i] == dicoFeur[j]){
-                        intention[0] += 1;
-                    }
-                    else if(msg[i] == dicoQuestion[j]){
-                        intention[1] += 1;
-                    }
-                    else if(msg[i] == dicoAide[j]){
-                        intention[2] += 1;
-                    }
-                    else if(msg[i] == dicoJeu[j]){
-                        intention[3] += 1;
-                    }
-            }
-        }
-        rep = maxIntent(intention);
-
-        switch (rep) {
-            case 1:
-                message.reply("https://images-ext-1.discordapp.net/external/gv_ngfsYJ0zk_r0QKZaioOodUKrxc6xDMsVyeODB8tg/https/media.tenor.com/zvg8w0FkecYAAAPo/feur-theobabac.mp4");
-                break;
-            case 2:
-                message.reply("T'a l'air choqué, calme toi frère.");
-                break;
-            case 3:
-                message.reply("Je suis à ton service pour t'aider.");
-                break;
-            case 4:
-                message.reply("J'aimerai jouer avec toi mais j'ai pas de mains");
-                break;
-            default:
-        
-    }
-}
-}
 })
 
 require('./src/Structure//Handler/Event')(bot);

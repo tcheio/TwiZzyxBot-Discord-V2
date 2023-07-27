@@ -26,7 +26,7 @@ class command {
 
         this.options = [
             { 
-                type: 10, 
+                type: 3, 
                 name: "mdj", 
                 description: "Jeu/Mini jeux", 
                 required: true,
@@ -63,6 +63,7 @@ class command {
                 .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
                 
                 interaction.reply({ embeds: [annonce] });
+                
                 
             }
 

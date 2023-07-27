@@ -1,15 +1,16 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
-const msg="- Ajout des annonces automatiques pour les vidéos sur la chaine principal\n"+
-          "- Changement emojis pour certains streams (*On s'en branle en vrai*)\n"+
-          "- Ajout d'une nouvelle intégration mais on en reparle dans quelques jours\n"+
-          "- Modification du grade `Planning - Twitch` en <@&748220271839805520> (*On en reparlera aussi*)\n\n"+
-          "- Modification dans les préfixes de certains streams (*Uniquement pour le staff*))\n"+
-          "- Les repings de streams seront effectué par le bot désormais avec l'action d'un staff (*Uniquement pour le staff*))\n"+
-          "- Fix des logs avec les bonnes heures (*Toujours une heure de plus ou de moins*)\n\n"+
-
-          "Il s'agit d'une pre-version, celle que j'avais prévu est beaucoup plus grosse juste j'ai eu la flemme de bosser plus"
+const msg = "Grosse mise à jour qui ajoute pas mal de choses vu qu'il s'agit de la fusion de 2 mises à jour donc pas mal de contenus.";
+const discordUp = "- Retour du grade <@&748220271839805520> à sa couleur d'origine *(Le violet)*\n"+
+                "- Ajout d'une dizaine de nouveaux émojis créant une vrai identité au serveur\n"+
+                "- ";
+const botup = "- Supression des commandes `liveskip`, `liveunskip`, `videoskip` et `videounskip`\n"+
+            "- Ajout de la commande `help` qui vous permet de connaître toutes les commandes que vous pouvez réaliser sur le serveur en fonction de votre niveau de permission.\n"+
+            "- Ajout de la commande `video` qui permet de changer le comportement des annonces de vidéos pour la chaine **TwiZzyx²** et **TwiZzyx Clips**\n"+
+            "- Ajout de la commande `live` qui permet de changer le comportement des annonces de streams\n"+
+            "- Correctif des annonces de vidéos de la chaine principal\n"+
+            "- Optimisation du code notamment de l'attribution des channels géré désormais par un fichier config évitant les confusions dans le code\n";
 
 class command {
     constructor() {
@@ -23,15 +24,18 @@ class command {
     async execute(bot, interaction) {
         if (interaction.member.permissions.has(PermissionsBitField.Flags.Administrators)) {
         var now = new Date();
-        skipVideo = false;
-        const SKIP = new EmbedBuilder()
+        const changelog = new EmbedBuilder()
         .setColor('#E49B0F')
-        .setTitle('⚙**__Mise à jour du '+now.getDate()+'/'+(parseInt(now.getUTCMonth())+1)+'/'+now.getFullYear()+'__** - __**PRE V2.2**__')
+        .setTitle('⚙**__Mise à jour du '+now.getDate()+'/'+(parseInt(now.getUTCMonth())+1)+'/'+now.getFullYear()+'__** - __**V2.3**__')
             .setDescription(msg)
             .setTimestamp()
+            .addFields(
+                {name:"Discord", value:discordUp},
+                {name:"Bot", value: botup}
+                )
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
-        interaction.reply({ embeds: [SKIP] });
+        interaction.reply({ embeds: [changelog] });
         }
         else {
             const Embed = new EmbedBuilder()

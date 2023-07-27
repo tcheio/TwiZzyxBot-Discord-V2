@@ -1,4 +1,4 @@
-const { EmbedBuilder, PermissionsBitField } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const config = require('../../../config');
 
 function temps(){
@@ -26,7 +26,8 @@ class command {
     }
 
     async execute(bot, interaction) {
-        if (interaction.user.id == "209395375474212865"){
+        console.log(interaction.user.id);
+        if (interaction.user.id == config.clients.OwnerID){
             var now = new Date();
             skipVideo = false;
             const STOP = new EmbedBuilder()
@@ -38,7 +39,7 @@ class command {
 
             interaction.reply({ embeds: [STOP] });
             bot.channels.cache.get(config.channel.logTest).send("Le bot a été éteint par "+interaction.user+" à "+temps());
-            bot.destroy();
+            bot.destroy(config.clients.token);
             }
     
         

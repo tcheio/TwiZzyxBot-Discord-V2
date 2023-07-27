@@ -41,6 +41,7 @@ class command {
 
 
     async execute(bot, interaction) {
+        console.log(interaction.channel);
         const Embed = new EmbedBuilder()
         .setColor('Random')
         .setTitle('👮‍♂️ **Action de modération**')
@@ -55,17 +56,17 @@ class command {
                 const Channel = interaction.channel;
                 const Messages = Channel.messages.fetch()
                 const TargetMessages = (await Messages).filter((m) => m.author.id === user.id);
-
+                
                 await Channel.bulkDelete(TargetMessages, true).then((msg) => {
                     interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages du membre ${user.toString()}** !`)], ephemeral: false });
-                    bot.channels.cache.get('1060946019333976204').send(args+" message(s) ont été supprimé par"+interaction.author+", à "+temps());
+                    bot.channels.cache.get(config.channel.logTest).send(args+" message(s) ont été supprimé par"+interaction.author+", à "+temps());
                 }).catch((err) => {
                     interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
                 });
             } else if(args >= 1 && args <= 100){
                 await interaction.channel.bulkDelete(args, true).then((msg) => {
                     interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages** !`)], ephemeral: false });
-                    bot.channels.cache.get('1060946019333976204').send(args+" message(s) ont été supprimé par "+interaction.author+", à "+temps());
+                    bot.channels.cache.get(config.channel.logTest).send(args+" message(s) ont été supprimé par "+interaction.author+", à "+temps());
                 }).catch((err) => {
                     interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
                 });

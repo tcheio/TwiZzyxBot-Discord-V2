@@ -1,4 +1,4 @@
-const { ActivityType, EmbedBuilder, Promise, } = require('discord.js');
+const { ActivityType, EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../config');
 const tabStream = require("../../index");
 
@@ -7,7 +7,7 @@ module.exports = {
     name: 'ready',
     execute(client) {
         
-        
+        //deleteMessage(config.channel.logTest, "1133863942003896423");
         
         console.log('\x1b[33m' + `Connectés à ${client.user.username} !\n` + '\x1b[33m' + `-> Le bot est utilisé sur ${client.guilds.cache.size} serveurs !`);
 
@@ -30,13 +30,12 @@ module.exports = {
         prefix.setTimestamp()
         prefix.setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
-        client.channels.cache.get(config.channel.start).send({ embeds: [prefix] });
+        //client.channels.cache.get(config.channel.titre).send({ embeds: [prefix] });
 
 
         const activities = [
             "twitch.tv/twizzyxpassympa",
             "Vidéo tous les samedis à 15H",
-            "TwiZzyx Direct ce soir à 20H",
             "Suis-je réel ?",
             "LIVE 24H SOON"
         ];
