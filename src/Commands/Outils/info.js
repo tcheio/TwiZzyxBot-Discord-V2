@@ -11,8 +11,8 @@ class command {
     async execute(bot, interaction) {
         const help = new EmbedBuilder()
             .setColor('#0099ff')
-            .setTitle('**Information utile pour vous.**')
-            .setDescription("Choisissez la catégorie de l'information que vous souhaitez avoir.")
+            .setTitle('**Commande en cours de développement**')
+            .setDescription("Cette commande est cours de création et sera disponible prochainement.")
             .setTimestamp()
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
     }

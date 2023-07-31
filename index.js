@@ -406,7 +406,7 @@ bot.on("messageCreate", async message => {
     }    
     else if (message.channelId == config.channel.chainePrincipal){ //Channel #videos
         msgVideo = message.content;
-        bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msgVideo+"\n\n||@everyone||");
+        bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n**"+msgVideo+"**\n\n||@everyone||");
         console.log("Une vidéo a été publié à "+temps());
         bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+temps()); 
     }

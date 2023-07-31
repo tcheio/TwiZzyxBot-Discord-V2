@@ -58,7 +58,7 @@ class command {
                 .setTitle("**LG Minecraft**")
                 .setDescription("** 8 places minimum** / **12 places maximum**")
                 .addFields({name: ':warning:**__Prérequis:__**', value: "- Minecraft prenium\n- Vocal Discord"})
-                //.setImage("")
+                .setImage("https://media.discordapp.net/attachments/1064668600285282315/1134840031891165185/GIF_LG_MC.gif?width=862&height=485")
                 .setTimestamp()
                 .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
                 
@@ -73,7 +73,7 @@ class command {
                 .setTitle("**UNO**")
                 .setDescription("** 2 places minimum** / **4 places maximum**")
                 .addFields({name: ':warning:**__Prérequis:__**', value: "- UNO sur PC\n- Vocal Discord"})
-                //.setImage("")
+                .setImage("https://media.discordapp.net/attachments/1064668600285282315/1134840038929223770/GIF_UNO.gif?width=862&height=485")
                 .setTimestamp()
                 .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
                 
@@ -88,7 +88,7 @@ class command {
                 .setTitle("**Business Tour**")
                 .setDescription("** 2 places minimum** / **4 places maximum**")
                 .addFields({name: ':warning:**__Prérequis:__**', value: "- Business Tour\n- Vocal Discord"})
-                //.setImage("")
+                .setImage("https://media.discordapp.net/attachments/1064668600285282315/1134839745906745415/GIF_BUSINESS.gif?width=862&height=485")
                 .setTimestamp()
                 .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
                 

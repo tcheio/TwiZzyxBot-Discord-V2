@@ -12,7 +12,7 @@ class command {
         const help = new EmbedBuilder()
             .setColor('#0099ff')
             .setTitle('**Liste des commandes utilisable sur le serveur**')
-            .setDescription("__Membres:__\n`ping` ➔ Connaître le ping du bot\n`help` ➔ Liste de toutes les commandes\n`info` ➔ Obtenir des infos sur différents sujets")
+            .setDescription("__Membres:__\n`ping` ➔ Connaître le ping du bot\n`help` ➔ Liste de toutes les commandes\n`info` ➔ Obtenir des infos sur différents sujets (SOON)")
             .setTimestamp()
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo})
             if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
