@@ -24,7 +24,7 @@ class command {
         this.permission = "ManageMessages"
         this.options = [
             { 
-                type: 10, 
+                type: 3, 
                 name: "action", 
                 description: "Comportement de l'annonce", 
                 required: true,

@@ -152,6 +152,7 @@ AllLive = true;
         mk = "https://cdn.discordapp.com/attachments/1064668600285282315/1117801112490233926/GIF_MK_WII.gif";
         direct = "https://media.discordapp.net/attachments/1120085675463692349/1127896907138748517/direct.png?width=1193&height=671";
         autre = ["https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"];
+        MKLK = "https://media.discordapp.net/attachments/1064668600285282315/1136943663415558244/GIF_KLK_-_Imgur.gif?width=862&height=485";
         titreBis = titre.split(" ");
         console.log(titreBis[1]);
 
@@ -183,6 +184,10 @@ AllLive = true;
                         random = Math.floor(Math.random() * (klk.length));
                         return klk[random];
 
+                    }
+
+                    else if (titre == " ✂️MARATHON KLK UHC✂️ "){
+                        return MKLK;
                     }
                     
                     else if (titre == " 🔎SHERLOCK UHC "){
