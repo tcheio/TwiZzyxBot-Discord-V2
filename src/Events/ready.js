@@ -30,14 +30,15 @@ module.exports = {
         prefix.setTimestamp()
         prefix.setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
-        //client.channels.cache.get(config.channel.titre).send({ embeds: [prefix] });
+        client.channels.cache.get(config.channel.titre).send({ embeds: [prefix] });
 
 
         const activities = [
             "twitch.tv/twizzyxpassympa",
             "Vidéo tous les samedis à 15H",
             "Suis-je réel ?",
-            "LIVE 24H SOON"
+            "LIVE 24H SOON",
+            "Cosplay Harley ou Sailor",
         ];
     
         setInterval(()=>{
