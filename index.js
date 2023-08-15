@@ -64,9 +64,8 @@ AllLive = true;
                 titre += msgBis[j];
             }
         }
-        
-
     }
+
 
     function descriptionTravail(msg){
         msgBis = msg.split("");
@@ -122,7 +121,7 @@ AllLive = true;
     }
 
     function chercheMinia(titre,jeu){
-        console.log(titre);
+        //console.log(titre);
         //MC
         lg = ["https://media.discordapp.net/attachments/1101573944538042458/1101574376220004512/LG_UHC_-_Grand_Mechant_Loup.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574348550193292/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574300286337185/LG_UHC_-_ERMITE_ZIZANIE.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1193&height=671"];
         naruto = ["https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
@@ -253,7 +252,7 @@ AllLive = true;
                     return pokemon;
                 }
 
-                else if (jeubi[0] == "WII" || jeubis[1] == "Sports"){
+                else if (jeubis[0] == "WII" || jeubis[1] == "Sports"){
                     return wiiSport;
                 }
 
@@ -302,6 +301,73 @@ AllLive = true;
                 
     }
 
+    //Recherche de titre et description spécial pour Event Spécial
+    function titreTravail2(msg){
+            statu = true;
+            comp = 0
+            i = 0;
+            titre ="";
+            msgBis = msg.split("");
+            max = msgBis.length;
+            //Exclure mon pseudo et les 2 symboles
+            while (statu){
+                if (msgBis[i] == "-"){
+                    comp +=1;
+                }
+    
+                if (comp == 2){
+                    statu = false;
+                }
+                i++;
+            }
+            //Construction du titre
+            titre += "🚨LIVE 24H -" //Préfixe qu'on veut ajouter devant
+            for (j = i; j<msgBis.length; j++){
+                if (msgBis[j] == "-"){
+                    return titre;
+                }
+                else{
+                    titre += msgBis[j];
+                }
+            }
+        
+    
+    }
+    function descriptionTravail2(msg){
+            msgBis = msg.split("");
+            desc = "";
+            statut = 0;
+            for (i = 0; i<msgBis.length; i++){
+                    if (msgBis[i] == "-"){
+                        statut +=1;
+                    }
+                    
+                    else if(statut == 3 && msgBis[i] != "|"){
+                        desc += msgBis[i];
+                    }
+    
+                    if (msgBis[i] == "|"){
+                        return desc;
+                    }
+            }
+    }
+    function chercheVraiTitre(titre){
+        titreT = titre.split("");
+        categorie = "";
+        statut = true;
+        i = 0;
+        for (i; i < titreT.length; i++){
+            if (titreT[i] == "-"){
+                statut = false;
+            }
+
+            else if (statut == false){
+                categorie += titreT[i];
+            }
+        }
+        return categorie;
+    }
+
 
 bot.on("messageCreate", async message => {
     if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
@@ -312,11 +378,22 @@ bot.on("messageCreate", async message => {
                 mention = "@everyone";
             }
             msg = message.content;
-            titre = titreTravail(msg);
             jeu = chercheJeu(msg);
+
+            //Recherche Classique
+            titre = titreTravail(msg);
+            console.log(titre);
             desc = descriptionTravail(msg);
+            console.log(desc);
             minia = chercheMinia(titre,jeu);
-            console.log(minia);
+
+            //Recherche Event spécial
+            /*titre = titreTravail2(msg);
+            console.log(titre);
+            desc = descriptionTravail2(msg);
+            categorie = chercheVraiTitre(titre);
+            minia = chercheMinia(categorie,jeu);*/
+
                 const TWITCH = new EmbedBuilder()
                     .setColor('#9B00FF')
                     .setTitle("**"+titre+"**")

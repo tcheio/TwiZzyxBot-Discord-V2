@@ -59,14 +59,14 @@ class command {
                 
                 await Channel.bulkDelete(TargetMessages, true).then((msg) => {
                     interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages du membre ${user.toString()}** !`)], ephemeral: false });
-                    bot.channels.cache.get(config.channel.logTest).send(args+" message(s) ont été supprimé par"+interaction.author+", à "+temps());
+                    bot.channels.cache.get(config.channel.log).send(args+" message(s) ont été supprimé par"+interaction.author+", à "+temps());
                 }).catch((err) => {
                     interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
                 });
             } else if(args >= 1 && args <= 100){
                 await interaction.channel.bulkDelete(args, true).then((msg) => {
                     interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages** !`)], ephemeral: false });
-                    bot.channels.cache.get(config.channel.logTest).send(args+" message(s) ont été supprimé par "+interaction.author+", à "+temps());
+                    bot.channels.cache.get(config.channel.log).send(args+" message(s) ont été supprimé par "+interaction.author+", à "+temps());
                 }).catch((err) => {
                     interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
                 });

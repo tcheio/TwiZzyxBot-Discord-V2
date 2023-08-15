@@ -30,7 +30,7 @@ module.exports = {
         prefix.setTimestamp()
         prefix.setFooter({ text: config.clients.name, iconURL: config.clients.logo});
 
-        client.channels.cache.get(config.channel.titre).send({ embeds: [prefix] });
+        //client.channels.cache.get(config.channel.titre).send({ embeds: [prefix] });
 
 
         const activities = [
