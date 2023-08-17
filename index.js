@@ -92,12 +92,12 @@ AllLive = true;
         statut = true;
         i = 0;
         while (statut){
-            if (msgBis[i] == ")"){
+            if (msgBis[i] == ")" && msgBis[i+1] == "|"){
                 statut = false;
             }
             i++;
         }
-        for (j = i; j<msgBis.length; j++) {
+        for (j = i+1; j<msgBis.length; j++) {
             jeu += msgBis[j]; 
         }
 
@@ -342,11 +342,11 @@ AllLive = true;
                         statut +=1;
                     }
                     
-                    else if(statut == 3 && msgBis[i] != "|"){
+                    else if(statut == 3){
                         desc += msgBis[i];
                     }
     
-                    if (msgBis[i] == "|"){
+                    if (msgBis[i] != "|"){
                         return desc;
                     }
             }
@@ -370,7 +370,7 @@ AllLive = true;
 
 
 bot.on("messageCreate", async message => {
-    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -407,15 +407,15 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
-                bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+                bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
+                bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
                 .catch(console.error);;
     
             //log serveur
             console.log("Un live a été publié à "+temps());
-            bot.channels.cache.get(config.channel.log).send("Un live a été publié à "+temps());
+            bot.channels.cache.get(config.channel.logTest).send("Un live a été publié à "+temps());
         }
 
         else if (skipLive == false){
@@ -428,11 +428,22 @@ bot.on("messageCreate", async message => {
 
     }
     else if (message.channelId == config.channel.reping){ //Channel #reping-stream
-            msg = message.content;
-            titre = titreTravail(msg);
-            jeu = chercheJeu(msg);
-            desc = descriptionTravail(msg);
-            minia = chercheMinia(titre,jeu);
+        msg = message.content;
+        jeu = chercheJeu(msg);
+
+        //Recherche Classique
+        titre = titreTravail(msg);
+        console.log(titre);
+        desc = descriptionTravail(msg);
+        console.log(desc);
+        minia = chercheMinia(titre,jeu);
+
+        //Recherche Event spécial
+        /*titre = titreTravail2(msg);
+        console.log(titre);
+        desc = descriptionTravail2(msg);
+        categorie = chercheVraiTitre(titre);
+        minia = chercheMinia(categorie,jeu);*/
                 const TWITCH = new EmbedBuilder()
                     .setColor('#9B00FF')
                     .setTitle("**"+titre+"**")

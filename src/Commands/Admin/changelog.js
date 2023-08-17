@@ -1,11 +1,9 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
-const msg = "- Correctif des commandes `video` et `live` qui n'acceptaient pas les arguments";
-const discordUp = "- Retour du grade <@&748220271839805520> à sa couleur d'origine *(Le violet)*\n"+
-                "- Ajout de nouveaux émojis <:TwiZzyxYes:1135686224372301826> <:TwiZzyxNo:1135686219796316340> *(2 pour le moment mais je vise 10 avant la rentrée)*\n"+
-                "- Ajout d'un Guide Serveur disponible tout en haut du discord aidant ainsi les nouveaux ainsi que ceux déjà présent";
-const botup = "- Supression des commandes `liveskip`, `liveunskip`, `videoskip` et `videounskip`\n"+
+const msg = "- Modification des annonces de streams dans le but d'enlever l'anti slash visible à la fin de chaque annonce\n- Ajout d'une nouvelle version des annonces de streams pour les events spéciaux (Live 24H, Marathon, ect)\n\nProbablement la dernière maj de cette version, désormais je travaille sur la prochaine version, plus petite niveau bot mais plus importante pour le discord";
+const discordUp = "- REFONTE TOTALE DU DISCORD (grâde et channel)";
+const botUp =
             "- Ajout de la commande `help` qui vous permet de connaître toutes les commandes que vous pouvez réaliser sur le serveur en fonction de votre niveau de permission.\n"+
             "- Ajout de la commande `video` qui permet de changer le comportement des annonces de vidéos pour la chaine **TwiZzyx²** et **TwiZzyx Clips**\n"+
             "- Ajout de la commande `live` qui permet de changer le comportement des annonces de streams\n"+
@@ -26,7 +24,7 @@ class command {
         var now = new Date();
         const changelog = new EmbedBuilder()
         .setColor('#E49B0F')
-        .setTitle('⚙**__Mise à jour du '+now.getDate()+'/0'+(parseInt(now.getUTCMonth())+1)+'/'+now.getFullYear()+'__** - __**V2.3.1**__')
+        .setTitle('⚙**__Mise à jour du '+now.getDate()+'/0'+(parseInt(now.getUTCMonth())+1)+'/'+now.getFullYear()+'__** - __**V2.3.2**__')
             .setDescription(msg)
             .setTimestamp()
             //.addFields(
