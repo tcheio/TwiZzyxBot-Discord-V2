@@ -375,7 +375,7 @@ AllLive = true;
 
 
 bot.on("messageCreate", async message => {
-    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.stream){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -464,15 +464,15 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                    bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
-                    bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+                    bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
+                    bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                         sentMessage.delete({ timeout: 1000 });
                     })
                     .catch(console.error);;
 
             //log serveur
             console.log("Un reping de live a été publié à "+temps());
-            bot.channels.cache.get(config.channel.log).send("Un reping de live a été publié à "+temps());
+            bot.channels.cache.get(config.channel.logTest).send("Un reping de live a été publié à "+temps());
     }
     else if (message.channelId == config.channel.youtube){ //Channel #clip-lp
         if (skipVideo && NoneVideo) {
@@ -507,22 +507,23 @@ bot.on("messageCreate", async message => {
                 bot.channels.cache.get('1060946019333976204').send("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo); 
             }
     }    
-    else if (message.channelId == config.channel.chainePrincipal){ //Channel #videos
+
+    else if (message.channelId == config.channel.videos || message.channelId == config.channel.clip){ //Channel #videos
         msgVideo = message.content;
-        if (msgVideo[0] == "h" && msgVideo[1] == "t"){
-            bot.channels.cache.get(config.channel.log).send("Un short a été détecté et n'a donc pas été annoncée comme étant une vidéo"); 
+        mgsBis = msgVideo.split("");
+
+        if (NoneVideo == false){
+            if (mgsBis[0] == "h" && mgsBis[1] == "t"){
+                bot.channels.cache.get(config.channel.retour).send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msgVideo+"\n\n||<@&1014452932713922610>||");
+                bot.channels.cache.get(config.channel.logTest).send("Un short a été détecté et n'a donc pas été annoncée comme étant une vidéo"); 
+            }
+            NoneVideo = true;
         }
+
         else {
-            bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n**"+msgVideo+"**\n\n||@everyone||");
+            bot.channels.cache.get(config.channel.retour).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n**"+msgVideo+"**\n\n||@everyone||");
             console.log("Une vidéo a été publié à "+temps());
-            bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+temps()); 
-        }
-    }
-    else if (message.channelId == config.channel.short){ //Channel #tiktok
-        msg = message.content;
-        if (msg[0] == "h" && msg[1] == "t"){
-            bot.channels.cache.get(config.channel.retour).send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n||<@&1014452932713922610>||");
-            bot.channels.cache.get(config.channel.log).send("Un short a été détecté sur la chaine TwiZzyx et a été annoncée à "+temps()); 
+            bot.channels.cache.get(config.channel.logTest).send("Une vidéo a été publié à "+temps()); 
         }
     }
 
