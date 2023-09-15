@@ -1,7 +1,7 @@
 module.exports = {
     clients: {
         clientId: '209395375474212865',
-        token: 'MTA0MTYyNTU4NjY0MjIwMjYzNA.Gv6HCf.wXDT5fSu8X0qwFyxr04TeUDsY8UT6pbToG-_Ww',
+        token: 'TOKEN',
         name: 'TwiZzyx Bot',
         logo: 'https://zupimages.net/up/22/49/c838.png',
     },
