@@ -20,6 +20,7 @@ bot.commands = new Collection();
 //Constantes
 skipVideo = true;
 NoneVideo = true;
+shorts = true;
 skipLive = true;
 AllLive = true;
 
@@ -36,10 +37,13 @@ AllLive = true;
 
     function rechercheCaract(msg){
         const msgBis = msg.split(" ");
-            if (msgBis[msgBis.length-2] == "#shorts"){
+        
+        for (i = 0; i < msg.length; i++){
+            if (msgBis[i] == "#shorts"){
                 return true;
             }
-            return false;
+        }
+        return false;
     }
 
     function titreTravail(msg){
@@ -125,9 +129,9 @@ AllLive = true;
         //MC
         lg = ["https://media.discordapp.net/attachments/1101573944538042458/1101574376220004512/LG_UHC_-_Grand_Mechant_Loup.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574348550193292/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574300286337185/LG_UHC_-_ERMITE_ZIZANIE.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1193&height=671"];
         naruto = ["https://media.discordapp.net/attachments/1101574073231872070/1146049588072042566/Twix_ino_1.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
-        klk = ["https://media.discordapp.net/attachments/1101573990193053736/1101574904022847508/KLK_UHC_-_Nouveau_mode_de_jeu_maiko.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1101574916337311825/KLK_UHC_-_Jujutsusare.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1104378814299132025/Twix_Ragyo.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1127895984240857099/Twix_Satsuki.png?width=1193&height=671"];
+        klk = ["https://media.discordapp.net/attachments/1101573990193053736/1155057236478017587/Twix_KLK_kiznaiver1.png?width=829&height=466","https://media.discordapp.net/attachments/1101573990193053736/1101574916337311825/KLK_UHC_-_Jujutsusare.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1104378814299132025/Twix_Ragyo.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1127895984240857099/Twix_Satsuki.png?width=1193&height=671"];
         ds = ["https://media.discordapp.net/attachments/1101573959666905150/1132968955095560202/Twix_Zenitsu.png?width=1177&height=662","https://media.discordapp.net/attachments/1101573959666905150/1101574749634695268/maxresdefault.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574478338736239/DS_UHC_-_Nezuko_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574460013813801/DS_UHC_-_Tomioka.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574436651544576/DS_UHC_-_NAKIME_by_SISSOU.png?width=1193&height=671"];
-        sh = ["https://media.discordapp.net/attachments/1101574004483051590/1101574983458766908/Twix_Boom.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574971786002562/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574959492501645/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1114498223923544155/Twix_Journaliste_Sherlock.png?width=1193&height=671"];
+        sh = ["https://media.discordapp.net/attachments/751141465912246422/1150076121023512576/Twix_Riza.png?width=829&height=466","https://media.discordapp.net/attachments/1101574004483051590/1101574983458766908/Twix_Boom.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574971786002562/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574959492501645/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1114498223923544155/Twix_Journaliste_Sherlock.png?width=1193&height=671"];
         op = ["https://media.discordapp.net/attachments/1101574086083231814/1101575522565234869/OP_UHC_-_Marco_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574086083231814/1101575508916973718/OP_UHC_-_Sengoku.png?width=1193&height=671"];
         tb = ["https://media.discordapp.net/attachments/1101574172838199400/1101575734033645709/THE_BOYS_UHC_-_VOUGHT.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575747333791824/TB_UHC_-_Vought_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575809145262150/Twix_minia.png?width=1193&height=671"];
         skydef = "https://media.discordapp.net/attachments/1064668600285282315/1067859958227542096/GIF_SKY_DEF.gif";
@@ -135,10 +139,11 @@ AllLive = true;
         fma = ["https://media.discordapp.net/attachments/1101574158753726564/1101575662424309870/FMA_UHC_-_FATHER.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1117798274418626580/Twix_Kimblee-min.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1101575637774385152/FMA_UHC_-_VAN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1129659317344272394/Twix_Tank.png?width=1177&height=662"];
         es = "https://media.discordapp.net/attachments/1137294777294008341/1137294821917200404/Twix_86_1.png?width=1061&height=597"; 
         dn = ["https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1116825506726281257/maxresdefault.png?width=1193&height=671"];
-        jjk = "https://media.discordapp.net/attachments/1111982327967535164/1117797850345132052/JJK_UHC_-_Nobara_by_Sissou.png?width=1193&height=671";
+        jjk = "https://media.discordapp.net/attachments/1155056320752394240/1155056344139833394/JJK_UHC_-_Nobara_by_Sissou.png?width=829&height=466";
         dawa = ["https://media.discordapp.net/attachments/1064668600285282315/1124759438188888064/cf45b92782ab0c90d2e29bb27961f0a4.gif","https://media.discordapp.net/attachments/1064668600285282315/1124759438583144508/AA0k.gif"];
-        madoka = "https://media.discordapp.net/attachments/1111982327967535164/1124752990310510652/Twix_Madoka1_1.png?width=1193&height=671";
-        fb = "https://media.discordapp.net/attachments/1111982327967535164/1111982356576882789/Twix_FB1_1.png?width=1193&height=671";
+        madoka = ["https://media.discordapp.net/attachments/1155055914194317332/1155055971236847626/Twix_Madoka1_1.png?width=829&height=466","https://media.discordapp.net/attachments/1155055914194317332/1155056243627536394/Twix_Sayaka.png?width=829&height=466"];
+        fb = "https://media.discordapp.net/attachments/1155056404583956531/1155056424653705216/Twix_FB1_1.png?width=829&height=466";
+        bleach = "https://cdn.discordapp.com/attachments/1155056476432384000/1155056609031110697/maxresdefault.png";
         survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1177&height=662s"];
 
         //AUTRES
@@ -233,7 +238,8 @@ AllLive = true;
                     }
 
                     else if (titre == " 🪄MADOKA UHC "){
-                        return madoka;
+                        random = Math.floor(Math.random() * (madoka.length));
+                        return madoka[random];
                     }
                     
                     else if (titreBis[1] == "🪓SURVIE"  || titre == " 🪓SURVIE HARDCORE "){
@@ -241,8 +247,12 @@ AllLive = true;
                         return survie[random];
                     }
 
-                    else if (titreBis == " 🟡FAST BAND UHC "){
+                    else if (titre == " 🟡FAST BAND UHC "){
                         return fb;
+                    }
+
+                    else if(titre == " 👹BLEACH UHC "){
+                        return bleach;
                     }
 
                     else {
@@ -478,53 +488,42 @@ bot.on("messageCreate", async message => {
         if (skipVideo && NoneVideo) {
             msg = message.content;
             console.log("Message: "+msg);
-            statut = rechercheCaract(msg);
-            if (statut){
-                bot.channels.cache.get(config.channel.clipytb).send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msg+"\n\n||<@&1014452932713922610>||"); //envoie ce message dans le channel "clip"
-                //log serveur
-                console.log("Un clip a été publié à "+temps());
-                bot.channels.cache.get(config.channel.log).send("Un clip a été publié à "+temps()); 
-                }
-
-            else {
-                bot.channels.cache.get(config.channel.lp).send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO LET'S PLAY**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n||<@&1018803719250382898>||"); //envoie ce message dans le channel "lp"
-                //log serveur
-                console.log("Une vidéo LP a été publié à "+temps());
-                bot.channels.cache.get(config.channel.log).send("Une vidéo LP a été publié à "+temps()); 
-            }
+            bot.channels.cache.get(config.channel.lp).send("<:YouTubeBleu:1018805788090839061> __**NOUVELLE VIDEO TWIZZYX²**__ <:YouTubeBleu:1018805788090839061>\n\n"+msg+"\n\n||<@&1018803719250382898>||"); //envoie ce message dans le channel "lp"
+            //log serveur
+            console.log("Une vidéo sur TwiZzyx² a été publié à "+temps());
+            bot.channels.cache.get(config.channel.log).send("Une vidéo sur TwiZzyx² a été publié à "+temps()); 
         }
                 
-            else if(skipVideo == true && NoneVideo == false){
-                bot.channels.cache.get(config.channel.retour).send("Une vidéo aurait du être annoncé <@209395375474212865> et la variable NoneVideo est de nouveau en "+NoneVideo); 
-            }
+        else if(skipVideo == true && NoneVideo == false){
+            bot.channels.cache.get(config.channel.generalStaff).send("Une vidéo aurait du être annoncé <@209395375474212865> et la variable NoneVideo est de nouveau en "+NoneVideo); 
+        }
 
-            else {
-                msg = message.content;
-                bot.channels.cache.get(config.channel.chainePrincipal).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
-                skipVideo = true;
-                //log serveur
-                console.log("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo);
-                bot.channels.cache.get('1060946019333976204').send("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo); 
-            }
+        else {
+            msg = message.content;
+            bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
+            skipVideo = true;
+            //log serveur
+            console.log("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo);
+            bot.channels.cache.get(config.channel.log).send("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo); 
+        }
     }    
 
-    else if (message.channelId == config.channel.chainePrincipal || message.channelId == config.channel.clip){ //Channel #videos
+    else if (message.channelId == config.channel.chainePrincipal){ //Channel #videos
         msgVideo = message.content;
-        mgsBis = msgVideo.split("");
+        statut = rechercheCaract(msgVideo);
 
-        /*if (NoneVideo == false){
-            if (mgsBis[0] == "h" && mgsBis[1] == "t"){
-                bot.channels.cache.get(config.channel.retour).send("<:YouTube:748225835269488751> __**NOUVEAU CLIPS**__\n\n"+msgVideo+"\n\n||<@&1014452932713922610>||");
-                bot.channels.cache.get(config.channel.log).send("Un short a été détecté et n'a donc pas été annoncée comme étant une vidéo"); 
-            }
-            NoneVideo = true;
-        }*/
-
-        //else {
+        if (!statut){
             bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n**"+msgVideo+"**\n\n||@everyone||");
             console.log("Une vidéo a été publié à "+temps());
             bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+temps()); 
-        //}
+        }
+
+        else {
+            bot.channels.cache.get(config.channel.clip).send("<:YouTube:748225835269488751>__**NOUVELLE CLIP**__<:YouTube:748225835269488751>\n\n**"+msgVideo+"**\n\n||@everyone||");
+            console.log("Un clip a été publié à "+temps());
+            bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+temps()); 
+        }
+        
     }
 
 })

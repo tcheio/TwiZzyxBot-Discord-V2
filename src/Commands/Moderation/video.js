@@ -75,6 +75,19 @@ class command {
                 interaction.reply({ embeds: [SKIP] });
                 console.log("La prochaine vidéo ne sera pas annoncée")
             }
+
+            else if (args == "shorts"){
+                shorts = false;
+                const SKIP = new EmbedBuilder()
+                .setColor('#FF0000')
+                .setTitle('✅ **__Annonce Shorts__**')
+                    .setDescription("La prochaine vidéo sera annoncée comme un shorts")
+                    .setTimestamp()
+                    .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+
+                interaction.reply({ embeds: [SKIP] });
+                console.log("La prochaine vidéo sera annoncée comme un shorts");
+            }
         }
 
     else {
