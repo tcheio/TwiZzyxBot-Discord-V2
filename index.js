@@ -474,8 +474,8 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                    bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
-                    bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+                    bot.channels.cache.get(config.channel.twitch).send({ embeds: [TWITCH] });
+                    bot.channels.cache.get(config.channel.twitch).send(mention).then(sentMessage => {
                         sentMessage.delete({ timeout: 1000 });
                     })
                     .catch(console.error);;
