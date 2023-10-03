@@ -307,6 +307,10 @@ AllLive = true;
                     return direct;
                 }
 
+                else if (titre == " 📹MONTAGE D'UNE VIDEO AVEC VOUS "){
+                    return "https://cdn.discordapp.com/attachments/1120085675463692349/1158673971135393812/video-editing-jack-cole.gif?ex=651d1ab9&is=651bc939&hm=e07cae98b13d580fe941c56fbcda5596f0bb99f66208fca9d345393bf55e6c65&";
+                }
+
                 //Cas par defaut
                 random = Math.floor(Math.random() * (autre.length));
                 return autre[random];
@@ -445,6 +449,7 @@ bot.on("messageCreate", async message => {
 
     }
     else if (message.channelId == config.channel.reping){ //Channel #reping-stream
+        mention = "<@&748220271839805520>";
         msg = message.content;
         jeu = chercheJeu(msg);
 
@@ -474,15 +479,15 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                    bot.channels.cache.get(config.channel.twitch).send({ embeds: [TWITCH] });
-                    bot.channels.cache.get(config.channel.twitch).send(mention).then(sentMessage => {
-                        sentMessage.delete({ timeout: 1000 });
+                    bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
+                    bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+                        sentMessage.delete({ timeout: 4000 });
                     })
                     .catch(console.error);;
 
             //log serveur
             console.log("Un reping de live a été publié à "+temps());
-            bot.channels.cache.get(config.channel.logTest).send("Un reping de live a été publié à "+temps());
+            bot.channels.cache.get(config.channel.log).send("Un reping de live a été publié à "+temps());
     }
     else if (message.channelId == config.channel.youtube){ //Channel #clip-lp
         if (skipVideo && NoneVideo) {
