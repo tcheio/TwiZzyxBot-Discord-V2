@@ -1,7 +1,7 @@
 module.exports = {
     clients: {
         clientId: '209395375474212865',
-        token: 'TOKEN',
+        token: 'TOKENTEST',
         name: 'TwiZzyx Bot',
         logo: 'https://zupimages.net/up/22/49/c838.png',
     },
@@ -11,7 +11,8 @@ module.exports = {
         stream: '748855744274890772',
         videos: '748247106980020236',
         tiktok: '892842982112374804',
-        clip: '1014439891297386516',
+        clip: '892842982112374804',
+        lp: '1023891712403312720',
 
         reping: '1145793877685588019',
         titre: '1064817596261728356',
