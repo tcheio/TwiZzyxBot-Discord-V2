@@ -70,6 +70,87 @@ AllLive = true;
         }
     }
 
+    function emoteTitre(titre){
+        if (titre == " NARUTO UHC "){
+            return "🍥"+titre;
+        }
+        
+        else if (titre == " LG UHC "){
+            return "🐺"+titre;
+        }
+
+        else if (titre == " SKY DEFENDER "){
+            return "🏰"+titre;
+        }
+
+        
+        else if (titre == " DEMON SLAYER UHC "){
+            return "👺"+titre;
+        }
+        
+
+        else if (titre == " KLK UHC " || titre == " KLK UHC V2 "){
+            return "✂️"+titre;
+
+        }
+
+        else if (titre == " MARATHON KLK UHC "){
+            return "✂️"+titre;
+        }
+        
+        else if (titre == " SHERLOCK UHC "){
+            return "🔎"+titre;
+        }
+
+        else if (titre == " ONE PIECE UHC "){
+            return "🏴‍☠️"+titre;
+        }
+        
+        else if (titre == " THE BOYS UHC "){
+            return "💥"+titre;
+        }
+        
+        else if (titre == " FMA UHC "){
+            return "🧪"+titre;
+        }
+        
+        else if (titre == " ATTACK ON TITAN UHC " || titre == " AOT UHC "){
+            return "⚔️"+titre;
+        }
+
+        else if (titre == " DEATH NOTE UHC "){
+            return "☠️"+titre;
+        }
+
+        else if (titre == " EIGHTY SIX UHC "){
+            return "🃏"+titre;
+        }
+
+        else if (titre == " JJK UHC "){
+            return "👹"+titre;
+        }
+
+        else if (titre == " FDP UHC "  || titre == " DAWA UHC "){
+            return "🤡"+titre;
+        }
+
+        else if (titre == " 🪄MADOKA UHC "){
+            return "🪄"+titre;
+        }
+        
+        else if (titreBis[1] == "SURVIE"  || titre == " 🪓SURVIE HARDCORE "){
+            return "🪓"+titre;
+        }
+
+        else if (titre == " FAST BAND UHC "){
+            return "🟡"+titre;
+        }
+
+        else if(titre == " BLEACH UHC "){
+            return "👹"+titre;
+        }
+
+    }
 
     function descriptionTravail(msg){
         msgBis = msg.split("");
@@ -417,7 +498,7 @@ bot.on("messageCreate", async message => {
 
                 const TWITCH = new EmbedBuilder()
                     .setColor('#9B00FF')
-                    .setTitle("**"+titre+"**")
+                    .setTitle("**"+emoteTitre(titre)+"**")
                     .setDescription(desc)
                     .setURL("https://www.twitch.tv/twizzyxpassympa")
                     .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671', url: 'https://www.twitch.tv/twizzyxpassympa' })
