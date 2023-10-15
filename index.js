@@ -134,7 +134,7 @@ AllLive = true;
             return "🤡"+titre;
         }
 
-        else if (titre == " 🪄MADOKA UHC "){
+        else if (titre == " MADOKA UHC "){
             return "🪄"+titre;
         }
         
@@ -148,6 +148,10 @@ AllLive = true;
 
         else if(titre == " BLEACH UHC "){
             return "👹"+titre;
+        }
+
+        else {
+            return titre;
         }
 
     }
@@ -244,95 +248,95 @@ AllLive = true;
 
         if (jeu == "Minecraft"){                
             for (i = 0; i < tabAllStream.length; i++){
-                    if (titre == " 🍥NARUTO UHC "){
+                    if (titre == " NARUTO UHC "){
                         random = Math.floor(Math.random() * (naruto.length));
                         return naruto[random];
                     }
                     
-                    else if (titre == " 🐺LG UHC "){
+                    else if (titre == " LG UHC "){
                         random = Math.floor(Math.random() * (lg.length));
                         return lg[random];
                     }
 
-                    else if (titre == " 🏰SKY DEFENDER "){
+                    else if (titre == " SKY DEFENDER "){
                         return skydef;
                     }
 
                     
-                    else if (titre == " 👺DEMON SLAYER UHC "){
+                    else if (titre == " DEMON SLAYER UHC "){
                         random = Math.floor(Math.random() * (ds.length));
                         return ds[random];
                     }
                     
 
-                    else if (titre == " ✂️KLK UHC " || titre == " ✂️KLK UHC V2 "){
+                    else if (titre == " KLK UHC " || titre == " KLK UHC V2 "){
                         random = Math.floor(Math.random() * (klk.length));
                         return klk[random];
 
                     }
 
-                    else if (titre == " ✂️MARATHON KLK UHC✂️ "){
+                    else if (titre == " MARATHON KLK UHC "){
                         return MKLK;
                     }
                     
-                    else if (titre == " 🔎SHERLOCK UHC "){
+                    else if (titre == " SHERLOCK UHC "){
                         random = Math.floor(Math.random() * (sh.length));
                         return sh[random];
                     }
 
-                    else if (titre == " 🏴‍☠️ONE PIECE UHC "){
+                    else if (titre == " 🏴ONE PIECE UHC "){
                         random = Math.floor(Math.random() * (op.length));
                         return op[random];
                     }
                     
-                    else if (titre == " 💥THE BOYS UHC "){
+                    else if (titre == " THE BOYS UHC "){
                         random = Math.floor(Math.random() * (tb.length));
                         return tb[random];
                     }
                     
-                    else if (titre == " 🧪FMA UHC "){
+                    else if (titre == " FMA UHC "){
                         random = Math.floor(Math.random() * (fma.length));
                         return fma[random];
                     }
                     
-                    else if (titre == " ⚔️ATTACK ON TITAN UHC " || titre == " ⚔️AOT UHC "){
+                    else if (titre == " ATTACK ON TITAN UHC " || titre == " AOT UHC "){
                         random = Math.floor(Math.random() * (aot.length));
                         return aot[random];
                     }
 
-                    else if (titre == " ☠️DEATH NOTE UHC "){
+                    else if (titre == " DEATH NOTE UHC "){
                         random = Math.floor(Math.random() * (dn.length));
                         return dn[random];
                     }
 
-                    else if (titre == " 🃏EIGHTY SIX UHC "){
+                    else if (titre == " EIGHTY SIX UHC "){
                         return es;
                     }
 
-                    else if (titre == " 👹JJK UHC "){
+                    else if (titre == " JJK UHC "){
                         return jjk;
                     }
 
-                    else if (titre == " 🤡FDP UHC "  || titre == " 🤡DAWA UHC "){
+                    else if (titre == " FDP UHC "  || titre == " DAWA UHC "){
                         random = Math.floor(Math.random() * (dawa.length));
                         return dawa[random];
                     }
 
-                    else if (titre == " 🪄MADOKA UHC "){
+                    else if (titre == " MADOKA UHC "){
                         random = Math.floor(Math.random() * (madoka.length));
                         return madoka[random];
                     }
                     
-                    else if (titreBis[1] == "🪓SURVIE"  || titre == " 🪓SURVIE HARDCORE "){
+                    else if (titreBis[1] == " SURVIE "  || titre == " SURVIE HARDCORE "){
                         random = Math.floor(Math.random() * (survie.length));
                         return survie[random];
                     }
 
-                    else if (titre == " 🟡FAST BAND UHC "){
+                    else if (titre == " FAST BAND UHC "){
                         return fb;
                     }
 
-                    else if(titre == " 👹BLEACH UHC "){
+                    else if(titre == " BLEACH UHC "){
                         return bleach;
                     }
 
@@ -374,12 +378,12 @@ AllLive = true;
 
                 else {
                 
-                if (titre == " 🖥️CODE LYOKO TIME ") {
+                if (titre == " CODE LYOKO TIME ") {
                     return lyoko;
                 }
 
 
-                else if (titre == " 🍌MARDI Z*ZI " || titre == " MARDI Z\*ZI "){
+                else if (titre == " MARDI Z*ZI " || titre == " MARDI Z\*ZI "){
                     random = Math.floor(Math.random() * (mardi.length));
                     return mardi[random];
                 }
@@ -470,7 +474,7 @@ AllLive = true;
 
 
 bot.on("messageCreate", async message => {
-    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -509,15 +513,15 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
-                bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+                bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
+                bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
                 .catch(console.error);;
     
             //log serveur
             console.log("Un live a été publié à "+temps());
-            bot.channels.cache.get(config.channel.log).send("Un live a été publié à "+temps());
+            bot.channels.cache.get(config.channel.retour).send("Un live a été publié à "+temps());
         }
 
         else if (skipLive == false){
