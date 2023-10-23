@@ -376,12 +376,18 @@ AllLive = true;
                     return among;
                 }
 
-                else {
-                
-                if (titre == " CODE LYOKO TIME ") {
+                else if (jeu == "IFSCL") {
                     return lyoko;
                 }
 
+                else {
+
+                titreBis = titre.split(" ");
+                console.log(titreBis[0]+titreBis[1]);
+                if (titreBis[0] == "CODE" && titreBis[1] == "LYOKO"){
+                    
+                    return lyoko;
+                }
 
                 else if (titre == " MARDI Z*ZI " || titre == " MARDI Z\*ZI "){
                     random = Math.floor(Math.random() * (mardi.length));
@@ -553,7 +559,7 @@ bot.on("messageCreate", async message => {
         minia = chercheMinia(categorie,jeu);*/
                 const TWITCH = new EmbedBuilder()
                     .setColor('#9B00FF')
-                    .setTitle("**"+titre+"**")
+                    .setTitle("**"+emoteTitre(titre)+"**")
                     .setDescription(desc)
                     .setURL("https://www.twitch.tv/twizzyxpassympa")
                     .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671', url: 'https://www.twitch.tv/twizzyxpassympa' })
