@@ -241,9 +241,11 @@ AllLive = true;
         batman = "https://media.discordapp.net/attachments/1064668600285282315/1097593503468503080/GIF_BATMA.gif";
         mk = "https://cdn.discordapp.com/attachments/1064668600285282315/1117801112490233926/GIF_MK_WII.gif";
         direct = "https://media.discordapp.net/attachments/1120085675463692349/1127896907138748517/direct.png?width=1193&height=671";
-        autre = ["https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"];
+        autre = ["https://cdn.discordapp.com/attachments/748245620409761932/1167425216205557770/BYE.gif?ex=654e1475&is=653b9f75&hm=e812b225ad0bc06eb63577149c398554b696ef469d1064d16b9e33d6393ecb92&","https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"];
         MKLK = "https://media.discordapp.net/attachments/1064668600285282315/1136943663415558244/GIF_KLK_-_Imgur.gif?width=862&height=485";
         wiiSport = "https://media.discordapp.net/attachments/1064668600285282315/1138880259475910726/Wii_sport.gif?width=862&height=485";
+        //Mettre le bon gif
+        ygo = "https://cdn.discordapp.com/attachments/748480743793229845/1138892862369579049/image.png?ex=654bcb21&is=65395621&hm=104097289e2570e28768f74d1638c2ad5aa6baeac5f5a2c6a20519845f199f9a&";
         titreBis = titre.split(" ");
 
         if (jeu == "Minecraft"){                
@@ -376,6 +378,11 @@ AllLive = true;
                     return among;
                 }
 
+                else if(jeubis[0] == "Yu-Gi-Oh!"){
+                    return ygo;
+                    console.log(ygo);
+                }
+
                 else if (jeu == "IFSCL") {
                     return lyoko;
                 }
@@ -385,7 +392,6 @@ AllLive = true;
                 titreBis = titre.split(" ");
                 console.log(titreBis[0]+titreBis[1]);
                 if (titreBis[0] == "CODE" && titreBis[1] == "LYOKO"){
-                    
                     return lyoko;
                 }
 
