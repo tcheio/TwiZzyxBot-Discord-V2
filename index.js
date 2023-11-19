@@ -70,7 +70,9 @@ AllLive = true;
         }
     }
 
-    function emoteTitre(titre){
+    function emoteTitre(titre,jeu){
+
+        jeubis = jeu.split(" ");
         if (titre == " NARUTO UHC "){
             return "🍥"+titre;
         }
@@ -87,7 +89,6 @@ AllLive = true;
         else if (titre == " DEMON SLAYER UHC "){
             return "👺"+titre;
         }
-        
 
         else if (titre == " KLK UHC " || titre == " KLK UHC V2 "){
             return "✂️"+titre;
@@ -150,7 +151,39 @@ AllLive = true;
             return "👹"+titre;
         }
 
-        else {
+        else if (titre == "INDUSTRIAL UHC "){
+            return "⚙️"+titre;
+        }
+        
+        else if (jeubis[0] == "Batman:"){
+            return "🦇"+titre;
+        }
+        
+        else if (jeubis[0] == "Mario" && jeubis[1] == "Kart"){
+            return "🏎️"+titre;
+        }
+
+        else if (jeubis[0] == "Inazuma" && jeubis[1] == "Eleven"){
+            return "⚽"+titre;
+        }
+        
+        else if (jeubis[0] == "Among" && jeubis[1] == "Us"){
+            return "🕵️"+among;
+        }
+
+        else if(jeubis[0] == "Yu-Gi-Oh!"){
+            return "<:Yugimote:1173369665062457345>"+titre;
+        }
+
+        else if (jeubis[0] == "Marvel's" && jeubis[1] == "Spider-Man:"){
+            return "🕷️"+titre;
+        }
+
+        else if (jeu == "IFSCL") {
+            return lyoko;
+        }
+
+        else { 
             return titre;
         }
 
@@ -216,12 +249,12 @@ AllLive = true;
         naruto = ["https://media.discordapp.net/attachments/1101574073231872070/1146049588072042566/Twix_ino_1.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
         klk = ["https://media.discordapp.net/attachments/1101573990193053736/1155057236478017587/Twix_KLK_kiznaiver1.png?width=829&height=466","https://media.discordapp.net/attachments/1101573990193053736/1101574916337311825/KLK_UHC_-_Jujutsusare.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1104378814299132025/Twix_Ragyo.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1127895984240857099/Twix_Satsuki.png?width=1193&height=671"];
         ds = ["https://media.discordapp.net/attachments/1101573959666905150/1132968955095560202/Twix_Zenitsu.png?width=1177&height=662","https://media.discordapp.net/attachments/1101573959666905150/1101574749634695268/maxresdefault.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574478338736239/DS_UHC_-_Nezuko_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574460013813801/DS_UHC_-_Tomioka.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573959666905150/1101574436651544576/DS_UHC_-_NAKIME_by_SISSOU.png?width=1193&height=671"];
-        sh = ["https://media.discordapp.net/attachments/1101574004483051590/1101574983458766908/Twix_Boom.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574971786002562/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574959492501645/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1114498223923544155/Twix_Journaliste_Sherlock.png?width=1193&height=671"];
+        sh = ["https://media.discordapp.net/attachments/1101574004483051590/1175834317394546901/Twix_ta_mere_la_pute.png?ex=656cac0b&is=655a370b&hm=c3253689a9525f2416e22b612bee630e491e1ad37aa0b8bda53c9cd92b1373c4&=&width=705&height=397","https://media.discordapp.net/attachments/1101574004483051590/1101574983458766908/Twix_Boom.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574971786002562/Sherlock_UHC_-_Lestrade_Manipule.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1101574959492501645/Sherlock_UHC_-_James_Moriarty.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574004483051590/1114498223923544155/Twix_Journaliste_Sherlock.png?width=1193&height=671"];
         op = ["https://media.discordapp.net/attachments/1101574086083231814/1101575522565234869/OP_UHC_-_Marco_by_SISSOU.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574086083231814/1101575508916973718/OP_UHC_-_Sengoku.png?width=1193&height=671"];
         tb = ["https://media.discordapp.net/attachments/1101574172838199400/1101575734033645709/THE_BOYS_UHC_-_VOUGHT.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575747333791824/TB_UHC_-_Vought_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574172838199400/1101575809145262150/Twix_minia.png?width=1193&height=671"];
         skydef = "https://media.discordapp.net/attachments/1064668600285282315/1067859958227542096/GIF_SKY_DEF.gif";
         aot = ["https://media.discordapp.net/attachments/1101573974569271468/1119725029635133440/Twix_AOT_machoire.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573974569271468/1101574857549942784/Twix_AOT_finit-1.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573974569271468/1101574846854471760/AOT_UHC_-_EREN_FLOP.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573974569271468/1101574836431634472/AOT_UHC_-_KORD.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573974569271468/1101574825471918140/AOT_UHC_-_KEITH_SHADIS.png?width=1193&height=671"];
-        fma = ["https://media.discordapp.net/attachments/751141465912246422/1150076121023512576/Twix_Riza.png?width=829&height=466","https://media.discordapp.net/attachments/1101574158753726564/1101575662424309870/FMA_UHC_-_FATHER.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1117798274418626580/Twix_Kimblee-min.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1101575637774385152/FMA_UHC_-_VAN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1129659317344272394/Twix_Tank.png?width=1177&height=662"];
+        fma = ["https://media.discordapp.net/attachments/751141465912246422/1150076121023512576/Twix_Riza.png?width=829&height=466","https://media.discordapp.net/attachments/1101574158753726564/1101575662424309870/FMA_UHC_-_FATHER.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1117798274418626580/Twix_Kimblee-min.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1101575637774385152/FMA_UHC_-_VAN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1129659317344272394/Twix_Tank.png?width=1177&height=662","https://media.discordapp.net/attachments/1101574158753726564/1175834091837476885/Twix_Riza.png?ex=656cabd5&is=655a36d5&hm=c70edfe59dc6a805453d885be12601086e5f7e7a58a1e7a9e0972979d9a1b6cb&=&width=705&height=397"];
         es = "https://media.discordapp.net/attachments/1137294777294008341/1137294821917200404/Twix_86_1.png?width=1061&height=597"; 
         dn = ["https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1116825506726281257/maxresdefault.png?width=1193&height=671"];
         jjk = "https://media.discordapp.net/attachments/1155056320752394240/1155056344139833394/JJK_UHC_-_Nobara_by_Sissou.png?width=829&height=466";
@@ -229,6 +262,7 @@ AllLive = true;
         madoka = ["https://media.discordapp.net/attachments/1155055914194317332/1155055971236847626/Twix_Madoka1_1.png?width=829&height=466","https://media.discordapp.net/attachments/1155055914194317332/1155056243627536394/Twix_Sayaka.png?width=829&height=466"];
         fb = "https://media.discordapp.net/attachments/1155056404583956531/1155056424653705216/Twix_FB1_1.png?width=829&height=466";
         bleach = "https://cdn.discordapp.com/attachments/1155056476432384000/1155056609031110697/maxresdefault.png";
+        indus = "https://cdn.discordapp.com/attachments/1175838794944086016/1175838896878276649/Twix.png?ex=656cb04f&is=655a3b4f&hm=ce24167d7dadb10b0f03667bd19c292eb79d9231be4825a6de3e7ba6ee8cd995&";
         survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1177&height=662s"];
 
         //AUTRES
@@ -240,13 +274,16 @@ AllLive = true;
         lyoko = "https://images-ext-2.discordapp.net/external/Y8Q6iyEymL5dCdN-QQrAWjbq_xQE6EUD1acDe8OiiXY/https/i.ibb.co/TrDkV4D/GIF-CODE-LYOKO.gif";
         batman = "https://media.discordapp.net/attachments/1064668600285282315/1097593503468503080/GIF_BATMA.gif";
         mk = "https://cdn.discordapp.com/attachments/1064668600285282315/1117801112490233926/GIF_MK_WII.gif";
+        spidey = "https://media.discordapp.net/attachments/1064668600285282315/1122883486378885170/GIF_SPYDEY.gif?ex=65649bbd&is=655226bd&hm=bacc5f28001f6febd5d372fbacda9267163ca80a0171fdddc7ef88fc79a4ce8c&=";
         direct = "https://media.discordapp.net/attachments/1120085675463692349/1127896907138748517/direct.png?width=1193&height=671";
         autre = ["https://cdn.discordapp.com/attachments/748245620409761932/1167425216205557770/BYE.gif?ex=654e1475&is=653b9f75&hm=e812b225ad0bc06eb63577149c398554b696ef469d1064d16b9e33d6393ecb92&","https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"];
         MKLK = "https://media.discordapp.net/attachments/1064668600285282315/1136943663415558244/GIF_KLK_-_Imgur.gif?width=862&height=485";
         wiiSport = "https://media.discordapp.net/attachments/1064668600285282315/1138880259475910726/Wii_sport.gif?width=862&height=485";
         //Mettre le bon gif
         ygo = "https://cdn.discordapp.com/attachments/748480743793229845/1138892862369579049/image.png?ex=654bcb21&is=65395621&hm=104097289e2570e28768f74d1638c2ad5aa6baeac5f5a2c6a20519845f199f9a&";
+        console.log(typeof(titre));
         titreBis = titre.split(" ");
+
 
         if (jeu == "Minecraft"){                
             for (i = 0; i < tabAllStream.length; i++){
@@ -286,7 +323,7 @@ AllLive = true;
                         return sh[random];
                     }
 
-                    else if (titre == " 🏴ONE PIECE UHC "){
+                    else if (titre == " ONE PIECE UHC "){
                         random = Math.floor(Math.random() * (op.length));
                         return op[random];
                     }
@@ -342,6 +379,10 @@ AllLive = true;
                         return bleach;
                     }
 
+                    else if (titre == "INDUSTRIAL UHC "){
+                        return indus;
+                    }
+
                     else {
                         return mc;
                     }
@@ -380,7 +421,10 @@ AllLive = true;
 
                 else if(jeubis[0] == "Yu-Gi-Oh!"){
                     return ygo;
-                    console.log(ygo);
+                }
+
+                else if (jeubis[0] == "Marvel's" && jeubis[1] == "Spider-Man:"){
+                    return spidey;
                 }
 
                 else if (jeu == "IFSCL") {
@@ -400,11 +444,11 @@ AllLive = true;
                     return mardi[random];
                 }
 
-                else if (titre == " 📺TWIZZYX DIRECT "){
+                else if (titre == " TWIZZYX DIRECT "){
                     return direct;
                 }
 
-                else if (titre == " 📹MONTAGE D'UNE VIDEO AVEC VOUS "){
+                else if (titre == " MONTAGE D'UNE VIDEO AVEC VOUS "){
                     return "https://cdn.discordapp.com/attachments/1120085675463692349/1158673971135393812/video-editing-jack-cole.gif?ex=651d1ab9&is=651bc939&hm=e07cae98b13d580fe941c56fbcda5596f0bb99f66208fca9d345393bf55e6c65&";
                 }
 
@@ -486,7 +530,7 @@ AllLive = true;
 
 
 bot.on("messageCreate", async message => {
-    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -525,8 +569,8 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
-                bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+                bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
+                bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
                 .catch(console.error);;
