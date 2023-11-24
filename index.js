@@ -545,7 +545,7 @@ description = null;
     }
 
 bot.on("messageCreate", async message => {
-    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -584,15 +584,15 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
-                bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+                bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
+                bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
                 .catch(console.error);;
     
             //log serveur
             console.log("Un live a été publié à "+temps());
-            bot.channels.cache.get(config.channel.retour).send("Un live a été publié à "+temps());
+            bot.channels.cache.get(config.channel.log).send("Un live a été publié à "+temps());
         }
 
         else if (skipLive == false){
