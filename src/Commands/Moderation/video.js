@@ -29,6 +29,8 @@ class command {
                 description: "Comportement de l'annonce", 
                 required: true,
             },
+
+
         ]
     }
 
@@ -88,6 +90,7 @@ class command {
                 interaction.reply({ embeds: [SKIP] });
                 console.log("La prochaine vidéo sera annoncée comme un shorts");
             }
+
         }
 
     else {

@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, Collection, EmbedBuilder } = require('discord
 const { cp, stat } = require('fs');
 const config = require('./config');
 const { channel } = require('diagnostics_channel');
+const { log } = require('console');
 
 const bot = new Client({ 
     intents: [
@@ -23,6 +24,7 @@ NoneVideo = true;
 shorts = true;
 skipLive = true;
 AllLive = true;
+description = null;
 
 
     function maxIntent(tab){
@@ -71,8 +73,7 @@ AllLive = true;
     }
 
     function emoteTitre(titre,jeu){
-
-        jeubis = jeu.split(" ");
+        
         if (titre == " NARUTO UHC "){
             return "🍥"+titre;
         }
@@ -243,7 +244,6 @@ AllLive = true;
     }
 
     function chercheMinia(titre,jeu){
-        //console.log(titre);
         //MC
         lg = ["https://media.discordapp.net/attachments/1101573944538042458/1101574376220004512/LG_UHC_-_Grand_Mechant_Loup.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574348550193292/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574300286337185/LG_UHC_-_ERMITE_ZIZANIE.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1193&height=671"];
         naruto = ["https://media.discordapp.net/attachments/1101574073231872070/1146049588072042566/Twix_ino_1.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
@@ -260,7 +260,7 @@ AllLive = true;
         jjk = "https://media.discordapp.net/attachments/1155056320752394240/1155056344139833394/JJK_UHC_-_Nobara_by_Sissou.png?width=829&height=466";
         dawa = ["https://media.discordapp.net/attachments/1064668600285282315/1124759438188888064/cf45b92782ab0c90d2e29bb27961f0a4.gif","https://media.discordapp.net/attachments/1064668600285282315/1124759438583144508/AA0k.gif"];
         madoka = ["https://media.discordapp.net/attachments/1155055914194317332/1155055971236847626/Twix_Madoka1_1.png?width=829&height=466","https://media.discordapp.net/attachments/1155055914194317332/1155056243627536394/Twix_Sayaka.png?width=829&height=466"];
-        fb = "https://media.discordapp.net/attachments/1155056404583956531/1155056424653705216/Twix_FB1_1.png?width=829&height=466";
+        fb = ["https://media.discordapp.net/attachments/1155056404583956531/1155056424653705216/Twix_FB1_1.png?width=829&height=466","https://media.discordapp.net/attachments/1155056404583956531/1177637672802590750/FB_UHC_-_GAMAH_x_TwiZzyx_masterclas_FINALE.png?ex=65733b8c&is=6560c68c&hm=b10c48c9c02a1ada6e16ec70676ba076f1f11578e9704a74bbaf03a7a5376e86&=&format=webp&width=1193&height=671"];
         bleach = "https://cdn.discordapp.com/attachments/1155056476432384000/1155056609031110697/maxresdefault.png";
         indus = "https://cdn.discordapp.com/attachments/1175838794944086016/1175838896878276649/Twix.png?ex=656cb04f&is=655a3b4f&hm=ce24167d7dadb10b0f03667bd19c292eb79d9231be4825a6de3e7ba6ee8cd995&";
         survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1177&height=662s"];
@@ -279,8 +279,7 @@ AllLive = true;
         autre = ["https://cdn.discordapp.com/attachments/748245620409761932/1167425216205557770/BYE.gif?ex=654e1475&is=653b9f75&hm=e812b225ad0bc06eb63577149c398554b696ef469d1064d16b9e33d6393ecb92&","https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"];
         MKLK = "https://media.discordapp.net/attachments/1064668600285282315/1136943663415558244/GIF_KLK_-_Imgur.gif?width=862&height=485";
         wiiSport = "https://media.discordapp.net/attachments/1064668600285282315/1138880259475910726/Wii_sport.gif?width=862&height=485";
-        //Mettre le bon gif
-        ygo = "https://cdn.discordapp.com/attachments/748480743793229845/1138892862369579049/image.png?ex=654bcb21&is=65395621&hm=104097289e2570e28768f74d1638c2ad5aa6baeac5f5a2c6a20519845f199f9a&";
+        ygo = "https://media.discordapp.net/attachments/1064668600285282315/1174050772858708019/yu_gi_oh.gif?ex=656f697d&is=655cf47d&hm=2b10eb3d1e0b8a64be821011ba5add393f3708f0a9d687cb2a2925f1eb288e85&=";
         console.log(typeof(titre));
         titreBis = titre.split(" ");
 
@@ -528,9 +527,25 @@ AllLive = true;
         return categorie;
     }
 
+    function createDesc(msg,desc){
+        msgcomplet = "";
+        msgBis = msg.split("");
+
+        for (i = 0; i < msgBis.length; i++){
+            if (msgBis[i] == "|"){
+                msgcomplet += "\n*"+desc+"*";
+            }
+            else{
+                msgcomplet += msgBis[i];
+            }
+            console.log(msgcomplet);
+        }
+        return msgcomplet;
+
+    }
 
 bot.on("messageCreate", async message => {
-    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -569,8 +584,8 @@ bot.on("messageCreate", async message => {
                     .setImage(minia)
                     .setTimestamp()
                     .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
-                bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+                bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
+                bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                     sentMessage.delete({ timeout: 1000 });
                 })
                 .catch(console.error);;
@@ -646,8 +661,14 @@ bot.on("messageCreate", async message => {
 
         else {
             msg = message.content;
-            bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n"+msg+"\n\n||@everyone||");
+            if (description == null){
+                bot.channels.cache.get(config.channel.videos).send("# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n\n"+msg+"\n\n||@everyone||");
+            }
+            else {
+                bot.channels.cache.get(config.channel.videos).send("# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n\n"+createDesc(msg,description)+"\n\n||@everyone||");
+            }
             skipVideo = true;
+            description = null;
             //log serveur
             console.log("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo);
             bot.channels.cache.get(config.channel.log).send("Une vrai vidéo sur la chaine secondaire a été publié à "+temps()+" et la variable skipVideo = "+skipVideo); 
@@ -658,8 +679,19 @@ bot.on("messageCreate", async message => {
         msgVideo = message.content;
         statut = rechercheCaract(msgVideo);
 
+        console.log(description)
         if (!statut){
-            bot.channels.cache.get(config.channel.videos).send("<:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n**"+msgVideo+"**\n\n||@everyone||");
+
+            
+            msg = message.content;
+            if (description == null){
+                bot.channels.cache.get(config.channel.videos).send("# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n\n"+msg+"\n\n||@everyone||");
+            }
+            else {
+                bot.channels.cache.get(config.channel.videos).send("# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n\n"+createDesc(msg,description)+"\n\n||@everyone||");
+            }
+            description = null;
+            //log serveur
             console.log("Une vidéo a été publié à "+temps());
             bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+temps()); 
         }
