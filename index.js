@@ -280,7 +280,7 @@ description = null;
         MKLK = "https://media.discordapp.net/attachments/1064668600285282315/1136943663415558244/GIF_KLK_-_Imgur.gif?width=862&height=485";
         wiiSport = "https://media.discordapp.net/attachments/1064668600285282315/1138880259475910726/Wii_sport.gif?width=862&height=485";
         ygo = "https://media.discordapp.net/attachments/1064668600285282315/1174050772858708019/yu_gi_oh.gif?ex=656f697d&is=655cf47d&hm=2b10eb3d1e0b8a64be821011ba5add393f3708f0a9d687cb2a2925f1eb288e85&=";
-        console.log(typeof(titre));
+        mario = "https://media.discordapp.net/attachments/1064668600285282315/1184574391313498212/MARIO-min.gif?ex=658c77df&is=657a02df&hm=1e26852a190a3e9b183e0c33eba620febc0853f6cb421eae4c8ab8127b7d2057&=";
         titreBis = titre.split(" ");
 
 
@@ -430,6 +430,9 @@ description = null;
                     return lyoko;
                 }
 
+                else if (jeubis[0] == "Mario" || jeubis[1] == "Mario"){
+                    return mario;
+                }
                 else {
 
                 titreBis = titre.split(" ");
@@ -538,7 +541,6 @@ description = null;
             else{
                 msgcomplet += msgBis[i];
             }
-            console.log(msgcomplet);
         }
         return msgcomplet;
 
