@@ -3,6 +3,8 @@ const { cp, stat } = require('fs');
 const config = require('./config');
 const { channel } = require('diagnostics_channel');
 const { log } = require('console');
+const handleMessageCreate = require('./src/Events/messageCreate');
+
 
 const bot = new Client({ 
     intents: [
@@ -18,8 +20,11 @@ const bot = new Client({
 
 bot.commands = new Collection();
 
+
+bot.on('messageCreate', handleMessageCreate);
+
 //Constantes
-skipVideo = true;
+/*skipVideo = true;
 NoneVideo = true;
 shorts = true;
 skipLive = true;
@@ -545,8 +550,8 @@ description = null;
         return msgcomplet;
 
     }
-
-bot.on("messageCreate", async message => {
+*/
+/*bot.on("messageCreate", async message => {
     if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
@@ -571,7 +576,7 @@ bot.on("messageCreate", async message => {
             console.log(desc);
             categorie = chercheVraiTitre(titre);
             console.log(categorie);
-            minia = chercheMinia(categorie,jeu);*/
+            minia = chercheMinia(categorie,jeu);
 
                 const TWITCH = new EmbedBuilder()
                     .setColor('#9B00FF')
@@ -623,7 +628,7 @@ bot.on("messageCreate", async message => {
         console.log(titre);
         desc = descriptionTravail2(msg);
         categorie = chercheVraiTitre(titre);
-        minia = chercheMinia(categorie,jeu);*/
+        minia = chercheMinia(categorie,jeu);
                 const TWITCH = new EmbedBuilder()
                     .setColor('#9B00FF')
                     .setTitle("**"+emoteTitre(titre)+"**")
@@ -706,10 +711,10 @@ bot.on("messageCreate", async message => {
         
     }
 
-})
+}):*/
 
 require('./src/Structure//Handler/Event')(bot);
 require('./src/Structure//Handler/Command')(bot);
 
 
-bot.login(config.clients.token);
+bot.login(config.clients.tokenTest);
