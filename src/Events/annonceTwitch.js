@@ -1,5 +1,7 @@
+const bot = require('../../index'); 
 const config = require('../../config');
 const { EmbedBuilder } = require('discord.js'); 
+const { channel } = require('diagnostics_channel');
 const classique = require('../Fonctions/Classique');
 const twitch = require('../Fonctions/Twitch');
 
@@ -31,25 +33,11 @@ module.exports = async function annonceAutoTwitch(message) {
             categorie = twitch.chercheVraiTitre(titre);
             console.log(categorie);
             minia = twitch.chercheMinia(categorie,jeu);*/
-
-                const TWITCH = new EmbedBuilder()
-                    .setColor('#9B00FF')
-                    .setTitle("**"+twitch.emoteTitre(titre)+"**")
-                    .setDescription(desc)
-                    .setURL("https://www.twitch.tv/twizzyxpassympa")
-                    .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671', url: 'https://www.twitch.tv/twizzyxpassympa' })
-                    .addFields(
-                        {name: '<:Twitch:748225816973803562>TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
-                        {name: "Joue à", value: jeu})
-                    .setThumbnail("https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671")
-                    .setImage(minia)
-                    .setTimestamp()
-                    .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get(config.channel.retour).send({ embeds: [TWITCH] });
-                bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
-                    sentMessage.delete({ timeout: 1000 });
-                })
-                .catch(console.error);;
+            bot.channels.cache.get(config.channel.retour).send("YO");
+            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+                sentMessage.delete({ timeout: 1000 });
+            })
+            .catch(console.error);;
     
             //log serveur
             console.log("Un live a été publié à "+classique.temps());

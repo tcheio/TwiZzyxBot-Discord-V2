@@ -5,7 +5,8 @@ const { channel } = require('diagnostics_channel');
 const { log } = require('console');
 const annonceAutoTwitch = require('./src/Events/annonceTwitch');
 const handleMessageCreate2 = require('./src/Events/messageCreate2');
-
+const classique = require('./src/Fonctions/Classique');
+const twitch = require('./src/Fonctions/Twitch');
 
 const bot = new Client({ 
     intents: [
@@ -36,67 +37,8 @@ description = null;
 
     
 
-/*bot.on("messageCreate", async message => {
-    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
-        mention = "<@&748220271839805520>";
-        if (skipLive){
-            if (AllLive == false){
-                AllLive = true;
-                mention = "@everyone";
-            }
-            msg = message.content;
-            jeu = chercheJeu(msg);
-
-            //Recherche Classique
-            titre = titreTravail(msg);
-            console.log(titre);
-            desc = descriptionTravail(msg);
-            console.log(desc);
-            minia = chercheMinia(titre,jeu);
-
-            //Recherche Event spécial
-            titre = titreTravail2(msg);
-            console.log(titre);
-            desc = descriptionTravail2(msg);
-            console.log(desc);
-            categorie = chercheVraiTitre(titre);
-            console.log(categorie);
-            minia = chercheMinia(categorie,jeu);
-
-                const TWITCH = new EmbedBuilder()
-                    .setColor('#9B00FF')
-                    .setTitle("**"+emoteTitre(titre)+"**")
-                    .setDescription(desc)
-                    .setURL("https://www.twitch.tv/twizzyxpassympa")
-                    .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671', url: 'https://www.twitch.tv/twizzyxpassympa' })
-                    .addFields(
-                        {name: '<:Twitch:748225816973803562>TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
-                        {name: "Joue à", value: jeu})
-                    .setThumbnail("https://media.discordapp.net/attachments/1064189139349684244/1064189177060663326/channels4_profile.jpg?width=671&height=671")
-                    .setImage(minia)
-                    .setTimestamp()
-                    .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                bot.channels.cache.get(config.channel.stream).send({ embeds: [TWITCH] });
-                bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
-                    sentMessage.delete({ timeout: 1000 });
-                })
-                .catch(console.error);;
-    
-            //log serveur
-            console.log("Un live a été publié à "+temps());
-            bot.channels.cache.get(config.channel.log).send("Un live a été publié à "+temps());
-        }
-
-        else if (skipLive == false){
-            skipLive = true;
-            //Message dans le général staff
-            bot.channels.cache.get(config.channel.generalStaff).send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
-        }
-        
-        
-
-    }
-    else if (message.channelId == config.channel.reping){ //Channel #reping-stream
+bot.on("messageCreate", async message => {
+    if (message.channelId == config.channel.reping){ //Channel #reping-stream
         mention = "<@&748220271839805520>";
         msg = message.content;
         jeu = chercheJeu(msg);
@@ -196,7 +138,7 @@ description = null;
         
         
     }
-});*/
+});
 
 require('./src/Structure//Handler/Event')(bot);
 require('./src/Structure//Handler/Command')(bot);
