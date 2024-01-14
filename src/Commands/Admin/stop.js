@@ -26,10 +26,8 @@ class command {
     }
 
     async execute(bot, interaction) {
-        console.log(interaction.user.id);
-        if (interaction.user.id == config.clients.OwnerID){
+        if (interaction.user.id == config.Info.OwnerID){
             var now = new Date();
-            skipVideo = false;
             const STOP = new EmbedBuilder()
             .setColor('#E49B0F')
             .setTitle('🚨__**Extinction du bot**__')
@@ -39,7 +37,7 @@ class command {
 
             interaction.reply({ embeds: [STOP] });
             bot.channels.cache.get(config.channel.logTest).send("Le bot a été éteint par "+interaction.user+" à "+temps());
-            bot.destroy(config.clients.token);
+            bot.destroy(config.clients.tokenTest);
             }
     
         
