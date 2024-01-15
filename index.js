@@ -22,9 +22,15 @@ const bot = new Client({
 
 bot.commands = new Collection();
 
+module.exports = bot;
 
-bot.on('messageCreate', annonceAutoTwitch);
-bot.on('messageCreate', handleMessageCreate2);
+bot.on('messageCreate', (message) => {
+    annonceAutoTwitch(bot, message);
+});
+//bot.on('messageCreate', handleMessageCreate2);
+
+
+
 
 //Constantes
 skipVideo = true;

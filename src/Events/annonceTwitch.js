@@ -5,9 +5,7 @@ const { channel } = require('diagnostics_channel');
 const classique = require('../Fonctions/Classique');
 const twitch = require('../Fonctions/Twitch');
 
-
-
-module.exports = async function annonceAutoTwitch(message) {
+module.exports = async function annonceAutoTwitch(bot,message) {
     if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
@@ -33,6 +31,19 @@ module.exports = async function annonceAutoTwitch(message) {
             categorie = twitch.chercheVraiTitre(titre);
             console.log(categorie);
             minia = twitch.chercheMinia(categorie,jeu);*/
+            const TWITCH = new EmbedBuilder()
+                .setColor('#9B00FF')
+                .setTitle(""+twitch.emoteTitre(titre)+"")
+                .setDescription(desc)
+                .setURL("https://www.twitch.tv/twizzyxpassympa")
+                .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'channels4_profile.jpg', url: 'https://www.twitch.tv/twizzyxpassympa' })
+                .addFields(
+                    {name: ':Twitch:TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
+                    {name: "Joue à", value: jeu})
+                .setThumbnail("channels4_profile.jpg")
+                .setImage(minia)
+                .setTimestamp()
+                .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
             bot.channels.cache.get(config.channel.retour).send("YO");
             bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
