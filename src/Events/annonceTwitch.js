@@ -31,20 +31,20 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             categorie = twitch.chercheVraiTitre(titre);
             console.log(categorie);
             minia = twitch.chercheMinia(categorie,jeu);*/
-            const TWITCH = new EmbedBuilder()
-                .setColor('#9B00FF')
-                .setTitle(""+twitch.emoteTitre(titre)+"")
-                .setDescription(desc)
-                .setURL("https://www.twitch.tv/twizzyxpassympa")
-                .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: 'channels4_profile.jpg', url: 'https://www.twitch.tv/twizzyxpassympa' })
-                .addFields(
-                    {name: ':Twitch:TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
-                    {name: "Joue à", value: jeu})
-                .setThumbnail("channels4_profile.jpg")
-                .setImage(minia)
-                .setTimestamp()
-                .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-            bot.channels.cache.get(config.channel.retour).send("YO");
+            const exampleEmbed = new EmbedBuilder()
+            .setColor('#9B00FF')
+            .setTitle(twitch.emoteTitre(titre))
+            .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logo, url: 'https://twitch.tv/twizzyxpassympa' })
+            .setDescription(desc)
+            .setThumbnail(config.clients.logo)
+            .addFields(
+                {name: ':Twitch:TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
+                {name: "Joue à", value: jeu})
+            .setImage("https://media.discordapp.net/attachments/1155056404583956531/1155056424653705216/Twix_FB1_1.png?ex=65b4bd1f&is=65a2481f&hm=0b2b83c1bf2f67b3a690d5cef5b571328ef3add35728e99ee643681f9c3a9f0d&=&format=webp&quality=lossless&width=1193&height=671")
+            .setTimestamp()
+            .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
+            
+            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
             bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })

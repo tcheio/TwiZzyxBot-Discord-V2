@@ -37,6 +37,7 @@ function descriptionTravail(msg){
         }
         i++;
     }
+    
     //Construction du titre
     for (j = i; j<msgBis.length; j++){
         if (msgBis[j] == "-"){
