@@ -15,10 +15,10 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             }
             msg = message.content;
             jeu = twitch.chercheJeu(msg);
+        
 
             //Recherche Classique
             titre = twitch.titreTravail(msg);
-            console.log(titre);
             desc = twitch.descriptionTravail(msg);
             console.log(desc);
             minia = twitch.chercheMinia(titre,jeu);
@@ -33,14 +33,14 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             minia = twitch.chercheMinia(categorie,jeu);*/
             const exampleEmbed = new EmbedBuilder()
             .setColor('#9B00FF')
-            .setTitle(twitch.emoteTitre(titre))
+            .setTitle(twitch.emoteTitre(titre,jeu))
             .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logo, url: 'https://twitch.tv/twizzyxpassympa' })
             .setDescription(desc)
             .setThumbnail(config.clients.logo)
             .addFields(
                 {name: ':Twitch:TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
                 {name: "Joue à", value: jeu})
-            .setImage("https://media.discordapp.net/attachments/1155056404583956531/1155056424653705216/Twix_FB1_1.png?ex=65b4bd1f&is=65a2481f&hm=0b2b83c1bf2f67b3a690d5cef5b571328ef3add35728e99ee643681f9c3a9f0d&=&format=webp&quality=lossless&width=1193&height=671")
+            .setImage(twitch.chercheMinia(titre,jeu))
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             

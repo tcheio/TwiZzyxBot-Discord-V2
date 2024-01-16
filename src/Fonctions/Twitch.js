@@ -25,22 +25,21 @@ function titreTravail(msg){
 
 //Récupère la description du stream en enlevant le pseudo et les commandes
 function descriptionTravail(msg){
-    statu = true;
+    statu = 0;
     i = 0;
     desc ="";
     msgBis = msg.split("");
     max = msgBis.length;
     //Exclure mon pseudo et le symbole
-    while (statu){
+    while (statu != 2){
         if (msgBis[i] == "-"){
-            statu = false;
+            statu +=1;
         }
         i++;
     }
-    
     //Construction du titre
     for (j = i; j<msgBis.length; j++){
-        if (msgBis[j] == "-"){
+        if (msgBis[j] == "|"){
             return desc;
         }
         else{
@@ -51,7 +50,7 @@ function descriptionTravail(msg){
 
 //Ajoute une emote au titre en fonction de son titre et de son jeu
 function emoteTitre(titre,jeu){
-        
+    const jeubis = jeu.split(" ");
     if (titre == " NARUTO UHC "){
         return "🍥"+titre;
     }
@@ -117,15 +116,9 @@ function emoteTitre(titre,jeu){
     else if (titre == " MADOKA UHC "){
         return "🪄"+titre;
     }
-    
-    else if (titreBis[1] == "SURVIE"  || titre == " 🪓SURVIE HARDCORE "){
-        return "🪓"+titre;
-    }
-
-    else if (titre == " FAST BAND UHC "){
+    else if (titre == " FB UHC "){
         return "🟡"+titre;
     }
-
     else if(titre == " BLEACH UHC "){
         return "👹"+titre;
     }
@@ -133,7 +126,9 @@ function emoteTitre(titre,jeu){
     else if (titre == "INDUSTRIAL UHC "){
         return "⚙️"+titre;
     }
-    
+    else if (titreBis[1] == "SURVIE"  || titre == " 🪓SURVIE HARDCORE "){
+        return "🪓"+titre;
+    }    
     else if (jeubis[0] == "Batman:"){
         return "🦇"+titre;
     }
@@ -183,13 +178,11 @@ function chercheJeu (msg){
     for (j = i+1; j<msgBis.length; j++) {
         jeu += msgBis[j]; 
     }
-
     return jeu;
 }
 
 //Cherche la minia en fonction du titre et du jeu
 function chercheMinia(titre,jeu){
-    //MC
     lg = ["https://media.discordapp.net/attachments/1101573944538042458/1101574376220004512/LG_UHC_-_Grand_Mechant_Loup.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574348550193292/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574300286337185/LG_UHC_-_ERMITE_ZIZANIE.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1193&height=671"];
     naruto = ["https://media.discordapp.net/attachments/1101574073231872070/1146049588072042566/Twix_ino_1.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
     klk = ["https://media.discordapp.net/attachments/1101573990193053736/1155057236478017587/Twix_KLK_kiznaiver1.png?width=829&height=466","https://media.discordapp.net/attachments/1101573990193053736/1101574916337311825/KLK_UHC_-_Jujutsusare.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1104378814299132025/Twix_Ragyo.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1127895984240857099/Twix_Satsuki.png?width=1193&height=671"];
@@ -209,8 +202,6 @@ function chercheMinia(titre,jeu){
     bleach = "https://cdn.discordapp.com/attachments/1155056476432384000/1155056609031110697/maxresdefault.png";
     indus = "https://cdn.discordapp.com/attachments/1175838794944086016/1175838896878276649/Twix.png?ex=656cb04f&is=655a3b4f&hm=ce24167d7dadb10b0f03667bd19c292eb79d9231be4825a6de3e7ba6ee8cd995&";
     survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1177&height=662s"];
-
-    //AUTRES
     mc = "https://images-ext-2.discordapp.net/external/5EgjXqovZZbX-J2JzsThelYNqjfXGnurl3FhTd9_AZw/https/i.ibb.co/Hpfvh2b/GIF-MC.gif";
     among = "https://media.discordapp.net/attachments/1064668600285282315/1066800722861109349/Among_us.gif";
     IE = "https://media.discordapp.net/attachments/1064668600285282315/1066800631274283089/IE.gif";
@@ -227,8 +218,8 @@ function chercheMinia(titre,jeu){
     ygo = "https://media.discordapp.net/attachments/1064668600285282315/1174050772858708019/yu_gi_oh.gif?ex=656f697d&is=655cf47d&hm=2b10eb3d1e0b8a64be821011ba5add393f3708f0a9d687cb2a2925f1eb288e85&=";
     mario = "https://media.discordapp.net/attachments/1064668600285282315/1184574391313498212/MARIO-min.gif?ex=658c77df&is=657a02df&hm=1e26852a190a3e9b183e0c33eba620febc0853f6cb421eae4c8ab8127b7d2057&=";
     titreBis = titre.split(" ");
-
-
+    
+    console.log(titre);
     if (jeu == "Minecraft"){                
         for (i = 0; i < tabAllStream.length; i++){
                 if (titre == " NARUTO UHC "){
@@ -309,13 +300,7 @@ function chercheMinia(titre,jeu){
                     random = Math.floor(Math.random() * (madoka.length));
                     return madoka[random];
                 }
-                
-                else if (titreBis[1] == " SURVIE "  || titre == " SURVIE HARDCORE "){
-                    random = Math.floor(Math.random() * (survie.length));
-                    return survie[random];
-                }
-
-                else if (titre == " FAST BAND UHC "){
+                else if (titre == " FB UHC "){
                     return fb;
                 }
 
@@ -326,6 +311,10 @@ function chercheMinia(titre,jeu){
                 else if (titre == "INDUSTRIAL UHC "){
                     return indus;
                 }
+                else if (titreBis[1] == " SURVIE "  || titre == " SURVIE HARDCORE "){
+                    random = Math.floor(Math.random() * (survie.length));
+                    return survie[random];
+                }
 
                 else {
                     return mc;
@@ -333,8 +322,9 @@ function chercheMinia(titre,jeu){
             }
         }
     
-        else {
-            jeubis = jeu.split(" ");
+    else {
+        jeubis = jeu.split(" ");
+        console.log(jeubis[0]+"   "+jeubis[1]);
             if (jeubis[0] == "Pokémon"){
                 return pokemon;
             }
@@ -380,32 +370,18 @@ function chercheMinia(titre,jeu){
             }
             else {
 
-            titreBis = titre.split(" ");
-            console.log(titreBis[0]+titreBis[1]);
-            if (titreBis[0] == "CODE" && titreBis[1] == "LYOKO"){
-                return lyoko;
-            }
-
-            else if (titre == " MARDI Z*ZI " || titre == " MARDI Z\*ZI "){
-                random = Math.floor(Math.random() * (mardi.length));
-                return mardi[random];
-            }
-
-            else if (titre == " TWIZZYX DIRECT "){
-                return direct;
-            }
-
-            else if (titre == " MONTAGE D'UNE VIDEO AVEC VOUS "){
-                return "https://cdn.discordapp.com/attachments/1120085675463692349/1158673971135393812/video-editing-jack-cole.gif?ex=651d1ab9&is=651bc939&hm=e07cae98b13d580fe941c56fbcda5596f0bb99f66208fca9d345393bf55e6c65&";
-            }
-
-            //Cas par defaut
-            random = Math.floor(Math.random() * (autre.length));
-            return autre[random];
+                titreBis = titre.split(" ");
+                console.log(titreBis[0]+titreBis[1]);
+                if (titreBis[0] == "CODE" && titreBis[1] == "LYOKO"){
+                    return lyoko;
+                }
+                
+                // Cas par défaut
+                random = Math.floor(Math.random() * autre.length);
+                return autre[random];
         }
     }
-    
-            
+    return null;            
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
