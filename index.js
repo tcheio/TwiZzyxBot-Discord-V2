@@ -4,6 +4,7 @@ const config = require('./config');
 const { channel } = require('diagnostics_channel');
 const { log } = require('console');
 const annonceAutoTwitch = require('./src/Events/annonceTwitch');
+const repingTwitch = require('./src/Events/repingTwitch');
 const handleMessageCreate2 = require('./src/Events/messageCreate2');
 const classique = require('./src/Fonctions/Classique');
 const twitch = require('./src/Fonctions/Twitch');
@@ -26,6 +27,7 @@ module.exports = bot;
 
 bot.on('messageCreate', (message) => {
     annonceAutoTwitch(bot, message);
+    repingTwitch(bot, message);
 });
 //bot.on('messageCreate', handleMessageCreate2);
 

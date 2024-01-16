@@ -6,7 +6,7 @@ const classique = require('../Fonctions/Classique');
 const twitch = require('../Fonctions/Twitch');
 
 module.exports = async function annonceAutoTwitch(bot,message) {
-    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -52,7 +52,7 @@ module.exports = async function annonceAutoTwitch(bot,message) {
     
             //log serveur
             console.log("Un live a été publié à "+classique.temps());
-            bot.channels.cache.get(config.channel.logTest).send("Un live a été publié à "+classique.temps());
+            bot.channels.cache.get(config.channel.log).send("Un live a été publié à "+classique.temps());
         }
 
         else if (skipLive == false){
