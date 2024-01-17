@@ -1,7 +1,6 @@
 const bot = require('../../index'); 
 const config = require('../../config');
 const { EmbedBuilder } = require('discord.js'); 
-const { channel } = require('diagnostics_channel');
 const classique = require('../Fonctions/Classique');
 const twitch = require('../Fonctions/Twitch');
 
