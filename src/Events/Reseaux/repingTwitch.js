@@ -1,9 +1,9 @@
-const bot = require('../../index'); 
-const config = require('../../config');
+const bot = require('../../../index'); 
+const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const { channel } = require('diagnostics_channel');
-const classique = require('../Fonctions/Classique');
-const twitch = require('../Fonctions/Twitch');
+const classique = require('../../Fonctions/Classique');
+const twitch = require('../../Fonctions/Twitch');
 
 module.exports = async function repingTwitch(bot,message) {
     if (message.channelId == config.channel.reping){ //Channel #reping-stream

@@ -1,6 +1,6 @@
-const config = require('../../config'); 
-const classique = require('../Fonctions/Classique');
-const youtube = require('../Fonctions/YouTube');
+const config = require('../../../config'); 
+const classique = require('../../Fonctions/Classique');
+const youtube = require('../../Fonctions/YouTube');
 
 module.exports = async function annonceYouTube(bot,message) {
     if (message.channelId == config.channel.envoie){ //Channel #Twizzyx²
@@ -41,7 +41,7 @@ module.exports = async function annonceYouTube(bot,message) {
         bot.channels.cache.get(config.channel.logTest).send("Une vidéo a été publié à "+classique.temps());
     }
 
-    else if(message.channelId == config.channel.envoie3){
+    else if(message.channelId == config.channel.envoie3){ //Channel #Replay
         msg = message.content;
         bot.channels.cache.get(config.channel.retour).send("# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n"+msg+"\n\n||<@&1018803719250382898>||");
         console.log("Un replay a été publié à "+classique.temps());
