@@ -19,7 +19,9 @@ module.exports = async function annonceYouTube(bot,message) {
             bot.channels.cache.get(config.channel.logTest).send("Une vidéo sur TwiZzyx² a été publié à "+classique.temps()); 
         }  
         else if(skipVideo == true){
-            bot.channels.cache.get(config.channel.generalStaff).send("Une vidéo aurait du être annoncé <@209395375474212865> et la variable NoneVideo est de nouveau en "+NoneVideo); 
+            bot.channels.cache.get(config.channel.retour).send("# <:YouTubeBleu:1018805788090839061>__**NOUVEL EPISODE LP**__<:YouTubeBleu:1018805788090839061>\n\n\n"+msg+"\n\n||<@&1018803719250382898>||");
+            console.log("Un replay a été publié à "+classique.temps());
+            bot.channels.cache.get(config.channel.logTest).send("Un épisode de LP a été publié à "+classique.temps());
         }
 
         else {
