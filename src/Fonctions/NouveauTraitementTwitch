@@ -19,7 +19,7 @@ function testTitre(msg) {
 
         for (i; i < max; i++){
             if (msgBis[i] == "|"){
-                return titre;
+                return titre.trim();
             }
             titre += msgBis[i];
         }
@@ -38,13 +38,29 @@ function maxIntent(tab){
 function analyseTitre(titre, jeu) {
     //mot clés UHC
     UHC = [
-        ["klk", "kill la kill","k2k"],      //Kill la Kill
-        ["lg", "loup garou", "loup-garou"]  //Loup Garou
-        ];
+        /*Kill la Kill*/ ["klk", "kill","k2k","académie","Ryuko","Matoi","Satsuki","Kiryuin","Mako","Mankanshoku","Senketsu","Junketsu","Nui","Harime","Ragyo","Kiryuin","Ira","Gamagoori","Uzu","Sanageyama","Nonon","Jakuzure","Houka","Inumuta","Soroi","Aikuro","Mikisugi","Tsumugu","Kinagase","Nudist","Beach"],                  
+        /*LG*/["lg", "loup", "loup-garou", "garou","village","villageois"],              
+        /*Naruto*/["naruto", "naruto shippuden"],              
+        /*DS*/["ds","demon","slayer", "tanjiro"],  
+        /*SH*/["sherlock", "Holmes", "moriarty"], 
+        /*ONE PIECE*/["one Piece", "zoro", "luffy"], 
+        /*AOT*/["titan", "attack on titan", "AOT"],
+        /*The Boys*/["homelander", "a-train", "starlight"],
+        /*Sky Def*/["sky","def","defender", "chateau","défense","attaquant","defenseur"],
+        /*FMA*/["fullmetal","alchemist","edward","elric","father","scar"],
+        /*Eigthy-Six*/["eigthy-six","eigthy","six","Handler","Vladilena","Shinei","Kurena","Lena"],
+        /*Death Note*/["death","note","light","yagami","ryuk","L","lawliet","misa","misa-misa","mello","near"],
+        /*JJK*/["jujutsu","kaisen","jujutsu kaisen","satoru","gojo","gojo-sensei","itadori","yuuji","megumi","nobara","sukuna","sukuna-ryomen","ryomen","ryomen-sukuna"],
+        /*Dawa ou FDP*/["dawa","fdp"],
+        /*Madoka*/["madoka","magica","madoka magica","homura","akemi","sayaka","miki","mami","tomoe","kyoko","sakura","kyubey","walpurgis"],
+        /*HxH*/["hunter","hunterxhunter","hxh","gon","freecs","killua","zoldyck","kurapika","leorio","hisoka","chrollo","lucilfer","meruem","netero","neferpitou","pitou","nefer"],
+        /*Bleach*/["bleach","ichigo","kurosaki","rukia","kuchiki","renji","aizen","sosuke","ulquiorra","grimmjow","ulquiorra","orihime","inoue","chad","sado","uryu","ishida","ishida","byakuya"],
+        /*Fast Band*/["fast","band"],
+        /*Industrial*/["industrial","craft","mod","industrial craft","industrial craft mod","ic","ic mod","ic2","ic2 mod","ic²","ic² mod"],
     
-
+    ]
     //Tableau Resultant de l'analyse du titre
-    resultAnalyse = [0,0];
+    resultAnalyse = [0,0,0,0,0,0,0,0];
     titre = titre.toLowerCase();
     analyseTitre = titre.split(" ");
 
@@ -53,6 +69,7 @@ function analyseTitre(titre, jeu) {
             for (k = 0; k < UHC[j].length; k++){
                 if (analyseTitre[i] == UHC[j][k]){
                     resultAnalyse[j] += 1;
+                    console.log(resultAnalyse[j]);
                 }
             }
         }
@@ -61,5 +78,5 @@ function analyseTitre(titre, jeu) {
     return maxIntent(resultAnalyse);
 
 }
-console.log(testTitre("TwiZzyx - KLK ENTRE Débiles | (!planning !lastvideo !discord)|Super Mario Galaxy 2"));
-console.log(analyseTitre(testTitre("TwiZzyx - KLK ENTRE Débiles | (!planning !lastvideo !discord)|Super Mario Galaxy 2")));
+console.log(testTitre("TwiZzyx - Si je suis pas loup, je kill tous le village | (!planning !lastvideo !discord)|Super Mario Galaxy 2"));
+console.log(analyseTitre(testTitre("TwiZzyx - On kill du slayer en tant que Tanjiro | (!planning !lastvideo !discord)|Super Mario Galaxy 2"))); 
