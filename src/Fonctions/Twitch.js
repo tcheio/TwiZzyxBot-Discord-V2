@@ -15,7 +15,7 @@ function titreTravail(msg){
     //Construction du titre
     for (j = i; j<msgBis.length; j++){
         if (msgBis[j] == "-"){
-            return titre;
+            return titre.trim();
         }
         else{
             titre += msgBis[j];
@@ -411,7 +411,7 @@ function titreTravail2(msg){
     titre += "🚨LIVE 24H -" //Préfixe qu'on veut ajouter devant
     for (j = i; j<msgBis.length; j++){
         if (msgBis[j] == "-"){
-            return titre;
+            return titre.trim();
         }
         else{
             titre += msgBis[j];
