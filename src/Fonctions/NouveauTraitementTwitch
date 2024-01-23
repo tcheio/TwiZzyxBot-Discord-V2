@@ -1,0 +1,65 @@
+function testTitre(msg) {
+    statu = true;
+        comp = 0
+        i = 0;
+        titre ="";
+        msgBis = msg.split("");
+        max = msgBis.length;
+        //Exclure mon pseudo et les 2 symboles
+        while (statu){
+            if (msgBis[i] == "-"){
+                comp +=1;
+            }
+    
+            if (comp == 1){
+                statu = false;
+            }
+            i++;
+        }
+
+        for (i; i < max; i++){
+            if (msgBis[i] == "|"){
+                return titre;
+            }
+            titre += msgBis[i];
+        }
+}
+
+function maxIntent(tab){
+    max = 0;
+    for (i=0; i<tab.length;i++){
+        if (tab[i] > max){
+            max = tab[i];
+        }
+    }
+    return max;
+}
+
+function analyseTitre(titre, jeu) {
+    //mot clés UHC
+    UHC = [
+        ["klk", "kill la kill","k2k"],      //Kill la Kill
+        ["lg", "loup garou", "loup-garou"]  //Loup Garou
+        ];
+    
+
+    //Tableau Resultant de l'analyse du titre
+    resultAnalyse = [0,0];
+    titre = titre.toLowerCase();
+    analyseTitre = titre.split(" ");
+
+    for (i = 0; i < analyseTitre.length; i++){
+        for (j = 0; j < UHC.length; j++){
+            for (k = 0; k < UHC[j].length; k++){
+                if (analyseTitre[i] == UHC[j][k]){
+                    resultAnalyse[j] += 1;
+                }
+            }
+        }
+    }
+    console.log(resultAnalyse);
+    return maxIntent(resultAnalyse);
+
+}
+console.log(testTitre("TwiZzyx - KLK ENTRE Débiles | (!planning !lastvideo !discord)|Super Mario Galaxy 2"));
+console.log(analyseTitre(testTitre("TwiZzyx - KLK ENTRE Débiles | (!planning !lastvideo !discord)|Super Mario Galaxy 2")));
