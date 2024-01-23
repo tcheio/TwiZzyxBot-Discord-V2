@@ -37,8 +37,8 @@ module.exports = async function repingTwitch(bot,message) {
         .setTimestamp()
         .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
         
-        bot.channels.cache.get(config.channel.twitch).send({ embeds: [exampleEmbed] });
-        bot.channels.cache.get(config.channel.twitch).send(mention).then(sentMessage => {
+        bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
+        bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
             sentMessage.delete({ timeout: 1000 });
         })
         .catch(console.error);;

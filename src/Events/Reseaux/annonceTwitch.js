@@ -43,8 +43,8 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             
-            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
-            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+            bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })
             .catch(console.error);;
@@ -57,7 +57,7 @@ module.exports = async function annonceAutoTwitch(bot,message) {
         else if (skipLive == false){
             skipLive = true;
             //Message dans le général staff
-            bot.channels.cache.get(config.channel.retour).send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
+            bot.channels.cache.get(config.channel.generalStaff).send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
         }
         
         
