@@ -6,6 +6,9 @@ const { log } = require('console');
 const annonceAutoTwitch = require('./src/Events/Reseaux/annonceTwitch');
 const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
 const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
+const GitHub = require('./src/Events/verifUpdate');
+
+GitHub.updateBot();
 
 const bot = new Client({ 
     intents: [
