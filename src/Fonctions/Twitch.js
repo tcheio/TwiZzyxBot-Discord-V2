@@ -142,7 +142,7 @@ function emoteTitre(titre,jeu){
     }
     
     else if (jeubis[0] == "Among" && jeubis[1] == "Us"){
-        return "🕵️"+among;
+        return "🕵️"+titre;
     }
 
     else if(jeubis[0] == "Yu-Gi-Oh!"){
