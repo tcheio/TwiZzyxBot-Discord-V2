@@ -2,7 +2,7 @@ const bot = require('../../../index');
 const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
-const twitch = require('../../Fonctions/Twitch');
+const twitch = require('../../Fonctions/NouveauTraitementTwitch');
 
 module.exports = async function annonceAutoTwitch(bot,message) {
     if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
@@ -15,21 +15,9 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             msg = message.content;
             jeu = twitch.chercheJeu(msg);
         
-
-            //Recherche Classique
-            titre = twitch.titreTravail(msg);
-            desc = twitch.descriptionTravail(msg);
-            console.log(desc);
-            minia = twitch.chercheMinia(titre,jeu);
-
-            //Recherche Event spécial
-            /*titre = twitch.titreTravail2(msg);
-            console.log(titre);
-            desc = twitch.descriptionTravail2(msg);
-            console.log(desc);
-            categorie = twitch.chercheVraiTitre(titre);
-            console.log(categorie);
-            minia = twitch.chercheMinia(categorie,jeu);*/
+            titre = twitch.testTitre(msg);
+            desc = twitch.createDesc(titre);
+            
             const exampleEmbed = new EmbedBuilder()
             .setColor('#9B00FF')
             .setTitle(twitch.emoteTitre(titre,jeu))

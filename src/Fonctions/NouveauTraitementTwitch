@@ -40,11 +40,11 @@ function analyseTitre(titre, jeu) {
     UHC = [
         /*Kill la Kill*/ ["klk", "kill","k2k","académie","Ryuko","Matoi","Satsuki","Kiryuin","Mako","Mankanshoku","Senketsu","Junketsu","Nui","Harime","Ragyo","Kiryuin","Ira","Gamagoori","Uzu","Sanageyama","Nonon","Jakuzure","Houka","Inumuta","Soroi","Aikuro","Mikisugi","Tsumugu","Kinagase","Nudist","Beach"],                  
         /*LG*/["lg", "loup", "loup-garou", "garou","village","villageois"],              
-        /*Naruto*/["naruto", "naruto shippuden"],              
-        /*DS*/["ds","demon","slayer", "tanjiro"],  
-        /*SH*/["sherlock", "Holmes", "moriarty"], 
-        /*ONE PIECE*/["one Piece", "zoro", "luffy"], 
-        /*AOT*/["titan", "attack on titan", "AOT"],
+        /*Naruto*/["naruto", "shippuden","sasuke","uchiwa","naruto","uzumaki","kakashi","hatake","sakura","haruno","gaara","sabaku","no","gaara","itachi","uchiwa","madara","uchiwa","hashirama","senju","tobirama","senju","minato","namikaze","jiraya","orochimaru","tsunade","sannin","sannins","sannin","sannins","akatsuki","pain","nagato","konan","hidan","kakuzu","deidara","sasori","kisame","hoshigaki","zetsu","obito","uchiwa","tobi","kabuto","yakushi","oroch"],              
+        /*DS*/["ds","demon","slayer", "tanjiro", "nezuko", "zenitsu", "inosuke", "muzan", "kibutsuji", "nezuko", "kamado", "tanjiro", "kamado", "zenitsu", "agatsuma", "inosuke", "hashibira", "shinobu", "kocho", "kanao", "tsuyuri", "genya", "shinazugawa", "sanemi", "tokito", "gyomei", "himejima", "muichiro", "tokito", "obanai", "iguro", "mitsuri", "kanroji", "tengen", "uzui", "uzui"],  
+        /*SH*/["sherlock", "Holmes", "moriarty","john","watson","mary","adler","irene","adler","greg","lestrade","mycroft","holmes","molly","hooper","jim","moriarty"], 
+        /*ONE PIECE*/["one Piece", "zoro", "luffy", "sanji", "nami", "usopp", "franky", "robin", "brook", "chopper", "ace", "sabo", "shanks", "barbe", "blanche", "noire", "barbe", "blanche"], 
+        /*AOT*/["titan", "attack on titan", "aot","eren"],
         /*The Boys*/["homelander", "a-train", "starlight"],
         /*Sky Def*/["sky","def","defender", "chateau","défense","attaquant","defenseur"],
         /*FMA*/["fullmetal","alchemist","edward","elric","father","scar"],
@@ -57,10 +57,12 @@ function analyseTitre(titre, jeu) {
         /*Bleach*/["bleach","ichigo","kurosaki","rukia","kuchiki","renji","aizen","sosuke","ulquiorra","grimmjow","ulquiorra","orihime","inoue","chad","sado","uryu","ishida","ishida","byakuya"],
         /*Fast Band*/["fast","band"],
         /*Industrial*/["industrial","craft","mod","industrial craft","industrial craft mod","ic","ic mod","ic2","ic2 mod","ic²","ic² mod"],
+        /*Evangelion*/["evangelion","shinji","ikari","rei","ayanami","asuka","langley","misato","katsuragi","gendo","ikari","kaji","ritsuko","akagi","toji","suzuhara","kaworu","nagisa","penpen"],
+        /*Minecraft*/["ultra","hardcore","uhc"],
     
-    ]
+    ];
     //Tableau Resultant de l'analyse du titre
-    resultAnalyse = [0,0,0,0,0,0,0,0];
+    resultAnalyse = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     titre = titre.toLowerCase();
     analyseTitre = titre.split(" ");
 
@@ -77,6 +79,44 @@ function analyseTitre(titre, jeu) {
     console.log(resultAnalyse);
     return maxIntent(resultAnalyse);
 
+}
+
+function createDes(indice) {
+    switch (indice) {
+        case 0: //Kill la Kill
+            
+            break;
+
+        case 1: //LG
+            
+            break;
+        
+        case 2: //Naruto
+                
+            break;
+
+        case 3: //DS
+                
+            break;
+
+        case 4: //SH
+                    
+            break;
+
+        case 5: //One Piece
+                        
+            break;
+        
+        case 6: //AOT
+                    
+            break;
+        
+        case 7: //The Boys
+                    
+            break;
+        default:
+            break;
+    }
 }
 console.log(testTitre("TwiZzyx - Si je suis pas loup, je kill tous le village | (!planning !lastvideo !discord)|Super Mario Galaxy 2"));
 console.log(analyseTitre(testTitre("TwiZzyx - On kill du slayer en tant que Tanjiro | (!planning !lastvideo !discord)|Super Mario Galaxy 2"))); 
