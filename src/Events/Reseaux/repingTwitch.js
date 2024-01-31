@@ -2,51 +2,43 @@ const bot = require('../../../index');
 const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
-const twitch = require('../../Fonctions/Twitch');
+const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
 
 module.exports = async function repingTwitch(bot,message) {
-    if (message.channelId == config.channel.reping){ //Channel #reping-stream
+    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
-        msg = message.content;
-        jeu = twitch.chercheJeu(msg);
-
-        //Recherche Classique
-        titre = twitch.titreTravail(msg);
-        console.log(titre);
-        desc = twitch.descriptionTravail(msg);
-        console.log(desc);
-        minia = twitch.chercheMinia(titre,jeu);
-
-        //Recherche Event spécial
-        /*titre = titreTravail2(msg);
-        console.log(titre);
-        desc = descriptionTravail2(msg);
-        categorie = chercheVraiTitre(titre);
-        minia = chercheMinia(categorie,jeu);*/
-        const exampleEmbed = new EmbedBuilder()
-        .setColor('#9B00FF')
-        .setTitle(twitch.emoteTitre(titre,jeu))
-        .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logo, url: 'https://twitch.tv/twizzyxpassympa' })
-        .setDescription(desc)
-        .setThumbnail(config.clients.logo)
-        .addFields(
-            {name: ':Twitch:TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
-            {name: "Joue à", value: jeu})
-        .setImage(twitch.chercheMinia(titre,jeu))
-        .setTimestamp()
-        .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
-        
-        bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
-        bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
-            sentMessage.delete({ timeout: 1000 });
-        })
-        .catch(console.error);;
-
+        if (skipLive){
+            if (AllLive == false){
+                AllLive = true;
+                mention = "@everyone";
+            }
+            msg = message.content;
+            jeu = NouveauTraitementTwitch.chercheJeu(msg);
+            titre = NouveauTraitementTwitch.testTitre(msg,jeu);
+            indice = NouveauTraitementTwitch.analyseTitre(msg,jeu);
+            desc = NouveauTraitementTwitch.createDesc(indice);
+            
+            const exampleEmbed = new EmbedBuilder()
+            .setColor('#9B00FF')
+            .setTitle(titre)
+            .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logo, url: 'https://twitch.tv/twizzyxpassympa' })
+            .setDescription(desc)
+            .setThumbnail(config.clients.logo)
+            .addFields(
+                {name: ':Twitch:TwiZzyx est toujours en stream sur Twitch', value: "Il ne s'arrête jamais" },
+                {name: "Joue à", value: jeu})
+            .setImage(NouveauTraitementTwitch.minia(indice))
+            .setTimestamp()
+            .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
+            
+            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+                sentMessage.delete({ timeout: 1000 });
+            })
+            .catch(console.error);;
+    
             //log serveur
-            console.log("Un reping de live a été publié à "+classique.temps());
-            bot.channels.cache.get(config.channel.log).send("Un reping de live a été publié à "+classique.temps());
-        
-        
-
-    }
-};
+            console.log("Un live a été publié à "+classique.temps());
+            bot.channels.cache.get(config.channel.logTest).send("Un live a été publié à "+classique.temps());
+        }
+};}

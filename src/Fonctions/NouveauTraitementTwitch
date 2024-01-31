@@ -68,7 +68,6 @@ function analyseTitre(titre,jeu) {
     //Tableau Resultant de l'analyse du titre
     resultAnalyse = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     titre = titre.toLowerCase();
-    console.log(titre);
     analyseTitre = titre.split(" ");
 
     for (i = 0; i < analyseTitre.length; i++){
@@ -81,7 +80,6 @@ function analyseTitre(titre,jeu) {
             }
         }
     }
-    console.log(resultAnalyse);
     return maxIntent(resultAnalyse);
     }
 
@@ -255,7 +253,6 @@ function createDesc(indice) {
 //Récupère le jeu du stream
 function chercheJeu(msg){
     jeu ="";
-    console.log(msg);
     msgBis = msg.split("");
     statut = true;
     i = 0;
