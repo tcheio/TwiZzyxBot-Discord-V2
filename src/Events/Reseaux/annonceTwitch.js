@@ -2,10 +2,11 @@ const bot = require('../../../index');
 const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
-const twitch = require('../../Fonctions/NouveauTraitementTwitch');
+const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
+const { minia } = require('../../Fonctions/NouveauTraitementTwitch');
 
 module.exports = async function annonceAutoTwitch(bot,message) {
-    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -13,33 +14,33 @@ module.exports = async function annonceAutoTwitch(bot,message) {
                 mention = "@everyone";
             }
             msg = message.content;
-            jeu = twitch.chercheJeu(msg);
-        
-            titre = twitch.testTitre(msg);
-            desc = twitch.createDesc(titre);
+            jeu = NouveauTraitementTwitch.chercheJeu(msg);
+            titre = NouveauTraitementTwitch.testTitre(msg,jeu);
+            indice = NouveauTraitementTwitch.analyseTitre(msg,jeu);
+            desc = NouveauTraitementTwitch.createDesc(indice);
             
             const exampleEmbed = new EmbedBuilder()
             .setColor('#9B00FF')
-            .setTitle(twitch.emoteTitre(titre,jeu))
+            .setTitle(titre)
             .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logo, url: 'https://twitch.tv/twizzyxpassympa' })
             .setDescription(desc)
             .setThumbnail(config.clients.logo)
             .addFields(
                 {name: ':Twitch:TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
                 {name: "Joue à", value: jeu})
-            .setImage(twitch.chercheMinia(titre,jeu))
+            .setImage(NouveauTraitementTwitch.minia(indice))
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             
-            bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
-            bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })
             .catch(console.error);;
     
             //log serveur
             console.log("Un live a été publié à "+classique.temps());
-            bot.channels.cache.get(config.channel.log).send("Un live a été publié à "+classique.temps());
+            bot.channels.cache.get(config.channel.logTest).send("Un live a été publié à "+classique.temps());
         }
 
         else if (skipLive == false){
