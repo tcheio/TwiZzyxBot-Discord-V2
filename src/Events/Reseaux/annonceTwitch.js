@@ -3,7 +3,6 @@ const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
 const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
-const { minia } = require('../../Fonctions/NouveauTraitementTwitch');
 
 module.exports = async function annonceAutoTwitch(bot,message) {
     if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour

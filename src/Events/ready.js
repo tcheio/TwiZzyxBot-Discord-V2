@@ -1,6 +1,5 @@
-const { ActivityType, EmbedBuilder, PermissionsBitField } = require('discord.js');
+const { ActivityType} = require('discord.js');
 const config = require('../../config');
-const tabStream = require("../../index");
 
 
 module.exports = {
