@@ -37,7 +37,6 @@ function maxIntent(tab){
 }
 
 function analyseTitre(titre,jeu) {
-    console.log(jeu);
     if (jeu == "Minecraft") {
     //mot clés UHC
     MC = [
@@ -75,7 +74,6 @@ function analyseTitre(titre,jeu) {
             for (k = 0; k < MC[j].length; k++){
                 if (analyseTitre[i] == MC[j][k]){
                     resultAnalyse[j] += 1;
-                    console.log(resultAnalyse[j]);
                 }
             }
         }
