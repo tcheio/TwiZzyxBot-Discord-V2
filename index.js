@@ -1,8 +1,5 @@
 const { Client, GatewayIntentBits, Collection, EmbedBuilder } = require('discord.js');
-const { cp, stat } = require('fs');
 const config = require('./config');
-const { channel } = require('diagnostics_channel');
-const { log } = require('console');
 const annonceAutoTwitch = require('./src/Events/Reseaux/annonceTwitch');
 const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
 const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
