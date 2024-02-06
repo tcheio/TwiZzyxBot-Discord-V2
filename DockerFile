@@ -1,0 +1,17 @@
+# Utilisez une image de base avec Node.js préinstallé
+FROM node:alpine
+
+# Définissez le répertoire de travail dans le conteneur
+WORKDIR /usr/src/app
+
+# Copiez le package.json et le package-lock.json (le cas échéant)
+COPY package*.json ./
+
+# Installez les dépendances
+RUN npm install
+
+# Copiez le reste du code
+COPY . .
+
+# Commande par défaut pour lancer le bot Discord
+CMD ["npm", "start"]
