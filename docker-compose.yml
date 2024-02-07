@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  bot:
+    build: .
+    restart: always
+    command: ["./start.sh"]
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/usr/src/app
