@@ -62,10 +62,11 @@ function analyseTitre(titre,jeu) {
         /*Evangelion*/["evangelion","shinji","ikari","rei","ayanami","asuka","langley","misato","katsuragi","gendo","ikari","kaji","ritsuko","akagi","toji","suzuhara","kaworu","nagisa","penpen"],
         /*Konosuba*/["konosuba","kazuma","satou","aqua","megumin","darkness","lalatina","dustiness"],
         /*Minecraft*/["ultra","hardcore","uhc"],
+        /*Survie*/["survie","survival","vanilla","vanille","hardcore","hard","hardcore","end","nether","farm","projet"]
     
     ];
     //Tableau Resultant de l'analyse du titre
-    resultAnalyse = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    resultAnalyse = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     titre = titre.toLowerCase();
     analyseTitre = titre.split(" ");
 
@@ -212,6 +213,8 @@ function createDesc(indice) {
         case 21: //Minecraft
         return "L'Ultra HardCore Minecraft est sorti avant Fortnite";
             break;
+        case 22: //Survie
+        return "Toujours plus de survie";
         
         case "pkm" : //Pokémon
         return "On pose un Pokémon en classique";
