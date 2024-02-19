@@ -5,7 +5,7 @@ const classique = require('../../Fonctions/Classique');
 const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
 
 module.exports = async function repingTwitch(bot,message) {
-    if (message.channelId == config.channel.twitch){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.reping){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
