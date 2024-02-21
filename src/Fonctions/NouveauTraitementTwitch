@@ -397,6 +397,9 @@ function minia (indice){
         case 21: //Minecraft
         return mc;
             break;
+        case 22: //Survie
+        return survie[Math.floor(Math.random() * (survie.length))];
+            break;
         
         case "pkm" : //Pokémon
         return pokemon;
