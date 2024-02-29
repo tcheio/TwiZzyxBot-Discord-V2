@@ -26,7 +26,7 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .setThumbnail(config.clients.logo)
             .setURL('https://twitch.tv/twizzyxpassympa')
             .addFields(
-                {name: ':Twitch:TwiZzyx est en stream sur Twitch', value: "C'est zinzin" },
+                {name: '<:Twitch:748225816973803562>**TwiZzyx** est en stream sur Twitch', value: "C'est zinzin" },
                 {name: "Joue à", value: jeu})
             .setImage(NouveauTraitementTwitch.minia(indice))
             .setTimestamp()

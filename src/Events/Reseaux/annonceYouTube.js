@@ -17,9 +17,9 @@ module.exports = async function annonceYouTube(bot,message) {
         bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+classique.temps());
     }
 
-    else if(message.channelId == config.channel.replay){ //Channel #Replay
+    else if(message.channelId == config.channel.twizzyxReplay){ //Channel #Replay
         msg = message.content;
-        bot.channels.cache.get(config.channel.lp).send("# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n"+msg);
+        bot.channels.cache.get(config.channel.replay).send("# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n"+msg);
         console.log("Un replay a été publié à "+classique.temps());
         bot.channels.cache.get(config.channel.log).send("Une vidéo a été publié à "+classique.temps());
     }

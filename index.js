@@ -37,4 +37,4 @@ require('./src/Structure//Handler/Event')(bot);
 require('./src/Structure//Handler/Command')(bot);
 
 
-bot.login(config.clients.tokenTest );
+bot.login(config.clients.tokenTest);

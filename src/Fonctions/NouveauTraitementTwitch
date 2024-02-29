@@ -40,13 +40,13 @@ function analyseTitre(titre,jeu) {
     if (jeu == "Minecraft") {
     //mot clés UHC
     MC = [
-        /*Kill la Kill*/ ["klk","k2k","académie","Ryuko","Matoi","Satsuki","Kiryuin","Mako","Mankanshoku","Senketsu","Junketsu","Nui","Harime","Ragyo","Kiryuin","Ira","Gamagoori","Uzu","Sanageyama","Nonon","Jakuzure","Houka","Inumuta","Soroi","Aikuro","Mikisugi","Tsumugu","Kinagase","Nudist","Beach"],                  
-        /*LG*/["lg", "loup", "loup-garou", "garou","village","villageois","assassin"],              
-        /*Naruto*/["naruto", "shippuden","sasuke","uchiwa","naruto","uzumaki","kakashi","hatake","sakura","haruno","gaara","sabaku","no","gaara","itachi","uchiwa","madara","uchiwa","hashirama","senju","tobirama","senju","minato","namikaze","jiraya","orochimaru","tsunade","sannin","sannins","sannin","sannins","akatsuki","pain","nagato","konan","hidan","kakuzu","deidara","sasori","kisame","hoshigaki","zetsu","obito","uchiwa","tobi","kabuto","yakushi","oroch"],              
-        /*DS*/["ds","demon","slayer", "tanjiro", "nezuko", "zenitsu", "inosuke", "muzan", "kibutsuji", "nezuko", "kamado", "tanjiro", "kamado", "zenitsu", "agatsuma", "inosuke", "hashibira", "shinobu", "kocho", "kanao", "tsuyuri", "genya", "shinazugawa", "sanemi", "tokito", "gyomei", "himejima", "muichiro", "tokito", "obanai", "iguro", "mitsuri", "kanroji", "tengen", "uzui", "uzui"],  
-        /*SH*/["sherlock", "Holmes", "moriarty","john","watson","mary","adler","irene","adler","greg","lestrade","mycroft","holmes","molly","hooper","jim","moriarty"], 
-        /*ONE PIECE*/["one Piece", "zoro", "luffy", "sanji", "nami", "usopp", "franky", "robin", "brook", "chopper", "ace", "sabo", "shanks", "barbe", "blanche", "noire", "barbe", "blanche"], 
-        /*AOT*/["titan", "attack on titan", "aot","eren"],
+        /*0 - Kill la Kill/K2K*/ ["klk","k2k","académie","Ryuko","Matoi","Satsuki","Kiryuin","Mako","Mankanshoku","Senketsu","Junketsu","Nui","Harime","Ragyo","Kiryuin","Ira","Gamagoori","Uzu","Sanageyama","Nonon","Jakuzure","Houka","Inumuta","Soroi","Aikuro","Mikisugi","Tsumugu","Kinagase","Nudist","Beach"],                  
+        /*1 - LG*/["lg", "loup", "loup-garou", "garou","village","villageois","assassin"],              
+        /*2 - Naruto*/["naruto", "shippuden","sasuke","uchiwa","naruto","uzumaki","kakashi","hatake","sakura","haruno","gaara","sabaku","no","gaara","itachi","uchiwa","madara","uchiwa","hashirama","senju","tobirama","senju","minato","namikaze","jiraya","orochimaru","tsunade","sannin","sannins","sannin","sannins","akatsuki","pain","nagato","konan","hidan","kakuzu","deidara","sasori","kisame","hoshigaki","zetsu","obito","uchiwa","tobi","kabuto","yakushi","oroch"],              
+        /*3 - DS*/["ds","demon","slayer", "tanjiro", "nezuko", "zenitsu", "inosuke", "muzan", "kibutsuji", "nezuko", "kamado", "tanjiro", "kamado", "zenitsu", "agatsuma", "inosuke", "hashibira", "shinobu", "kocho", "kanao", "tsuyuri", "genya", "shinazugawa", "sanemi", "tokito", "gyomei", "himejima", "muichiro", "tokito", "obanai", "iguro", "mitsuri", "kanroji", "tengen", "uzui", "uzui"],  
+        /*4 - SH*/["sherlock", "Holmes", "moriarty","john","watson","mary","adler","irene","adler","greg","lestrade","mycroft","holmes","molly","hooper","jim","moriarty"], 
+        /*5 - ONE PIECE*/["one Piece", "zoro", "luffy", "sanji", "nami", "usopp", "franky", "robin", "brook", "chopper", "ace", "sabo", "shanks", "barbe", "blanche", "noire", "barbe", "blanche"], 
+        /*6 - AOT*/["titan", "attack on titan", "aot","eren"],
         /*The Boys*/["homelander", "a-train", "starlight"],
         /*Sky Def*/["sky","def","defender", "chateau","défense","attaquant","defenseur"],
         /*FMA*/["fullmetal","alchemist","edward","elric","father","scar"],
@@ -61,7 +61,7 @@ function analyseTitre(titre,jeu) {
         /*Industrial*/["industrial","craft","mod","industrial craft","industrial craft mod","ic","ic mod","ic2","ic2 mod","ic²","ic² mod"],
         /*Evangelion*/["evangelion","shinji","ikari","rei","ayanami","asuka","langley","misato","katsuragi","gendo","ikari","kaji","ritsuko","akagi","toji","suzuhara","kaworu","nagisa","penpen"],
         /*Konosuba*/["konosuba","kazuma","satou","aqua","megumin","darkness","lalatina","dustiness"],
-        /*Minecraft*/["ultra","hardcore","uhc"],
+        /*21 - Minecraft*/["ultra","hardcore","uhc"],
         /*Survie*/["survie","survival","vanilla","vanille","hardcore","hard","hardcore","end","nether","farm","projet"]
     
     ];
@@ -79,9 +79,12 @@ function analyseTitre(titre,jeu) {
             }
         }
     }
-    return maxIntent(resultAnalyse);
-    }
 
+    console.log(typeof(maxIntent(resultAnalyse)));
+    if (maxIntent(resultAnalyse) == "0"){
+        return "MC"
+        }
+    }
     else {
         jeubis = jeu.split(" ");
         console.log(jeubis[0]+"   "+jeubis[1]);
@@ -140,82 +143,82 @@ function createDesc(indice) {
     random = Math.floor(Math.random() * (phrase.length));
         
     switch (indice) {
-        case 0: //Kill la Kill
+        case "0": //Kill la Kill
             return phrase[random]+"KLK";
             break;
 
-        case 1: //LG
+        case "1": //LG
         return phrase[random]+"LG";
             break;
         
-        case 2: //Naruto
+        case "2": //Naruto
         return phrase[random]+"Naruto";
             break;
 
-        case 3: //DS
+        case "3": //DS
         return phrase[random]+"DS";   
             break;
 
-        case 4: //SH
+        case "4": //SH
         return phrase[random]+"Sherlock"; 
             break;
 
-        case 5: //One Piece
+        case "5": //One Piece
         return phrase[random]+"One Piece";
             break;
         
-        case 6: //AOT
+        case "6": //AOT
         return phrase[random]+"AOT";
             break;
         
-        case 7: //The Boys
+        case "7": //The Boys
         return phrase[random]+"The Boys";
             break;
-        case 8: //Sky Def
+        case "8": //Sky Def
         return "On s'envoie en l'air dans ce Sky Defender";
             break;
-        case 9: //FMA
+        case "9": //FMA
         return phrase[random]+"FMA";
             break;
-        case 10: //Eigthy-Six
+        case "10": //Eigthy-Six
         return phrase[random]+"Eigthy-Six";
             break;
-        case 11: //Death Note
+        case "11": //Death Note
         return phrase[random]+"Death Note";
             break;
-        case 12: //JJK
+        case "12": //JJK
         return phrase[random]+"JJK";
             break;
-        case 13: //Dawa ou FDP
+        case "13": //Dawa ou FDP
         return phrase[random]+"Dawa ou FDP";
             break;
-        case 14: //Madoka
+        case "14": //Madoka
         return phrase[random]+"Madoka";
             break;
-        case 15: //HxH
+        case "15": //HxH
         return phrase[random]+"HxH";
             break;
-        case 16: //Bleach
+        case "16": //Bleach
         return phrase[random]+"Bleach";
             break;
-        case 17: //Fast Band
+        case "17": //Fast Band
         return phrase[random]+"Fast Band";
             break;
-        case 18: //Industrial
+        case "18": //Industrial
         return phrase[random]+"Industrial Craft";
             break;
-        case 19: //Evangelion
+        case "19": //Evangelion
         return phrase[random]+"Evangelion";
             break;
-        case 20: //Konosuba
+        case "20": //Konosuba
         return phrase[random]+"Konosuba";
             break;
-        case 21: //Minecraft
+        case "21": //Minecraft
         return "L'Ultra HardCore Minecraft est sorti avant Fortnite";
             break;
-        case 22: //Survie
+        case "22": //Survie
         return "Toujours plus de survie";
-        
+            break;
         case "pkm" : //Pokémon
         return "On pose un Pokémon en classique";
             break;
@@ -246,7 +249,11 @@ function createDesc(indice) {
         case "mario" : //Mario
         return "On se fait un petit Mario";
             break;
+        case "MC":
+        return "On se fait un petit Minecraft";
+            break;
         default:
+        return "On se fait un stream tranquille en détente";
             break;
     }
 }
@@ -310,94 +317,94 @@ function minia (indice){
     ygo = "https://media.discordapp.net/attachments/1064668600285282315/1174050772858708019/yu_gi_oh.gif?ex=656f697d&is=655cf47d&hm=2b10eb3d1e0b8a64be821011ba5add393f3708f0a9d687cb2a2925f1eb288e85&=";
     mario = "https://media.discordapp.net/attachments/1064668600285282315/1184574391313498212/MARIO-min.gif?ex=658c77df&is=657a02df&hm=1e26852a190a3e9b183e0c33eba620febc0853f6cb421eae4c8ab8127b7d2057&=";
     switch (indice) {
-        case 0: //Kill la Kill
+        case "0": //Kill la Kill
             random = Math.floor(Math.random() * (klk.length));
             return klk[random];
             break;
 
-        case 1: //LG
+        case "1": //LG
         random = Math.floor(Math.random() * (lg.length));
         return lg[random];
             break;
         
-        case 2: //Naruto
+        case "2": //Naruto
         random = Math.floor(Math.random() * (naruto.length));
         return naruto[random];
             break;
 
-        case 3: //DS
+        case "3": //DS
         random = Math.floor(Math.random() * (ds.length));
         return ds[random];   
             break;
 
-        case 4: //SH
+        case "4": //SH
         random = Math.floor(Math.random() * (sh.length));
         return sh[random];
             break;
 
-        case 5: //One Piece
+        case "5": //One Piece
         random = Math.floor(Math.random() * (op.length));
         return op[random];
             break;
         
-        case 6: //AOT
+        case "6": //AOT
         random = Math.floor(Math.random() * (aot.length));
         return aot[random];
             break;
         
-        case 7: //The Boys
+        case "7": //The Boys
         random = Math.floor(Math.random() * (tb.length));
         return tb[random];
             break;
-        case 8: //Sky Def
+        case "8": //Sky Def
         return skydef;
             break;
-        case 9: //FMA
+        case "9": //FMA
         random = Math.floor(Math.random() * (fma.length));
         return fma[random];
             break;
-        case 10: //Eigthy-Six
+        case "10": //Eigthy-Six
         return es;
             break;
-        case 11: //Death Note
+        case "11": //Death Note
         random = Math.floor(Math.random() * (dn.length));
         return dn[random];
             break;
-        case 12: //JJK
+        case "12": //JJK
         random = Math.floor(Math.random() * (jjk.length));
         return jjk[random];
             break;
-        case 13: //Dawa ou FDP
+        case "13": //Dawa ou FDP
         random = Math.floor(Math.random() * (dawa.length));
         return dawa[random];
             break;
-        case 14: //Madoka
+        case "14": //Madoka
         random = Math.floor(Math.random() * (madoka.length));
         return madoka[random];
             break;
-        case 15: //HxH
+        case "15": //HxH
         return mc;
             break;
-        case 16: //Bleach
+        case "16": //Bleach
         return bleach;
             break;
-        case 17: //Fast Band
+        case "17": //Fast Band
         random = Math.floor(Math.random() * (fb.length));
         return fb[random];
             break;
-        case 18: //Industrial
+        case "18": //Industrial
         return indus;
             break;
-        case 19: //Evangelion
+        case "19": //Evangelion
         return mc;
             break;
-        case 20: //Konosuba
+        case "20": //Konosuba
         return mc;
             break;
-        case 21: //Minecraft
+        case "21": //Minecraft
         return mc;
             break;
-        case 22: //Survie
+        case "22": //Survie
         return survie[Math.floor(Math.random() * (survie.length))];
             break;
         
@@ -430,6 +437,9 @@ function minia (indice){
             break;
         case "mario" : //Mario
         return mario;
+            break;
+        case "MC":
+            return mc;
             break;
         default:
             return autre[Math.floor(Math.random() * (autre.length))];
