@@ -24,6 +24,7 @@ module.exports = async function repingTwitch(bot,message) {
             .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logo, url: 'https://twitch.tv/twizzyxpassympa' })
             .setDescription(desc)
             .setThumbnail(config.clients.logo)
+            .setURL('https://twitch.tv/twizzyxpassympa')
             .addFields(
                 {name: ':Twitch:TwiZzyx est toujours en stream sur Twitch', value: "Il ne s'arrête jamais" },
                 {name: "Joue à", value: jeu})
