@@ -3,7 +3,7 @@ const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
 const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
-
+var indice = null;
 module.exports = async function annonceAutoTwitch(bot,message) {
     if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
         mention = "<@&748220271839805520>";
@@ -26,7 +26,7 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .setThumbnail(config.clients.logo)
             .setURL('https://twitch.tv/twizzyxpassympa')
             .addFields(
-                {name: '<:Twitch:748225816973803562>**TwiZzyx** est en stream sur Twitch', value: "C'est zinzin" },
+                {name: '<:Twitch:748225816973803562>**TwiZzyx** est en stream sur Twitch', value: "C'est zinzin"},
                 {name: "Joue à", value: jeu})
             .setImage(NouveauTraitementTwitch.minia(indice))
             .setTimestamp()
