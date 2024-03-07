@@ -14,7 +14,7 @@ module.exports = async function repingTwitch(bot,message) {
             }
             msg = message.content;
             jeu = NouveauTraitementTwitch.chercheJeu(msg);
-            titre = NouveauTraitementTwitch.testTitre(msg,jeu);
+            titre = NouveauTraitementTwitch.testTitre(msg);
             indice = NouveauTraitementTwitch.analyseTitre(msg,jeu);
             desc = NouveauTraitementTwitch.createDesc(indice);
             

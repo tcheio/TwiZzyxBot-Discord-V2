@@ -46,10 +46,10 @@ function analyseTitre(titre,jeu) {
         /*1 - LG*/["lg", "loup", "loup-garou", "garou","village","villageois","assassin"],              
         /*2 - Naruto*/["naruto", "shippuden","sasuke","uchiwa","naruto","uzumaki","kakashi","hatake","sakura","haruno","gaara","sabaku","no","gaara","itachi","uchiwa","madara","uchiwa","hashirama","senju","tobirama","senju","minato","namikaze","jiraya","orochimaru","tsunade","sannin","sannins","sannin","sannins","akatsuki","pain","nagato","konan","hidan","kakuzu","deidara","sasori","kisame","hoshigaki","zetsu","obito","uchiwa","tobi","kabuto","yakushi","oroch"],              
         /*3 - DS*/["ds","demon","slayer", "tanjiro", "nezuko", "zenitsu", "inosuke", "muzan", "kibutsuji", "nezuko", "kamado", "tanjiro", "kamado", "zenitsu", "agatsuma", "inosuke", "hashibira", "shinobu", "kocho", "kanao", "tsuyuri", "genya", "shinazugawa", "sanemi", "tokito", "gyomei", "himejima", "muichiro", "tokito", "obanai", "iguro", "mitsuri", "kanroji", "tengen", "uzui", "uzui"],  
-        /*4 - SH*/["sherlock", "Holmes", "moriarty","john","watson","mary","adler","irene","adler","greg","lestrade","mycroft","holmes","molly","hooper","jim","moriarty"], 
-        /*5 - ONE PIECE*/["one Piece", "zoro", "luffy", "sanji", "nami", "usopp", "franky", "robin", "brook", "chopper", "ace", "sabo", "shanks", "barbe", "blanche", "noire", "barbe", "blanche"], 
-        /*6 - AOT*/["titan", "attack on titan", "aot","eren"],
-        /*The Boys*/["homelander", "a-train", "starlight"],
+        /*4 - SH*/["sh","sherlock", "Holmes", "moriarty","john","watson","mary","adler","irene","adler","greg","lestrade","mycroft","holmes","molly","hooper","jim","moriarty"], 
+        /*5 - ONE PIECE*/["one", "piece", "zoro", "luffy", "sanji", "nami", "usopp", "franky", "robin", "brook", "chopper", "ace", "sabo", "shanks", "barbe", "blanche", "noire", "barbe", "blanche"], 
+        /*6 - AOT*/["titan", "attack on titan", "aot","eren", "mikasa","armin", "erwin","livai"],
+        /*The Boys*/["tb", "the","boy","homelander", "a-train", "starlight"],
         /*Sky Def*/["sky","def","defender", "chateau","défense","attaquant","defenseur"],
         /*FMA*/["fullmetal","alchemist","edward","elric","father","scar"],
         /*Eigthy-Six*/["eigthy-six","eigthy","six","Handler","Vladilena","Shinei","Kurena","Lena"],
@@ -81,11 +81,14 @@ function analyseTitre(titre,jeu) {
             }
         }
     }
-    console.log(typeof(maxIntent(resultAnalyse)));
     if (maxIntent(resultAnalyse) == "-1"){
         return "MC"
         }
+    else {
+        return maxIntent(resultAnalyse);
     }
+    }
+
     else {
         jeubis = jeu.split(" ");
         console.log(jeubis[0]+"   "+jeubis[1]);
@@ -134,7 +137,6 @@ function analyseTitre(titre,jeu) {
 }
 
 function createDesc(indice) {
-    console.log(typeof(indice));
     phrase = [
                 "On se fait un petit ",
                 "Mais non, on va pas jouer à ",
@@ -215,7 +217,7 @@ function createDesc(indice) {
         case "20": //Konosuba
         return phrase[random]+"Konosuba";
             break;
-        case "21": //Minecraft
+        case 21: //Minecraft
         return "L'Ultra HardCore Minecraft est sorti avant Fortnite";
             break;
         case "22": //Survie
@@ -404,7 +406,7 @@ function minia (indice){
         case "20": //Konosuba
             return mc;
             break;
-        case "21": //Minecraft
+        case 21: //Minecraft
             return mc;
             break;
         case "22": //Survie
@@ -445,7 +447,7 @@ function minia (indice){
             return mc;
             break;
         default:
-            console.log("defaau");
+            console.log("defaul");
             return autre[Math.floor(Math.random() * (autre.length))];
 
             break;
