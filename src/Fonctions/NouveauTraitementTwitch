@@ -91,7 +91,7 @@ function analyseTitre(titre,jeu) {
 
     else {
         jeubis = jeu.split(" ");
-        console.log(jeubis[0]+"   "+jeubis[1]);
+        console.log(jeubis[0]+" "+jeubis[1]);
             if (jeubis[0] == "Pokémon"){
                 return "pkm";
             }
