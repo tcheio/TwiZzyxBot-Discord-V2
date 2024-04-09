@@ -63,8 +63,9 @@ function analyseTitre(titre,jeu) {
         /*Industrial*/["industrial","craft","mod","industrial craft","industrial craft mod","ic","ic mod","ic2","ic2 mod","ic²","ic² mod"],
         /*Evangelion*/["evangelion","shinji","ikari","rei","ayanami","asuka","langley","misato","katsuragi","gendo","ikari","kaji","ritsuko","akagi","toji","suzuhara","kaworu","nagisa","penpen"],
         /*Konosuba*/["konosuba","kazuma","satou","aqua","megumin","darkness","lalatina","dustiness"],
-        /*21 - Minecraft*/["ultra","hardcore","uhc"],
-        /*Survie*/["survie","survival","vanilla","vanille","hardcore","hard","hardcore","end","nether","farm"]
+        /*21 - UHC*/["ultra","hardcore","uhc"],
+        /*Survie*/["survie","survival","vanilla","vanille","hardcore","hard","hardcore","end","nether","farm"],
+
     
     ];
     //Tableau Resultant de l'analyse du titre
@@ -81,6 +82,7 @@ function analyseTitre(titre,jeu) {
             }
         }
     }
+
     if (maxIntent(resultAnalyse) == "-1"){
         return "MC"
         }
@@ -108,7 +110,7 @@ function analyseTitre(titre,jeu) {
                 return "mk";
             }
 
-            else if (jeubis[0] == "Inazuma" && jeubis[1] == "Eleven"){
+            else if ((jeubis[0] == "Inazuma" && jeubis[1] == "Eleven") || (jeubis[0] == "Inazuma" && jeubis[1] == "Eleven:")){
                 return "IE";
             }
             
@@ -217,11 +219,14 @@ function createDesc(indice) {
         case "20": //Konosuba
         return phrase[random]+"Konosuba";
             break;
-        case 21: //Minecraft
+        case 21: //UHC
         return "L'Ultra HardCore Minecraft est sorti avant Fortnite";
             break;
         case "22": //Survie
         return "Toujours plus de survie";
+            break;
+        case "23": //MC
+        return "Des cubes de partout c'est incroyable";
             break;
         case "pkm" : //Pokémon
         return "On pose un Pokémon en classique";
@@ -303,11 +308,12 @@ function minia (indice){
     survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1177&height=662s"];
     hxh = "";
     konosuba = "";
-    evangelion = "";
+    evangelion = "https://media.discordapp.net/attachments/1175838794944086016/1213806590298296370/minia_evangelion_1.png?ex=6624f4fa&is=66127ffa&hm=7e7140181cb90664191020798c00f94ee0a937fe758ceb3517b4446233ca5720&=&format=webp&quality=lossless&width=891&height=501";
+    uhc = "https://media.discordapp.net/attachments/1064668600285282315/1227215203817488455/UHC.gif?ex=66279839&is=66152339&hm=f68667fa995f2f9e657b1008844078fcf638c606ccbd9f8233d28af7dbc34a94&="
 
     mc = "https://images-ext-2.discordapp.net/external/5EgjXqovZZbX-J2JzsThelYNqjfXGnurl3FhTd9_AZw/https/i.ibb.co/Hpfvh2b/GIF-MC.gif";
     among = "https://media.discordapp.net/attachments/1064668600285282315/1066800722861109349/Among_us.gif";
-    IE = "https://media.discordapp.net/attachments/1064668600285282315/1066800631274283089/IE.gif";
+    IE = "https://media.discordapp.net/attachments/1064668600285282315/1227215204673130528/IE_V2.gif?ex=66279839&is=66152339&hm=e4cafbc9dbe66c35dcacbce4f0bbbc3cb3d9b2fdb15e37f2e1cee52cb4199792&=";
     mardi = ["https://media.discordapp.net/attachments/1064668600285282315/1064679234506858558/MARDI_ZIZI_LOGO_1.gif","https://media.discordapp.net/attachments/1064668600285282315/1064815378431213588/MARDI_ZIZI_LOGO_2.gif"];
     pokemon = "https://images-ext-2.discordapp.net/external/horKKxFAj8ZRHeDJS8Xcx0N0ngEIMKJPpU0TqgOE4kQ/https/i.ibb.co/vx7mPX7/GIF-POKEMON.gif";
     lyoko = "https://images-ext-2.discordapp.net/external/Y8Q6iyEymL5dCdN-QQrAWjbq_xQE6EUD1acDe8OiiXY/https/i.ibb.co/TrDkV4D/GIF-CODE-LYOKO.gif";
@@ -388,7 +394,7 @@ function minia (indice){
             return madoka[random];
             break;
         case "15": //HxH
-            return mc;
+            return uhc;
             break;
         case "16": //Bleach
             return bleach;
@@ -401,13 +407,13 @@ function minia (indice){
             return indus;
             break;
         case "19": //Evangelion
-            return mc;
+            return evangelion;
             break;
         case "20": //Konosuba
-            return mc;
+            return uhc;
             break;
-        case 21: //Minecraft
-            return mc;
+        case "21": //UHC
+            return uhc;
             break;
         case "22": //Survie
             return survie[Math.floor(Math.random() * (survie.length))];
