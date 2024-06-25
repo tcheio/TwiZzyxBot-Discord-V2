@@ -103,8 +103,6 @@ class command {
         interaction.reply({ embeds: [Embed] });
 
         }
-
-        //bot.channels.cache.get('1060946019333976204').send("Une vidéo a été changer de destination (<#748247106980020236> → <#1023891712403312720>) par "+interaction.author+", à "+temps());
 }
 }
 module.exports = command
