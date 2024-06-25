@@ -118,6 +118,16 @@ class command {
             }
             
         }
-}}
+
+        else{
+            const Embed = new EmbedBuilder()
+            .setColor('#FF0000')
+            .setTitle('👮‍♂️ **Action de modération**')
+            .setTimestamp()
+            .setFooter({ text: config.clients.name, iconURL: config.clients.logo})
+            .setDescription("Tu n'as pas la permission d'éxécuter cette commande");
+            interaction.reply({ embeds: [Embed] });
+            }
+        }}
 
 module.exports = command

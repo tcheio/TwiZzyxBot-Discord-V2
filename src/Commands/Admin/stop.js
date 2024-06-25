@@ -37,10 +37,7 @@ class command {
 
             interaction.reply({ embeds: [STOP] });
             bot.channels.cache.get(config.channel.logTest).send("Le bot a été éteint par "+interaction.user+" à "+temps());
-            bot.destroy(config.clients.tokenTest);
-            }
-    
-        
+        }
         else {
             const Embed = new EmbedBuilder()
             .setColor('Random')
@@ -49,8 +46,9 @@ class command {
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo})
             .setDescription("Tu n'as pas la permission d'éxécuter cette commande");
             interaction.reply({ embeds: [Embed] });
-    
-            }
+            
+        }
+        bot.destroy(config.clients.tokenTest);
     }
 }
 
