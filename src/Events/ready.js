@@ -10,8 +10,9 @@ module.exports = {
 
         const activities = [
             "twitch.tv/twizzyxpassympa",
-            "Vidéo tous les samedis à 15H",
+            "Niah-Niah Le Football pleure",
             "Suis-je réel ?",
+            "FIRE TORNADO !!!!!!!!!",
             "C'est l'heure du DU-DU-DU DUEL !",
         ];
     
