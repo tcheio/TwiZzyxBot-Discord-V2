@@ -15,16 +15,25 @@ function createDesc(msg,desc){
     msgcomplet = "";
     msgBis = msg.split("");
 
-    for (i = 0; i < msgBis.length; i++){
-        if (msgBis[i] == "|"){
-            msgcomplet += "\n*"+desc+"*";
-        }
+    if(desc){
+        for (i = 0; i < msgBis.length; i++){
+            if (msgBis[i] == "|"){
+                msgcomplet += "\n*"+desc+"*";
+            }
         else{
             msgcomplet += msgBis[i];
+            }
         }
     }
+        else{
+            for (i = 0; i < msgBis.length; i++){
+                if (msgBis[i] != "|"){
+                    msgcomplet += msgBis[i];
+                }
+        }
+        
+    }
     return msgcomplet;
-
 }
 
 module.exports = {

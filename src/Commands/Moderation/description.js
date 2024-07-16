@@ -36,11 +36,11 @@ class command {
 
     async execute(bot, interaction) {
         if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
-            const args = interaction.options.getString('message');
+            const args = interaction.options.getString("message");
             description = args;
 
             const Embed = new EmbedBuilder()
-            .setColor('Random')
+            .setColor('#FF9300')
             .setTitle('**Annonce de vidéo**')
             .setTimestamp()
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo})
@@ -51,7 +51,7 @@ class command {
 
     else {
         const Embed = new EmbedBuilder()
-        .setColor('Random')
+        .setColor('#FF0000')
         .setTitle('👮‍♂️ **Action de modération**')
         .setTimestamp()
         .setFooter({ text: config.clients.name, iconURL: config.clients.logo})

@@ -79,7 +79,7 @@ class command {
 
     else {
         const Embed = new EmbedBuilder()
-        .setColor('Random')
+        .setColor('#FF0000')
         .setTitle('👮‍♂️ **Action de modération**')
         .setTimestamp()
         .setFooter({ text: config.clients.name, iconURL: config.clients.logo})
