@@ -9,7 +9,7 @@ module.exports = async function annonceYouTube(bot,message) {
             bot.channels.cache.get(config.channel.clip).send("# <:YouTube:748225835269488751>__**NOUVEAU SHORT**__<:YouTube:748225835269488751>\n\n\n"+msg+"\n\n||<@&1014452932713922610>||");
         }
         else {
-            bot.channels.cache.get(config.channel.video).send("# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n\n"+youtube.createDesc(msg,description)+"\n\n||@everyone||");
+            bot.channels.cache.get(config.channel.videos).send("# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n\n"+youtube.createDesc(msg,description)+"\n\n||@everyone||");
             description = null;
             //log serveur
             console.log("Une vidéo a été publié à "+classique.temps());
