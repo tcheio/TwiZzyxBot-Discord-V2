@@ -1,5 +1,5 @@
 const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
-const { config } = require('process');
+const config = require('../../../config');
 
 module.exports = (client) => {
   client.on('interactionCreate', async interaction => {
@@ -38,8 +38,9 @@ module.exports = (client) => {
     const embed = new EmbedBuilder()
       .setColor('#FF0000') // Couleur de l'embed
       .setTitle('Création d\'un ticket')
-      .setDescription('Sélectionnez l\'une des options ci-dessous pour créer un ticket.')
+      .setDescription('**Est-ce que vous voulez signaler un membre du discord?** Vous souhaitez suggérer une collaboration? **Où avez-vous simplement une interrogation?** Nous sommes présents pour vous soutenir! Il vous suffit de sélectionner le bouton correspondant à votre demande pour créer un ticket.\n\n⚠️*Priez de ne pas abuser de cette fonctionnalité. Les tickets inutiles seront supprimés.*⚠️')
       .setTimestamp()
+      .setImage(config.clients.logo)
 
     const row = new ActionRowBuilder()
       .addComponents(

@@ -6,7 +6,7 @@ module.exports = async function annonceYouTube(bot,message) {
     if (message.channelId == config.channel.chainePrincipal){ //Channel #TwiZzyx/TwiZzyx-2
         msg = message.content;
         if (youtube.rechercheCaract(msg)){
-            bot.channels.cache.get(config.channel.clip).send("# <:YouTube:748225835269488751>__**NOUVEAU SHORT**__<:YouTube:748225835269488751>\n\n\n"+msg+"\n\n||<@&1014452932713922610>||");
+            bot.channels.cache.get(config.channel.clip).send("# <:YouTube:748225835269488751>__**NOUVEAU SHORT**__<:YouTube:748225835269488751>\n\n\n"+youtube.createDesc(msg,description)+"\n\n||<@&1014452932713922610>||");
         }
         else {
             bot.channels.cache.get(config.channel.videos).send("# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>\n\n\n"+youtube.createDesc(msg,description)+"\n\n||@everyone||");
