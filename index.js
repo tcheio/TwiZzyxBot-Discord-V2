@@ -30,7 +30,7 @@ description = null;
 
 bot.on('messageCreate', (message) => {
     annonceAutoTwitch(bot, message);
-    repingTitch(bot, message);
+    repingTwitch(bot, message);
     annonceYouTube(bot, message);
 });
 

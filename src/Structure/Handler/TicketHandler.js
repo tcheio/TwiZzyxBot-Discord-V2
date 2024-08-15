@@ -20,7 +20,7 @@ module.exports = (client) => {
           allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages],
         },
         {
-          id: '&1052524548811132938', // Remplace par l'ID de ton rôle
+          id: '1052524548811132938', // Remplace par l'ID de ton rôle
           allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages],
         },
       ],
@@ -49,14 +49,19 @@ module.exports = (client) => {
           .setStyle(ButtonStyle.Success),
       );
 
-    const message = await channel.messages.fetch({ limit: 1 });
-    if (message.size === 0) {
+    // Recherche des messages dans le channel
+    const messages = await channel.messages.fetch({ limit: 10 });
+    const botMessage = messages.find(msg => msg.author.id === client.user.id);
+
+    if (!botMessage) {
+      // Si aucun message envoyé par le bot n'est trouvé, envoie un nouveau message
       await channel.send({
         content: 'Création d\'un ticket\n\nSélectionnez l\'une des options ci-dessous pour créer un ticket.',
         components: [row],
       });
     } else {
-      await message.first().edit({
+      // Si un message est trouvé, le modifier
+      await botMessage.edit({
         content: 'Création d\'un ticket\n\nSélectionnez l\'une des options ci-dessous pour créer un ticket.',
         components: [row],
       });
