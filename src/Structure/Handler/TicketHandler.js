@@ -1,4 +1,5 @@
-const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
+const { config } = require('process');
 
 module.exports = (client) => {
   client.on('interactionCreate', async interaction => {
@@ -33,6 +34,13 @@ module.exports = (client) => {
   client.on('ready', async () => {
     const channel = client.channels.cache.get('1273580872267988992'); // Remplace par l'ID de ton channel
 
+    // Création de l'embed
+    const embed = new EmbedBuilder()
+      .setColor('#FF0000') // Couleur de l'embed
+      .setTitle('Création d\'un ticket')
+      .setDescription('Sélectionnez l\'une des options ci-dessous pour créer un ticket.')
+      .setTimestamp()
+
     const row = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
@@ -54,15 +62,15 @@ module.exports = (client) => {
     const botMessage = messages.find(msg => msg.author.id === client.user.id);
 
     if (!botMessage) {
-      // Si aucun message envoyé par le bot n'est trouvé, envoie un nouveau message
+      // Si aucun message envoyé par le bot n'est trouvé, envoie un nouveau message avec l'embed
       await channel.send({
-        content: 'Création d\'un ticket\n\nSélectionnez l\'une des options ci-dessous pour créer un ticket.',
+        embeds: [embed],
         components: [row],
       });
     } else {
-      // Si un message est trouvé, le modifier
+      // Si un message est trouvé, le modifier pour inclure l'embed
       await botMessage.edit({
-        content: 'Création d\'un ticket\n\nSélectionnez l\'une des options ci-dessous pour créer un ticket.',
+        embeds: [embed],
         components: [row],
       });
     }
