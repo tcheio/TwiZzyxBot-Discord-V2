@@ -83,15 +83,13 @@ module.exports = (client) => {
         const messages = await channel.messages.fetch({ limit: 100 });
         const transcript = messages.map(msg => `${msg.author.tag}: ${msg.content}`).reverse().join('\n');
 
-        const logChannel = interaction.guild.channels.cache.get('1273945681979248721'); // Remplace par l'ID de ton channel de logs
+        const logChannel = interaction.guild.channels.cache.get('1273945681979248721');
         await logChannel.send({
           content: `Transcript du ticket ${channel.name}:`,
           files: [{ attachment: Buffer.from(transcript, 'utf-8'), name: `transcript-${channel.name}.txt` }],
         });
 
         await interaction.reply({ content: "Le ticket va être supprimé.", ephemeral: true });
-
-        // Supprimer le channel après un délai pour laisser le temps d'envoyer le message
         setTimeout(() => channel.delete(), 5000);
       }
     }
@@ -100,7 +98,6 @@ module.exports = (client) => {
 // Commande Slash pour ajouter un utilisateur au ticket
 client.on('ready', async () => {
   try {
-    // Enregistre la commande globalement
     await client.application.commands.create(
       new SlashCommandBuilder()
         .setName('ajouter')
@@ -127,7 +124,6 @@ client.on('interactionCreate', async interaction => {
     const user = interaction.options.getUser('utilisateur');
     const channel = interaction.channel;
 
-    // Vérifie si le channel est un ticket
     if (!channel.name.startsWith(interaction.user.username)) {
       return interaction.reply({ content: 'Cette commande ne peut être utilisée que dans un ticket.', ephemeral: true });
     }
@@ -148,11 +144,10 @@ client.on('interactionCreate', async interaction => {
 
   // Fonction pour envoyer ou mettre à jour le message de création de ticket
   client.on('ready', async () => {
-    const channel = client.channels.cache.get('1273580872267988992'); // Remplace par l'ID de ton channel
+    const channel = client.channels.cache.get('1273580872267988992');
 
-    // Création de l'embed
     const embed = new EmbedBuilder()
-      .setColor('#FF0000') // Couleur de l'embed
+      .setColor('#FF0000') 
       .setTitle('Création d\'un ticket')
       .setDescription('**Est-ce que vous voulez signaler un membre du discord?** Vous souhaitez suggérer une collaboration? **Où avez-vous simplement une interrogation?** Nous sommes présents pour vous soutenir! Il vous suffit de sélectionner le bouton correspondant à votre demande pour créer un ticket.\n\n⚠️*Priez de ne pas abuser de cette fonctionnalité. Les tickets inutiles seront supprimés.*⚠️')
       .setTimestamp()
@@ -179,7 +174,6 @@ client.on('interactionCreate', async interaction => {
     const botMessage = messages.find(msg => msg.author.id === client.user.id);
 
     if (!botMessage) {
-      // Si aucun message envoyé par le bot n'est trouvé, envoie un nouveau message avec l'embed
       await channel.send({
         embeds: [embed],
         components: [row],
