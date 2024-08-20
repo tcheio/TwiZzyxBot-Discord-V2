@@ -23,7 +23,7 @@ module.exports = (client) => {
               allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages],
             },
             {
-              id: '1052524548811132938', // Remplace par l'ID de ton rôle staff
+              id: '1014479248532197408',
               allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages],
             },
           ],
@@ -64,7 +64,7 @@ module.exports = (client) => {
             deny: [PermissionsBitField.Flags.ViewChannel],
           },
           {
-            id: '1052524548811132938', // Remplace par l'ID de ton rôle staff
+            id: '1014479248532197408', // Remplace par l'ID de ton rôle staff
             allow: [PermissionsBitField.Flags.ViewChannel],
           },
         ]);
@@ -73,7 +73,7 @@ module.exports = (client) => {
 
       } else if (category === 'deleteTicket') {
         // Vérification des permissions
-        if (!interaction.member.roles.cache.has('1052524548811132938')) { // Remplace par l'ID de ton rôle staff
+        if (!interaction.member.roles.cache.has('1014479248532197408')) { // Remplace par l'ID de ton rôle staff
           return interaction.reply({ content: "Vous n'avez pas la permission de supprimer ce ticket.", ephemeral: true });
         }
 
@@ -83,7 +83,7 @@ module.exports = (client) => {
         const messages = await channel.messages.fetch({ limit: 100 });
         const transcript = messages.map(msg => `${msg.author.tag}: ${msg.content}`).reverse().join('\n');
 
-        const logChannel = interaction.guild.channels.cache.get('1273945681979248721');
+        const logChannel = interaction.guild.channels.cache.get(config.channel.log);
         await logChannel.send({
           content: `Transcript du ticket ${channel.name}:`,
           files: [{ attachment: Buffer.from(transcript, 'utf-8'), name: `transcript-${channel.name}.txt` }],
@@ -144,14 +144,14 @@ client.on('interactionCreate', async interaction => {
 
   // Fonction pour envoyer ou mettre à jour le message de création de ticket
   client.on('ready', async () => {
-    const channel = client.channels.cache.get('1273580872267988992');
+    const channel = client.channels.cache.get(config.channel.ticket);
 
     const embed = new EmbedBuilder()
       .setColor('#FF0000') 
       .setTitle('Création d\'un ticket')
       .setDescription('**Est-ce que vous voulez signaler un membre du discord?** Vous souhaitez suggérer une collaboration? **Où avez-vous simplement une interrogation?** Nous sommes présents pour vous soutenir! Il vous suffit de sélectionner le bouton correspondant à votre demande pour créer un ticket.\n\n⚠️*Priez de ne pas abuser de cette fonctionnalité. Les tickets inutiles seront supprimés.*⚠️')
       .setTimestamp()
-      .setImage(config.clients.logo);
+      .setImage(config.clients.banner);
 
     const row = new ActionRowBuilder()
       .addComponents(

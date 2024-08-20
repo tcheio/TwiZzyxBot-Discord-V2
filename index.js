@@ -41,4 +41,4 @@ require('./src/Structure/Handler/Command')(bot);
 // Initialisation du gestionnaire de tickets
 ticketHandler(bot);
 
-bot.login(config.clients.tokenTest);
+bot.login(config.clients.token);
