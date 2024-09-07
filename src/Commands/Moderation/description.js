@@ -60,7 +60,7 @@ class command {
 
         }
 
-        bot.channels.cache.get(config.channel.log).send("Une vidéo a été changer de destination (<#748247106980020236> → <#1023891712403312720>) par "+interaction.author+", à "+temps());
-}
+        bot.channels.cache.get(config.channel.log).send("Vous avez défini une description pour la prochaine vidéo qui sera annoncée:\n\n"+ description);
+    }
 }
 module.exports = command
