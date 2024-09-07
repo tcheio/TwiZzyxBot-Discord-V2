@@ -7,7 +7,7 @@ function testTitre(msg) {
         msgBis = msg.split("");
         max = msgBis.length;
         //Exclure mon pseudo et les 2 symboles
-        while (statu){
+        /*while (statu){
             if (msgBis[i] == "-"){
                 comp +=1;
             }
@@ -16,7 +16,7 @@ function testTitre(msg) {
                 statu = false;
             }
             i++;
-        }
+        }*/
 
         for (i; i < max; i++){
             if (msgBis[i] == "|"){
@@ -60,7 +60,7 @@ function analyseTitre(titre,jeu) {
         /*HxH*/["hunter","hunterxhunter","hxh","gon","freecs","killua","zoldyck","kurapika","leorio","hisoka","chrollo","lucilfer","meruem","netero","neferpitou","pitou","nefer"],
         /*Bleach*/["bleach","ichigo","kurosaki","rukia","kuchiki","renji","aizen","sosuke","ulquiorra","grimmjow","ulquiorra","orihime","inoue","chad","sado","uryu","ishida","ishida","byakuya"],
         /*Fast Band*/["fast","band"],
-        /*Industrial*/["industrial","craft","mod","industrial craft","industrial craft mod","ic","ic mod","ic2","ic2 mod","ic²","ic² mod"],
+        /*Industrial*/["industrial","mod"],
         /*Evangelion*/["evangelion","shinji","ikari","rei","ayanami","asuka","langley","misato","katsuragi","gendo","ikari","kaji","ritsuko","akagi","toji","suzuhara","kaworu","nagisa","penpen"],
         /*Konosuba*/["konosuba","kazuma","satou","aqua","megumin","darkness","lalatina","dustiness"],
         /*21 - UHC*/["ultra","hardcore","uhc"],
