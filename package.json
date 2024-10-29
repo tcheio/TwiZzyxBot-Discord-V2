@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.7",
+    "bot_template_v14-master": "file:",
     "discord.js": "^14.12.1",
     "fs": "^0.0.1-security"
   }

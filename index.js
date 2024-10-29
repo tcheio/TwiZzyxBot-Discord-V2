@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const config = require('./config');
 const annonceAutoTwitch = require('./src/Events/Reseaux/annonceTwitch');
 const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
-const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
+const checkForNewVideos = require('./src/Events/Reseaux/annonceYouTube');
 const ticketHandler = require('./src/Structure/Handler/TicketHandler');
 
 const bot = new Client({ 
@@ -31,7 +31,7 @@ description = null;
 bot.on('messageCreate', (message) => {
     annonceAutoTwitch(bot, message);
     repingTwitch(bot, message);
-    annonceYouTube(bot, message);
+    checkForNewVideos(bot);
 });
 
 // Initialisation des gestionnaires d'événements et de commandes
