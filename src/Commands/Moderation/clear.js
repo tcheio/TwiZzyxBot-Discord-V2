@@ -1,18 +1,15 @@
-const { EmbedBuilder, PermissionsBitField } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField, MessageFlags } = require('discord.js');
 const config = require('../../../config');
 
 function temps(){
     var now = new Date();
-    //Traitement Minute 
-    minute = now.getMinutes().toString();
+    let minute = now.getMinutes().toString();
     if (minute.length == 1){ minute = "0"+now.getMinutes(); }
 
-    //Traitement Mois
-    mois = parseInt((now.getUTCMonth()+1))
-    mois = mois.toString();
-    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
+    let mois = parseInt((now.getUTCMonth()+1)).toString();
+    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); }
 
-    tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
+    let tempsDate = now.getHours()+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
 
     return tempsDate;
 }
@@ -39,45 +36,61 @@ class command {
         ]
     }
 
-
     async execute(bot, interaction) {
         console.log(interaction.channel);
         const Embed = new EmbedBuilder()
         .setColor('Random')
         .setTitle('👮‍♂️ **Action de modération**')
         .setTimestamp()
-        .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
+        .setFooter({ text: config.clients.name, iconURL: config.clients.logo });
 
         if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
             const args = interaction.options.getNumber('nombre');
             const user = interaction.options.getMember('membre');
 
-            if(user) {
+            if (user) {
                 const Channel = interaction.channel;
-                const Messages = Channel.messages.fetch()
-                const TargetMessages = (await Messages).filter((m) => m.author.id === user.id);
-                
-                await Channel.bulkDelete(TargetMessages, true).then((msg) => {
-                    interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages du membre ${user.toString()}** !`)], ephemeral: false });
-                    bot.channels.cache.get(config.channel.log).send(args+" message(s) ont été supprimé par"+interaction.author+", à "+temps());
+                const Messages = await Channel.messages.fetch();
+                const TargetMessages = Messages.filter((m) => m.author.id === user.id).first(args);
+
+                await Channel.bulkDelete(TargetMessages, true).then(() => {
+                    interaction.reply({
+                        embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages du membre ${user.toString()}** !`)],
+                        flags: MessageFlags.Ephemeral
+                    });
+                    bot.channels.cache.get(config.channel.log).send(`${args} message(s) ont été supprimés par ${interaction.user}, à ${temps()}`);
                 }).catch((err) => {
-                    interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
+                    interaction.reply({
+                        embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)],
+                        flags: MessageFlags.Ephemeral
+                    });
                 });
-            } else if(args >= 1 && args <= 100){
-                await interaction.channel.bulkDelete(args, true).then((msg) => {
-                    interaction.reply({ embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages** !`)], ephemeral: false });
-                    bot.channels.cache.get(config.channel.log).send(args+" message(s) ont été supprimé par "+interaction.author+", à "+temps());
+            } else if (args >= 1 && args <= 100) {
+                await interaction.channel.bulkDelete(args, true).then(() => {
+                    interaction.reply({
+                        embeds: [Embed.setDescription(`✅ | **Clear de ${args} messages** !`)],
+                        flags: MessageFlags.Ephemeral
+                    });
+                    bot.channels.cache.get(config.channel.log).send(`${args} message(s) ont été supprimés par ${interaction.user}, à ${temps()}`);
                 }).catch((err) => {
-                    interaction.reply({ embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)], ephemeral: true })
+                    interaction.reply({
+                        embeds: [Embed.setDescription(`❌ | **J'ai rencontré une erreur : ${err}**`)],
+                        flags: MessageFlags.Ephemeral
+                    });
                 });
             } else {
-                interaction.reply({ embeds: [Embed.setDescription(`❌ | **Tu n'as pas spécifié un nombre -> (1-99)** !`)], ephemeral: false });
+                interaction.reply({
+                    embeds: [Embed.setDescription(`❌ | **Tu n'as pas spécifié un nombre -> (1-99)** !`)],
+                    flags: MessageFlags.Ephemeral
+                });
             }
         } else {
-            interaction.reply({ embeds: [Embed.setDescription(`❌ | **Tu n'as pas la permission d'exécuter cette commande** !`)], ephemeral: false });
+            interaction.reply({
+                embeds: [Embed.setDescription(`❌ | **Tu n'as pas la permission d'exécuter cette commande** !`)],
+                flags: MessageFlags.Ephemeral
+            });
         }
-
     }
 }
 
-module.exports = command
+module.exports = command;
