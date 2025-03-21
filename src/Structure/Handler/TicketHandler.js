@@ -1,7 +1,8 @@
-const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, SlashCommandBuilder, MessageFlags } = require('discord.js');
 const config = require('../../../config');
 
 module.exports = (client) => {
+  flags: MessageFlags.Ephemeral
   client.on('interactionCreate', async interaction => {
     if (!interaction.isButton()) return;
 
@@ -53,7 +54,7 @@ module.exports = (client) => {
           components: [ticketRow],
         });
 
-        await interaction.reply({ content: `Votre ticket a été créé: ${channel}`, ephemeral: true });
+        await interaction.reply({ content: `Votre ticket a été créé: ${channel}`, flags: 1 << 6 });
       } else if (category === 'closeTicket') {
         // Fermeture du ticket
         const channel = interaction.channel;
@@ -64,17 +65,17 @@ module.exports = (client) => {
             deny: [PermissionsBitField.Flags.ViewChannel],
           },
           {
-            id: '1014479248532197408', // Remplace par l'ID de ton rôle staff
+            id: config.Info.staff,
             allow: [PermissionsBitField.Flags.ViewChannel],
           },
         ]);
 
-        await interaction.reply({ content: "Le ticket a été fermé.", ephemeral: true });
+        await interaction.reply({ content: "Le ticket a été fermé.", flags: 1 << 6 });
 
       } else if (category === 'deleteTicket') {
         // Vérification des permissions
         if (!interaction.member.roles.cache.has('1014479248532197408')) { // Remplace par l'ID de ton rôle staff
-          return interaction.reply({ content: "Vous n'avez pas la permission de supprimer ce ticket.", ephemeral: true });
+          return interaction.reply({ content: "Vous n'avez pas la permission de supprimer ce ticket.", flags: 1 << 6 });
         }
 
         // Suppression du ticket avec transcription
@@ -89,7 +90,7 @@ module.exports = (client) => {
           files: [{ attachment: Buffer.from(transcript, 'utf-8'), name: `transcript-${channel.name}.txt` }],
         });
 
-        await interaction.reply({ content: "Le ticket va être supprimé.", ephemeral: true });
+        await interaction.reply({ content: "Le ticket va être supprimé.", flags: 1 << 6 });
         setTimeout(() => channel.delete(), 5000);
       }
     }
@@ -125,7 +126,7 @@ client.on('interactionCreate', async interaction => {
     const channel = interaction.channel;
 
     if (!channel.name.startsWith(interaction.user.username)) {
-      return interaction.reply({ content: 'Cette commande ne peut être utilisée que dans un ticket.', ephemeral: true });
+      return interaction.reply({ content: 'Cette commande ne peut être utilisée que dans un ticket.', flags: 1 << 6 });
     }
 
     try {
@@ -137,7 +138,7 @@ client.on('interactionCreate', async interaction => {
       return interaction.reply({ content: `${user.tag} a été ajouté au ticket.`, ephemeral: false });
     } catch (error) {
       console.error('Erreur lors de l\'ajout de l\'utilisateur au ticket:', error);
-      return interaction.reply({ content: 'Une erreur est survenue lors de l\'ajout de l\'utilisateur.', ephemeral: true });
+      return interaction.reply({ content: 'Une erreur est survenue lors de l\'ajout de l\'utilisateur.', flags: 1 << 6 });
     }
   }
 });
