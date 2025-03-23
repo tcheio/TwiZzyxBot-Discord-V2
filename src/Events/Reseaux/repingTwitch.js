@@ -40,7 +40,13 @@ module.exports = async function repingTwitch(bot,message) {
             .catch(console.error);;
     
             //log serveur
-            console.log("Un live a été publié à "+classique.temps());
-            bot.channels.cache.get(config.channel.log).send("Un live "+jeu+" a été publié à "+classique.temps());
+            const logMessage = 
+                "------------------------------------------------------\n"+
+                "🕒"+classique.temps()+"\n"+
+                "📢"+ titre+"\n"+
+                "🎮 "+jeu+"\n"+
+                "------------------------------------------------------";
+            
+            bot.channels.cache.get(config.channel.log).send(logMessage);
         }
 };}

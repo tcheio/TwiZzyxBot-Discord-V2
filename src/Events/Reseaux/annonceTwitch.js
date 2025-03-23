@@ -15,7 +15,6 @@ module.exports = async function annonceAutoTwitch(bot,message) {
                 mention = "@everyone";
             }
             msg = message.content;
-            console.log(msg);
             
             jeu = Twitch.chercheJeu(msg);
             titre = Twitch.testTitre(msg);
@@ -43,8 +42,14 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .catch(console.error);;
             
             //log serveur
-            console.log("Un live a été publié à "+classique.temps());
-            bot.channels.cache.get(config.channel.log).send("Un live "+jeu+" a été publié à "+classique.temps());
+            const logMessage = 
+                "------------------------------------------------------\n"+
+                "🕒"+classique.temps()+"\n"+
+                "📢"+ titre+"\n"+
+                "🎮 "+jeu+"\n"+
+                "------------------------------------------------------";
+
+            bot.channels.cache.get(config.channel.log).send(logMessage);
         }
 
         else if (skipLive == false){
