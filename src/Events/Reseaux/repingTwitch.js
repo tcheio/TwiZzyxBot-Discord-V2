@@ -2,7 +2,7 @@ const bot = require('../../../index');
 const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
-const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
+const NouveauTraitementTwitch = require('../../Fonctions/Twitch');
 
 module.exports = async function repingTwitch(bot,message) {
     if (message.channelId == config.channel.reping){ //Channel #twitch channel retour
@@ -33,8 +33,8 @@ module.exports = async function repingTwitch(bot,message) {
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             
-            bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
-            bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
+            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })
             .catch(console.error);;

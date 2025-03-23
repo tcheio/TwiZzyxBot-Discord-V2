@@ -1,188 +1,199 @@
-//Construit le titre en fonction du message
-function titreTravail(msg){
-    statu = true;
-    i = 0;
-    titre ="";
-    msgBis = msg.split("");
-    max = msgBis.length;
-    //Exclure mon pseudo et le symbole
-    while (statu){
-        if (msgBis[i] == "-"){
-            statu = false;
-        }
-        i++;
-    }
-    //Construction du titre
-    for (j = i; j<msgBis.length; j++){
-        if (msgBis[j] == "-"){
-            return titre.trim();
-        }
-        else{
-            titre += msgBis[j];
-        }
-    }
+function testTitre(msg) {
+    return msg.split('|')[0].trim();
 }
 
-//Récupère la description du stream en enlevant le pseudo et les commandes
-function descriptionTravail(msg){
-    statu = 0;
-    i = 0;
-    desc ="";
-    msgBis = msg.split("");
-    max = msgBis.length;
-    //Exclure mon pseudo et le symbole
-    while (statu != 2){
-        if (msgBis[i] == "-"){
-            statu +=1;
-        }
-        i++;
-    }
-    //Construction du titre
-    for (j = i; j<msgBis.length; j++){
-        if (msgBis[j] == "|"){
-            return desc;
-        }
-        else{
-            desc += msgBis[j];
+
+function maxIntent(tab){
+    max = -1;
+    maxres = 0;
+    for (i=0; i<tab.length;i++){
+        if (tab[i] > maxres){
+            max = i;
+            maxres = tab[i];
         }
     }
+    return max.toString();
 }
 
-//Ajoute une emote au titre en fonction de son titre et de son jeu
-function emoteTitre(titre,jeu){
-    const jeubis = jeu.split(" ");
-    if (titre == " NARUTO UHC "){
-        return "🍥"+titre;
-    }
+function analyseTitre(titre,jeu) {
+    if (jeu == "Minecraft") {
+    //mot clés UHC
+    MC = [
+        /*0 - Kill la Kill/K2K*/ ["klk","k2k","académie","ryuko","atoi","satsuki","kiryuin","mako","mankanshoku","Senketsu","Junketsu","nui","Harime","Ragyo","Kiryuin","Ira","Gamagoori","Uzu","Sanageyama","Nonon","Jakuzure","Houka","Inumuta","Soroi","Aikuro","Mikisugi","Tsumugu","Kinagase","Nudist","Beach"],                  
+        /*1 - LG*/["lg", "loup", "loup-garou", "garou","village","villageois","assassin"],              
+        /*2 - Naruto*/["naruto", "shippuden","sasuke","uchiwa","naruto","uzumaki","kakashi","hatake","sakura","haruno","gaara","sabaku","no","gaara","itachi","uchiwa","madara","uchiwa","hashirama","senju","tobirama","senju","minato","namikaze","jiraya","orochimaru","tsunade","sannin","sannins","sannin","sannins","akatsuki","pain","nagato","konan","hidan","kakuzu","deidara","sasori","kisame","hoshigaki","zetsu","obito","uchiwa","tobi","kabuto","yakushi","oroch"],              
+        /*3 - DS*/["ds","demon","slayer", "tanjiro", "nezuko", "zenitsu", "inosuke", "muzan", "kibutsuji", "nezuko", "kamado", "tanjiro", "kamado", "zenitsu", "agatsuma", "inosuke", "hashibira", "shinobu", "kocho", "kanao", "tsuyuri", "genya", "shinazugawa", "sanemi", "tokito", "gyomei", "himejima", "muichiro", "tokito", "obanai", "iguro", "mitsuri", "kanroji", "tengen", "uzui", "uzui"],  
+        /*4 - SH*/["sh","sherlock", "Holmes", "moriarty","john","watson","mary","adler","irene","adler","greg","lestrade","mycroft","holmes","molly","hooper","jim","moriarty"], 
+        /*5 - ONE PIECE*/["one", "piece", "zoro", "luffy", "sanji", "nami", "usopp", "franky", "robin", "brook", "chopper", "ace", "sabo", "shanks", "barbe", "blanche", "noire", "barbe", "blanche"], 
+        /*6 - AOT*/["titan", "attack on titan", "aot","eren", "mikasa","armin", "erwin","livai"],
+        /*The Boys*/["tb", "the","boy","homelander", "a-train", "starlight"],
+        /*Sky Def*/["sky","def","defender", "chateau","défense","attaquant","defenseur"],
+        /*FMA*/["fullmetal","alchemist","edward","elric","father","scar"],
+        /*Eigthy-Six*/["eigthy-six","eigthy","six","Handler","Vladilena","Shinei","Kurena","Lena"],
+        /*Death Note*/["death","note","light","yagami","ryuk","L","lawliet","misa","misa-misa","mello","near"],
+        /*JJK*/["jujutsu","kaisen","jujutsu kaisen","satoru","gojo","gojo-sensei","itadori","yuuji","megumi","nobara","sukuna","sukuna-ryomen","ryomen","ryomen-sukuna"],
+        /*Dawa ou FDP*/["dawa","fdp"],
+        /*Madoka*/["madoka","magica","madoka magica","homura","akemi","sayaka","miki","mami","tomoe","kyoko","sakura","kyubey","walpurgis"],
+        /*HxH*/["hunter","hunterxhunter","hxh","gon","freecs","killua","zoldyck","kurapika","leorio","hisoka","chrollo","lucilfer","meruem","netero","neferpitou","pitou","nefer"],
+        /*Bleach*/["bleach","ichigo","kurosaki","rukia","kuchiki","renji","aizen","sosuke","ulquiorra","grimmjow","ulquiorra","orihime","inoue","chad","sado","uryu","ishida","ishida","byakuya"],
+        /*Fast Band*/["fast","band"],
+        /*Industrial*/["industrial","mod"],
+        /*Evangelion*/["evangelion","shinji","ikari","rei","ayanami","asuka","langley","misato","katsuragi","gendo","ikari","kaji","ritsuko","akagi","toji","suzuhara","kaworu","nagisa","penpen"],
+        /*Konosuba*/["konosuba","kazuma","satou","aqua","megumin","darkness","lalatina","dustiness"],
+        /*21 - UHC*/["ultra","hardcore","uhc"],
+        /*Survie*/["survie","survival","vanilla","vanille","hardcore","hard","hardcore","end","nether","farm"],
+
     
-    else if (titre == " LG UHC "){
-        return "🐺"+titre;
+    ];
+    //Tableau Resultant de l'analyse du titre
+    resultAnalyse = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    titre = titre.toLowerCase();
+    analyseTitre = titre.split(" ");
+
+    for (i = 0; i < analyseTitre.length; i++){
+        for (j = 0; j < MC.length; j++){
+            for (k = 0; k < MC[j].length; k++){
+                if (analyseTitre[i] == MC[j][k]){
+                    resultAnalyse[j] += 1;
+                }
+            }
+        }
     }
 
-    else if (titre == " SKY DEFENDER "){
-        return "🏰"+titre;
+    if (maxIntent(resultAnalyse) == "-1"){
+        return "MC"
+        }
+    else {
+        return maxIntent(resultAnalyse);
+    }
     }
 
-    
-    else if (titre == " DEMON SLAYER UHC "){
-        return "👺"+titre;
-    }
+    else {
+        jeubis = jeu.split(" ");
+            if (jeubis[0] == "Pokémon"){
+                return "pkm";
+            }
 
-    else if (titre == " KLK UHC " || titre == " KLK UHC V2 "){
-        return "✂️"+titre;
+            else if (jeubis[0] == "WII" || jeubis[1] == "Sports"){
+                return "wiiSport";
+            }
 
-    }
+            else if (jeubis[0] == "Batman:"){
+                return "batman";
+            }
+            
+            else if (jeubis[0] == "Mario" && jeubis[1] == "Kart"){
+                return "mk";
+            }
 
-    else if (titre == " MARATHON KLK UHC "){
-        return "✂️"+titre;
-    }
-    
-    else if (titre == " SHERLOCK UHC "){
-        return "🔎"+titre;
-    }
+            else if ((jeubis[0] == "Inazuma" && jeubis[1] == "Eleven") || (jeubis[0] == "Inazuma" && jeubis[1] == "Eleven:")){
+                return "IE";
+            }
+            
+            else if (jeubis[0] == "Among" && jeubis[1] == "Us"){
+                return "among";
+            }
 
-    else if (titre == " ONE PIECE UHC "){
-        return "🏴‍☠️"+titre;
-    }
-    
-    else if (titre == " THE BOYS UHC "){
-        return "💥"+titre;
-    }
-    
-    else if (titre == " FMA UHC "){
-        return "🧪"+titre;
-    }
-    
-    else if (titre == " ATTACK ON TITAN UHC " || titre == " AOT UHC "){
-        return "⚔️"+titre;
-    }
+            else if(jeubis[0] == "Yu-Gi-Oh!"){
+                return "ygo";
+            }
 
-    else if (titre == " DEATH NOTE UHC "){
-        return "☠️"+titre;
-    }
+            else if (jeubis[0] == "Marvel's" && jeubis[1] == "Spider-Man:"){
+                return "spidey";
+            }
 
-    else if (titre == " EIGHTY SIX UHC "){
-        return "🃏"+titre;
-    }
+            else if (jeu == "IFSCL") {
+                return "lyoko";
+            }
 
-    else if (titre == " JJK UHC "){
-        return "👹"+titre;
-    }
-
-    else if (titre == " FDP UHC "  || titre == " DAWA UHC "){
-        return "🤡"+titre;
-    }
-
-    else if (titre == " MADOKA UHC "){
-        return "🪄"+titre;
-    }
-    else if (titre == " FB UHC "){
-        return "🟡"+titre;
-    }
-    else if(titre == " BLEACH UHC "){
-        return "👹"+titre;
-    }
-
-    else if (titre == "INDUSTRIAL UHC "){
-        return "⚙️"+titre;
-    }
-    else if (titreBis[1] == "SURVIE"  || titre == " 🪓SURVIE HARDCORE "){
-        return "🪓"+titre;
-    }    
-    else if (jeubis[0] == "Batman:"){
-        return "🦇"+titre;
-    }
-    
-    else if (jeubis[0] == "Mario" && jeubis[1] == "Kart"){
-        return "🏎️"+titre;
-    }
-
-    else if (jeubis[0] == "Inazuma" && jeubis[1] == "Eleven"){
-        return "⚽"+titre;
-    }
-    
-    else if (jeubis[0] == "Among" && jeubis[1] == "Us"){
-        return "🕵️"+titre;
-    }
-
-    else if(jeubis[0] == "Yu-Gi-Oh!"){
-        return "<:Yugimote:1173369665062457345>"+titre;
-    }
-
-    else if (jeubis[0] == "Marvel's" && jeubis[1] == "Spider-Man:"){
-        return "🕷️"+titre;
-    }
-
-    else if (jeu == "IFSCL") {
-        return lyoko;
-    }
-
-    else { 
-        return titre;
+            else if (jeubis[0] == "Mario" || jeubis[1] == "Mario"){
+                return "mario";
+            }
+        return "autre";
     }
 
 }
 
-//Récupère le jeu du stream
-function chercheJeu (msg){
-    jeu ="";
-    msgBis = msg.split("");
-    statut = true;
-    i = 0;
-    while (statut){
-        if (msgBis[i] == ")" && msgBis[i+1] == "|"){
-            statut = false;
-        }
-        i++;
+function createDesc(indice) {
+    const phrases = [
+        "On se fait un petit ",
+        "Mais non, on va pas jouer à ",
+        "Que du plaisir avec ",
+        "J'adore ",
+        "Disasterclass in coming sur ce ",
+        "On se pose sur"
+    ];
+
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+    const descMap = {
+        "0": "KLK",
+        "1": "LG",
+        "2": "Naruto",
+        "3": "DS",
+        "4": "Sherlock",
+        "5": "One Piece",
+        "6": "AOT",
+        "7": "The Boys",
+        "8": "On s'envoie en l'air dans ce Sky Defender",
+        "9": "FMA",
+        "10": "Eigthy-Six",
+        "11": "Death Note",
+        "12": "JJK",
+        "13": "Dawa ou FDP",
+        "14": "Madoka",
+        "15": "HxH",
+        "16": "Bleach",
+        "17": "Fast Band",
+        "18": "Industrial Craft",
+        "19": "Evangelion",
+        "20": "Konosuba",
+        "21": "L'Ultra HardCore Minecraft est sorti avant Fortnite",
+        "22": "Toujours plus de survie",
+        "23": "Des cubes de partout c'est incroyable",
+        "pkm": "On pose un Pokémon en classique",
+        "wiiSport": "On se fait un petit Wii Sport",
+        "batman": "On se fait un petit Batman",
+        "mk": "On se fait un petit Mario Kart",
+        "IE": "On se fait un petit Inazuma Eleven",
+        "among": "On se fait un petit Among Us",
+        "ygo": "On se fait un petit Yu-Gi-Oh!",
+        "spidey": "On se fait un petit Spiderman",
+        "lyoko": "On se fait un petit Code Lyoko",
+        "mario": "On se fait un petit Mario",
+        "MC": "On se fait un petit Minecraft"
+    };
+
+    const desc = descMap[indice];
+
+    if (!desc) {
+        return "On se fait un stream tranquille en détente";
     }
-    for (j = i+1; j<msgBis.length; j++) {
-        jeu += msgBis[j]; 
+
+    // Si la phrase est déjà complète (commence par "On se fait", "Toujours", etc.)
+    if (/^(On se fait|Toujours|L'Ultra|Des cubes|On se pose|Mais non|J'adore|Que du|Disasterclass)/.test(desc)) {
+        return desc;
     }
+
+    // Sinon, construire la phrase aléatoire
+    return randomPhrase + desc;
+}
+
+function chercheJeu(msg) {
+    const splitIndex = msg.indexOf("/");
+    
+    if (splitIndex === -1) {
+        console.warn("Pattern `)/` non trouvé dans le message.");
+        return ""; // ou un fallback genre "Inconnu"
+    }
+
+    const jeu = msg.slice(splitIndex + 1).trim();
     return jeu;
 }
 
-//Cherche la minia en fonction du titre et du jeu
-function chercheMinia(titre,jeu){
+
+function minia (indice){
+    //Minias
     lg = ["https://media.discordapp.net/attachments/1101573944538042458/1101574376220004512/LG_UHC_-_Grand_Mechant_Loup.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574348550193292/LG_UHC_-_PERFIDE_2.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574300286337185/LG_UHC_-_ERMITE_ZIZANIE.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png?width=1193&height=671"];
     naruto = ["https://media.discordapp.net/attachments/1101574073231872070/1146049588072042566/Twix_ino_1.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575468395794522/Naruto_UHC_-Konan.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575450284785804/Naruto_UHC_-Sasuke.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574073231872070/1101575384853655704/Naruto_UHC.jpg?width=1193&height=671"];
     klk = ["https://media.discordapp.net/attachments/1101573990193053736/1155057236478017587/Twix_KLK_kiznaiver1.png?width=829&height=466","https://media.discordapp.net/attachments/1101573990193053736/1101574916337311825/KLK_UHC_-_Jujutsusare.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1104378814299132025/Twix_Ragyo.png?width=1193&height=671","https://media.discordapp.net/attachments/1101573990193053736/1127895984240857099/Twix_Satsuki.png?width=1193&height=671"];
@@ -195,16 +206,21 @@ function chercheMinia(titre,jeu){
     fma = ["https://media.discordapp.net/attachments/751141465912246422/1150076121023512576/Twix_Riza.png?width=829&height=466","https://media.discordapp.net/attachments/1101574158753726564/1101575662424309870/FMA_UHC_-_FATHER.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1117798274418626580/Twix_Kimblee-min.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1101575637774385152/FMA_UHC_-_VAN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574158753726564/1129659317344272394/Twix_Tank.png?width=1177&height=662","https://media.discordapp.net/attachments/1101574158753726564/1175834091837476885/Twix_Riza.png?ex=656cabd5&is=655a36d5&hm=c70edfe59dc6a805453d885be12601086e5f7e7a58a1e7a9e0972979d9a1b6cb&=&width=705&height=397"];
     es = "https://media.discordapp.net/attachments/1137294777294008341/1137294821917200404/Twix_86_1.png?width=1061&height=597"; 
     dn = ["https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1101575226447372389/DEATH_NOTE_-_TRIO_DE_ZINZIN.png?width=1193&height=671","https://media.discordapp.net/attachments/1101574026582839437/1116825506726281257/maxresdefault.png?width=1193&height=671"];
-    jjk = "https://media.discordapp.net/attachments/1155056320752394240/1155056344139833394/JJK_UHC_-_Nobara_by_Sissou.png?width=829&height=466";
+    jjk = ["https://media.discordapp.net/attachments/1155056320752394240/1155056344139833394/JJK_UHC_-_Nobara_by_Sissou.png?width=829&height=466","https://media.discordapp.net/attachments/1155056320752394240/1202168200620670976/TWIZYX_AOIv4.png?ex=65cc7962&is=65ba0462&hm=349768127423d81958abd68edc5563814e07002082469820eeda2e6fbb22c942&=&format=webp&quality=lossless&width=1193&height=671"];
     dawa = ["https://media.discordapp.net/attachments/1064668600285282315/1124759438188888064/cf45b92782ab0c90d2e29bb27961f0a4.gif","https://media.discordapp.net/attachments/1064668600285282315/1124759438583144508/AA0k.gif"];
     madoka = ["https://media.discordapp.net/attachments/1155055914194317332/1155055971236847626/Twix_Madoka1_1.png?width=829&height=466","https://media.discordapp.net/attachments/1155055914194317332/1155056243627536394/Twix_Sayaka.png?width=829&height=466"];
     fb = ["https://media.discordapp.net/attachments/1155056404583956531/1155056424653705216/Twix_FB1_1.png?width=829&height=466","https://media.discordapp.net/attachments/1155056404583956531/1177637672802590750/FB_UHC_-_GAMAH_x_TwiZzyx_masterclas_FINALE.png?ex=65733b8c&is=6560c68c&hm=b10c48c9c02a1ada6e16ec70676ba076f1f11578e9704a74bbaf03a7a5376e86&=&format=webp&width=1193&height=671"];
     bleach = "https://cdn.discordapp.com/attachments/1155056476432384000/1155056609031110697/maxresdefault.png";
     indus = "https://cdn.discordapp.com/attachments/1175838794944086016/1175838896878276649/Twix.png?ex=656cb04f&is=655a3b4f&hm=ce24167d7dadb10b0f03667bd19c292eb79d9231be4825a6de3e7ba6ee8cd995&";
     survie = ["https://media.discordapp.net/attachments/1120085675463692349/1127896274222448670/Hardcore_E1.png?width=1177&height=662s"];
+    hxh = "";
+    konosuba = "";
+    evangelion = "https://media.discordapp.net/attachments/1175838794944086016/1213806590298296370/minia_evangelion_1.png?ex=6624f4fa&is=66127ffa&hm=7e7140181cb90664191020798c00f94ee0a937fe758ceb3517b4446233ca5720&=&format=webp&quality=lossless&width=891&height=501";
+    uhc = "https://media.discordapp.net/attachments/1064668600285282315/1227215203817488455/UHC.gif?ex=66279839&is=66152339&hm=f68667fa995f2f9e657b1008844078fcf638c606ccbd9f8233d28af7dbc34a94&="
+
     mc = "https://images-ext-2.discordapp.net/external/5EgjXqovZZbX-J2JzsThelYNqjfXGnurl3FhTd9_AZw/https/i.ibb.co/Hpfvh2b/GIF-MC.gif";
     among = "https://media.discordapp.net/attachments/1064668600285282315/1066800722861109349/Among_us.gif";
-    IE = "https://media.discordapp.net/attachments/1064668600285282315/1066800631274283089/IE.gif";
+    IE = "https://media.discordapp.net/attachments/1064668600285282315/1227215204673130528/IE_V2.gif?ex=66279839&is=66152339&hm=e4cafbc9dbe66c35dcacbce4f0bbbc3cb3d9b2fdb15e37f2e1cee52cb4199792&=";
     mardi = ["https://media.discordapp.net/attachments/1064668600285282315/1064679234506858558/MARDI_ZIZI_LOGO_1.gif","https://media.discordapp.net/attachments/1064668600285282315/1064815378431213588/MARDI_ZIZI_LOGO_2.gif"];
     pokemon = "https://images-ext-2.discordapp.net/external/horKKxFAj8ZRHeDJS8Xcx0N0ngEIMKJPpU0TqgOE4kQ/https/i.ibb.co/vx7mPX7/GIF-POKEMON.gif";
     lyoko = "https://images-ext-2.discordapp.net/external/Y8Q6iyEymL5dCdN-QQrAWjbq_xQE6EUD1acDe8OiiXY/https/i.ibb.co/TrDkV4D/GIF-CODE-LYOKO.gif";
@@ -217,258 +233,143 @@ function chercheMinia(titre,jeu){
     wiiSport = "https://media.discordapp.net/attachments/1064668600285282315/1138880259475910726/Wii_sport.gif?width=862&height=485";
     ygo = "https://media.discordapp.net/attachments/1064668600285282315/1174050772858708019/yu_gi_oh.gif?ex=656f697d&is=655cf47d&hm=2b10eb3d1e0b8a64be821011ba5add393f3708f0a9d687cb2a2925f1eb288e85&=";
     mario = "https://media.discordapp.net/attachments/1064668600285282315/1184574391313498212/MARIO-min.gif?ex=658c77df&is=657a02df&hm=1e26852a190a3e9b183e0c33eba620febc0853f6cb421eae4c8ab8127b7d2057&=";
-    titreBis = titre.split(" ");
-    
-    console.log(titre);
-    if (jeu == "Minecraft"){                
-        for (i = 0; i < tabAllStream.length; i++){
-                if (titre == " NARUTO UHC "){
-                    random = Math.floor(Math.random() * (naruto.length));
-                    return naruto[random];
-                }
-                
-                else if (titre == " LG UHC "){
-                    random = Math.floor(Math.random() * (lg.length));
-                    return lg[random];
-                }
+    switch (indice) {
+        case "0": //Kill la Kill
+            random = Math.floor(Math.random() * (klk.length));
+            return klk[random];
+            break;
 
-                else if (titre == " SKY DEFENDER "){
-                    return skydef;
-                }
+        case "1": //LG
+        random = Math.floor(Math.random() * (lg.length));
+        return lg[random];
+            break;
+        
+        case "2": //Naruto
+        random = Math.floor(Math.random() * (naruto.length));
+        return naruto[random];
+            break;
 
-                
-                else if (titre == " DEMON SLAYER UHC "){
-                    random = Math.floor(Math.random() * (ds.length));
-                    return ds[random];
-                }
-                
+        case "3": //DS
+        random = Math.floor(Math.random() * (ds.length));
+        return ds[random];   
+            break;
 
-                else if (titre == " KLK UHC " || titre == " KLK UHC V2 "){
-                    random = Math.floor(Math.random() * (klk.length));
-                    return klk[random];
+        case "4": //SH
+        random = Math.floor(Math.random() * (sh.length));
+        return sh[random];
+            break;
 
-                }
+        case "5": //One Piece
+        random = Math.floor(Math.random() * (op.length));
+        return op[random];
+            break;
+        
+        case "6": //AOT
+        random = Math.floor(Math.random() * (aot.length));
+        return aot[random];
+            break;
+        
+        case "7": //The Boys
+        random = Math.floor(Math.random() * (tb.length));
+        return tb[random];
+            break;
+        case "8": //Sky Def
+        return skydef;
+            break;
+        case "9": //FMA
+        random = Math.floor(Math.random() * (fma.length));
+        return fma[random];
+            break;
+        case "10": //Eigthy-Six
+        return es;
+            break;
+        case "11": //Death Note
+        random = Math.floor(Math.random() * (dn.length));
+        return dn[random];
+            break;
+        case "12": //JJK
+        random = Math.floor(Math.random() * (jjk.length));
+        return jjk[random];
+            break;
+        case "13": //Dawa ou FDP
+        random = Math.floor(Math.random() * (dawa.length));
+        return dawa[random];
+            break;
+        case "14": //Madoka
+            random = Math.floor(Math.random() * (madoka.length));
+            return madoka[random];
+            break;
+        case "15": //HxH
+            return uhc;
+            break;
+        case "16": //Bleach
+            return bleach;
+            break;
+        case "17": //Fast Band
+            random = Math.floor(Math.random() * (fb.length));
+            return fb[random];
+            break;
+        case "18": //Industrial
+            return indus;
+            break;
+        case "19": //Evangelion
+            return evangelion;
+            break;
+        case "20": //Konosuba
+            return uhc;
+            break;
+        case "21": //UHC
+            return uhc;
+            break;
+        case "22": //Survie
+            return survie[Math.floor(Math.random() * (survie.length))];
+            break;
+        
+        case "pkm" : //Pokémon
+            return pokemon;
+            break;
+        case "wiiSport" : //Wii Sport
+            return wiiSport;
+            break;
+        case "batman" : //Batman
+            return batman;
+            break;
+        case "mk" : //Mario Kart
+            return mk;
+            break;
+        case "IE" : //Inazuma Eleven
+            return IE;
+            break;
+        case "among" : //Among Us
+            return among;
+            break;
+        case "ygo" : //Yu-Gi-Oh!
+            return ygo;
+            break;
+        case "spidey" : //Spiderman
+            return spidey;
+            break;
+        case "lyoko" : //Lyoko
+            return lyoko;
+            break;
+        case "mario" : //Mario
+            return mario;
+            break;
+        case "MC":
+            return mc;
+            break;
+        default:
+            return autre[Math.floor(Math.random() * (autre.length))];
 
-                else if (titre == " MARATHON KLK UHC "){
-                    return MKLK;
-                }
-                
-                else if (titre == " SHERLOCK UHC "){
-                    random = Math.floor(Math.random() * (sh.length));
-                    return sh[random];
-                }
-
-                else if (titre == " ONE PIECE UHC "){
-                    random = Math.floor(Math.random() * (op.length));
-                    return op[random];
-                }
-                
-                else if (titre == " THE BOYS UHC "){
-                    random = Math.floor(Math.random() * (tb.length));
-                    return tb[random];
-                }
-                
-                else if (titre == " FMA UHC "){
-                    random = Math.floor(Math.random() * (fma.length));
-                    return fma[random];
-                }
-                
-                else if (titre == " ATTACK ON TITAN UHC " || titre == " AOT UHC "){
-                    random = Math.floor(Math.random() * (aot.length));
-                    return aot[random];
-                }
-
-                else if (titre == " DEATH NOTE UHC "){
-                    random = Math.floor(Math.random() * (dn.length));
-                    return dn[random];
-                }
-
-                else if (titre == " EIGHTY SIX UHC "){
-                    return es;
-                }
-
-                else if (titre == " JJK UHC "){
-                    return jjk;
-                }
-
-                else if (titre == " FDP UHC "  || titre == " DAWA UHC "){
-                    random = Math.floor(Math.random() * (dawa.length));
-                    return dawa[random];
-                }
-
-                else if (titre == " MADOKA UHC "){
-                    random = Math.floor(Math.random() * (madoka.length));
-                    return madoka[random];
-                }
-                else if (titre == " FB UHC "){
-                    return fb;
-                }
-
-                else if(titre == " BLEACH UHC "){
-                    return bleach;
-                }
-
-                else if (titre == "INDUSTRIAL UHC "){
-                    return indus;
-                }
-                else if (titreBis[1] == " SURVIE "  || titre == " SURVIE HARDCORE "){
-                    random = Math.floor(Math.random() * (survie.length));
-                    return survie[random];
-                }
-
-                else {
-                    return mc;
-                }
-            }
-        }
-    
-    else {
-        jeubis = jeu.split(" ");
-        console.log(jeubis[0]+"   "+jeubis[1]);
-            if (jeubis[0] == "Pokémon"){
-                return pokemon;
-            }
-
-            else if (jeubis[0] == "WII" || jeubis[1] == "Sports"){
-                return wiiSport;
-            }
-
-            else if (jeubis[0] == "Batman:"){
-                return batman;
-            }
-            
-            else if (jeubis[0] == "Batman:"){
-                return batman;
-            }
-            
-            else if (jeubis[0] == "Mario" && jeubis[1] == "Kart"){
-                return mk;
-            }
-
-            else if (jeubis[0] == "Inazuma" && jeubis[1] == "Eleven"){
-                return IE;
-            }
-            
-            else if (jeubis[0] == "Among" && jeubis[1] == "Us"){
-                return among;
-            }
-
-            else if(jeubis[0] == "Yu-Gi-Oh!"){
-                return ygo;
-            }
-
-            else if (jeubis[0] == "Marvel's" && jeubis[1] == "Spider-Man:"){
-                return spidey;
-            }
-
-            else if (jeu == "IFSCL") {
-                return lyoko;
-            }
-
-            else if (jeubis[0] == "Mario" || jeubis[1] == "Mario"){
-                return mario;
-            }
-            else {
-
-                titreBis = titre.split(" ");
-                console.log(titreBis[0]+titreBis[1]);
-                if (titreBis[0] == "CODE" && titreBis[1] == "LYOKO"){
-                    return lyoko;
-                }
-                
-                // Cas par défaut
-                random = Math.floor(Math.random() * autre.length);
-                return autre[random];
-        }
-    }
-    return null;            
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-//                                                     Evènement Special
-//------------------------------------------------------------------------------------------------------------------------------
-
-//Construit le titre en fonction du message avec l'ajout d'un prefixe en plus du titre de base
-function titreTravail2(msg){
-    statu = true;
-    comp = 0
-    i = 0;
-    titre ="";
-    msgBis = msg.split("");
-    max = msgBis.length;
-    //Exclure mon pseudo et les 2 symboles
-    while (statu){
-        if (msgBis[i] == "-"){
-            comp +=1;
-        }
-
-        if (comp == 2){
-            statu = false;
-        }
-        i++;
-    }
-    //Construction du titre
-    titre += "🚨LIVE 24H -" //Préfixe qu'on veut ajouter devant
-    for (j = i; j<msgBis.length; j++){
-        if (msgBis[j] == "-"){
-            return titre.trim();
-        }
-        else{
-            titre += msgBis[j];
-        }
-    }
-
-
-}
-
-//Construit la description en fonction du message
-function descriptionTravail2(msg){
-    msgBis = msg.split("");
-    desc = "";
-    statut = 0;
-    for (i = 0; i < msgBis.length; i++){
-            if (msgBis[i] == "-"){
-                statut +=1;
-            }
-            
-            else if(statut == 3){
-                desc += msgBis[i];
-            }
-
-            if (msgBis[i] == "|"){
-                return desc;
-            }
+            break;
     }
 }
-
-//Identifie le titre initial du stream afin de l'utiliser pour la minia
-function chercheVraiTitre(titre){
-titreT = titre.split("");
-categorie = "";
-statut = true;
-i = 0;
-for (i; i < titreT.length; i++){
-    if (titreT[i] == "-"){
-        statut = false;
-    }
-
-    else if (statut == false){
-        categorie += titreT[i];
-    }
-}
-return categorie;
-}
-
-
-
 
 module.exports = {
-    titreTravail,
-    descriptionTravail,
-    emoteTitre,
+    testTitre,
+    maxIntent,
+    analyseTitre,
+    createDesc,
     chercheJeu,
-    chercheMinia,
-    titreTravail2,
-    descriptionTravail2,
-    chercheVraiTitre,
+    minia,
 }
