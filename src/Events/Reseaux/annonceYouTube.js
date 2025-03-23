@@ -16,10 +16,9 @@ module.exports = async function annonceYouTube(bot,message) {
         }
     }
 
-    else if(message.channelId == config.channel.twizzyxReplay){
-        bot.channels.cache.get(config.channel.channelTampons).send("# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n"+msg);
-        console.log("Un replay a été publié à "+classique.temps());
-        bot.channels.cache.get(config.channel.channelTampons).send("Une vidéo a été publié à "+classique.temps());
+    else if(message.channelId == config.channel.envoie){
+        bot.channels.cache.get(config.channel.replay).send("# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n"+msg);
+        bot.channels.cache.get(config.channel.retour).send("Une rediff de stream a été publié à "+classique.temps());
     }
 
 };
