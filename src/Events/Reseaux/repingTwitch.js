@@ -33,8 +33,8 @@ module.exports = async function repingTwitch(bot,message) {
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             
-            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
-            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+            bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })
             .catch(console.error);;
@@ -42,11 +42,11 @@ module.exports = async function repingTwitch(bot,message) {
             //log serveur
             const logMessage = 
                 "------------------------------------------------------\n"+
+                "## Reping de stream"+
                 "🕒"+classique.temps()+"\n"+
                 "📢"+ titre+"\n"+
                 "🎮 "+jeu+"\n"+
                 "------------------------------------------------------";
-            
             bot.channels.cache.get(config.channel.log).send(logMessage);
         }
 };}

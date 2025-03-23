@@ -15,7 +15,6 @@ module.exports = async function annonceAutoTwitch(bot,message) {
                 mention = "@everyone";
             }
             msg = message.content;
-            
             jeu = Twitch.chercheJeu(msg);
             titre = Twitch.testTitre(msg);
             indice = Twitch.analyseTitre(msg,jeu);
@@ -35,8 +34,8 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             
-            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
-            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+            bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })
             .catch(console.error);;
@@ -44,21 +43,17 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             //log serveur
             const logMessage = 
                 "------------------------------------------------------\n"+
+                "## Annonce de stream"+
                 "🕒"+classique.temps()+"\n"+
                 "📢"+ titre+"\n"+
                 "🎮 "+jeu+"\n"+
                 "------------------------------------------------------";
-
             bot.channels.cache.get(config.channel.log).send(logMessage);
         }
 
         else if (skipLive == false){
             skipLive = true;
-            //Message dans le général staff
             bot.channels.cache.get(config.channel.generalStaff).send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
         }
-        
-        
-
     }
 };
