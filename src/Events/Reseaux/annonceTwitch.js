@@ -2,10 +2,12 @@ const bot = require('../../../index');
 const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
-const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
+const Twitch = require('../../Fonctions/Twitch');
 var indice = null;
+
 module.exports = async function annonceAutoTwitch(bot,message) {
-    if (message.channelId == config.channel.envoie){ //Channel #twitch channel retour
+    if (message.channelId == config.channel.twitch){
+        //mention = "@twizzyx"
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -13,10 +15,10 @@ module.exports = async function annonceAutoTwitch(bot,message) {
                 mention = "@everyone";
             }
             msg = message.content;
-            jeu = NouveauTraitementTwitch.chercheJeu(msg);
-            titre = NouveauTraitementTwitch.testTitre(msg);
-            indice = NouveauTraitementTwitch.analyseTitre(msg,jeu);
-            desc = NouveauTraitementTwitch.createDesc(indice);
+            jeu = Twitch.chercheJeu(msg);
+            titre = Twitch.testTitre(msg);
+            indice = Twitch.analyseTitre(msg,jeu);
+            desc = Twitch.createDesc(indice);
             
             const exampleEmbed = new EmbedBuilder()
             .setColor('#9B00FF')
@@ -28,28 +30,30 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .addFields(
                 {name: '<:Twitch:748225816973803562>**TwiZzyx** est en stream sur Twitch', value: "C'est zinzin"},
                 {name: "Joue à", value: jeu})
-            .setImage(NouveauTraitementTwitch.minia(indice))
+            .setImage(Twitch.minia(indice))
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             
-            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
-            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+            bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })
             .catch(console.error);;
             
             //log serveur
-            console.log("Un live a été publié à "+classique.temps());
-            bot.channels.cache.get(config.channel.retour).send("Un live "+jeu+" a été publié à "+classique.temps());
+            const logMessage = 
+                "------------------------------------------------------\n"+
+                "## Annonce de stream"+
+                "🕒"+classique.temps()+"\n"+
+                "📢"+ titre+"\n"+
+                "🎮 "+jeu+"\n"+
+                "------------------------------------------------------";
+            bot.channels.cache.get(config.channel.log).send(logMessage);
         }
 
         else if (skipLive == false){
             skipLive = true;
-            //Message dans le général staff
             bot.channels.cache.get(config.channel.generalStaff).send("Un live aurait du être annoncé, <@209395375474212865> n'oublie pas de faire l'annonce et la variable skipLive est de nouveau en "+skipLive);
         }
-        
-        
-
     }
 };

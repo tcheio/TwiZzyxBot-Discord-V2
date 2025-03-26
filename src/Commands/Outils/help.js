@@ -17,7 +17,7 @@ class command {
             .setFooter({ text: config.clients.name, iconURL: config.clients.logo})
             if (interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
                 help.addFields({
-                    name: "__Modération:__", value: "`video` ➔ Changer le mode d'annonce d'une vidéo (*yt, lp ou cancel*)\n`live` ➔ Changer le mode d'annonce d'une vidéo (*normal, all ou cancel*)\n`clear` ➔ Suprimer plusieurs message d'un coup\n`animation` ➔ Permet d'annoncer une animation (*Mettre `help` en argument pour obtenir la liste des animations dispo*)"
+                    name: "__Modération:__", value: " `live` ➔ Changer le mode d'annonce d'une vidéo (*normal, all ou cancel*)\n`clear` ➔ Suprimer plusieurs message d'un coup\n`animation` ➔ Permet d'annoncer une animation (*Mettre `help` en argument pour obtenir la liste des animations dispo*)"
                 })
             }
 

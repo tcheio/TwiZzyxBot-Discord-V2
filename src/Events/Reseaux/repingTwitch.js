@@ -2,7 +2,7 @@ const bot = require('../../../index');
 const config = require('../../../config');
 const { EmbedBuilder } = require('discord.js'); 
 const classique = require('../../Fonctions/Classique');
-const NouveauTraitementTwitch = require('../../Fonctions/NouveauTraitementTwitch');
+const NouveauTraitementTwitch = require('../../Fonctions/Twitch');
 
 module.exports = async function repingTwitch(bot,message) {
     if (message.channelId == config.channel.reping){ //Channel #twitch channel retour
@@ -40,7 +40,13 @@ module.exports = async function repingTwitch(bot,message) {
             .catch(console.error);;
     
             //log serveur
-            console.log("Un live a été publié à "+classique.temps());
-            bot.channels.cache.get(config.channel.log).send("Un live "+jeu+" a été publié à "+classique.temps());
+            const logMessage = 
+                "------------------------------------------------------\n"+
+                "## Reping de stream"+
+                "🕒"+classique.temps()+"\n"+
+                "📢"+ titre+"\n"+
+                "🎮 "+jeu+"\n"+
+                "------------------------------------------------------";
+            bot.channels.cache.get(config.channel.log).send(logMessage);
         }
 };}
