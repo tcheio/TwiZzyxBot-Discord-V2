@@ -8,12 +8,22 @@ function createDesc(msg) {
     const titre = parts[0]?.trim() || "Titre non défini";
     const descriptionBlock = parts[1]?.trim() || "";
     const lien = parts[2]?.trim() || "https://www.youtube.com";
+    const duree = parseInt(parts[3]);
 
-    // Prend uniquement la première ligne non vide
-    const descriptionLine = descriptionBlock.split('\n').find(line => line.trim() !== "")?.trim() || "Description non trouvée";
+    const isShort = !isNaN(duree) && duree <= 120;
 
-    return `${titre}\n*${descriptionLine}*\n${lien}`;
+    if (isShort) {
+        return { texte: `${titre}\n${lien}`, isShort: true };
+    }
+
+    const descriptionLine = descriptionBlock
+        .split('\n')
+        .find(line => line.trim() !== "")?.trim() || "Description non trouvée";
+
+    return { texte: `${titre}\n*${descriptionLine}*\n${lien}`, isShort: false };
 }
+
+
 
 
 module.exports = {
