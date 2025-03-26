@@ -1,40 +1,20 @@
-//Recherche la présence du #shorts dans le message
-function rechercheCaract(msg){
-    const msgBis = msg.split(" ");
-    
-    for (i = 0; i < msg.length; i++){
-        if (msgBis[i] == "#shorts"){
-            return true;
-        }
-    }
-    return false;
+function rechercheCaract(msg) {
+    return msg.includes("#shorts");
 }
 
-//Ajoute la description choisi à l'annonce de vidéo existante
-function createDesc(msg,desc){
-    msgcomplet = "";
-    msgBis = msg.split("");
+function createDesc(msg) {
+    const parts = msg.split('|');
 
-    if(desc){
-        for (i = 0; i < msgBis.length; i++){
-            if (msgBis[i] == "|"){
-                msgcomplet += "\n*"+desc+"*";
-            }
-        else{
-            msgcomplet += msgBis[i];
-            }
-        }
-    }
-        else{
-            for (i = 0; i < msgBis.length; i++){
-                if (msgBis[i] != "|"){
-                    msgcomplet += msgBis[i];
-                }
-        }
-        
-    }
-    return msgcomplet;
+    const titre = parts[0]?.trim() || "Titre non défini";
+    const descriptionBlock = parts[1]?.trim() || "";
+    const lien = parts[2]?.trim() || "https://www.youtube.com";
+
+    // Prend uniquement la première ligne non vide
+    const descriptionLine = descriptionBlock.split('\n').find(line => line.trim() !== "")?.trim() || "Description non trouvée";
+
+    return `${titre}\n*${descriptionLine}*\n${lien}`;
 }
+
 
 module.exports = {
     rechercheCaract,
