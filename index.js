@@ -26,7 +26,6 @@ skipVideo = true;
 shorts = true;
 skipLive = true;
 AllLive = true;
-description = null;
 
 bot.on('messageCreate', (message) => {
     annonceAutoTwitch(bot, message);
