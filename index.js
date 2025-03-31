@@ -23,7 +23,6 @@ module.exports = bot;
 
 // Constantes
 skipVideo = true;
-shorts = true;
 skipLive = true;
 AllLive = true;
 
