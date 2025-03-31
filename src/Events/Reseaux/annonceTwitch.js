@@ -23,9 +23,9 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             const exampleEmbed = new EmbedBuilder()
             .setColor('#9B00FF')
             .setTitle(titre)
-            .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logo, url: 'https://twitch.tv/twizzyxpassympa' })
+            .setAuthor({ name: 'TwiZzyxPasSympa', iconURL: config.clients.logoTwitch, url: 'https://twitch.tv/twizzyxpassympa' })
             .setDescription(desc)
-            .setThumbnail(config.clients.logo)
+            .setThumbnail(config.clients.logoTwitch)
             .setURL('https://twitch.tv/twizzyxpassympa')
             .addFields(
                 {name: '<:Twitch:748225816973803562>**TwiZzyx** est en stream sur Twitch', value: "C'est zinzin"},
