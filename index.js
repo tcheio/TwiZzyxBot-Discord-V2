@@ -38,6 +38,6 @@ require('./src/Structure/Handler/Event')(bot);
 require('./src/Structure/Handler/Command')(bot);
 
 // Initialisation du gestionnaire de tickets
-//ticketHandler(bot);
+ticketHandler(bot);
 
-bot.login(config.clients.tokenTest);
+bot.login(config.clients.token);
