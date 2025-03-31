@@ -22,7 +22,7 @@ module.exports = async function annonceYouTube(bot, message) {
         bot.channels.cache.get(config.channel.log).send(logText + classique.temps());
     }
 
-    else if (message.channelId === config.channel.replay) {
+    else if (message.channelId === config.channel.twizzyxReplay) {
         bot.channels.cache.get(config.channel.replay).send(
             "# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n" + msg
         );
