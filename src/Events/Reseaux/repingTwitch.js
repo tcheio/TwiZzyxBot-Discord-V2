@@ -27,7 +27,7 @@ module.exports = async function repingTwitch(bot,message) {
             .setThumbnail(config.clients.logoTwitch)
             .setURL('https://twitch.tv/twizzyxpassympa')
             .addFields(
-                {name: '<:Twitch:748225816973803562>**TwiZzyx** est toujours en stream sur Twitch', value: "Il ne s'arrête jamais" },
+                {name: '<:twitch:1411973521873047632>**TwiZzyx** est toujours en stream sur Twitch', value: "Il ne s'arrête jamais" },
                 {name: "Joue à", value: jeu})
             .setImage(NouveauTraitementTwitch.minia(indice))
             .setTimestamp()
