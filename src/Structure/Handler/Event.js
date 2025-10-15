@@ -1,22 +1,45 @@
+// src/Structure/Handler/Event.js
 const fs = require('fs');
+const path = require('path');
 
-module.exports = async (bot) => {
-    const eventFiles = fs.readdirSync('./src/Events/').filter(f => f.endsWith('.js'))
-    for (const file of eventFiles) {
-        const event = require(`../../../src/Events/${file}`)
-        
-        console.log('\x1b[32m' + 'L\'event ' + '\x1b[35m' + `${file.split('.')[0]}` + '\x1b[32m' + ' est chargée avec succés !')
-        bot.on(event.name, (...args) => event.execute(...args, bot))
-    }
-    
-    const eventSubFolders = fs.readdirSync('./src/Events/').filter(f => !f.endsWith('.js'))
-    eventSubFolders.forEach(folder => {
-      const commandFiles = fs.readdirSync(`./src/Events/${folder}/`).filter(f => f.endsWith('.js'))
-      for (const file of commandFiles) {
-        const event = require(`../../../src/Events/${folder}/${file}`)
+/**
+ * Charge les events depuis src/Events.
+ * - Objet { name, once?, execute } -> attaché
+ * - Fonction "registrar" -> exécutée UNIQUEMENT si marquée __register === true
+ */
+module.exports = function loadEvents(bot, context = {}) {
+  const root = path.resolve(__dirname, '../../Events');
 
-        console.log('\x1b[32m' + `L'event ` + '\x1b[35m' + `${file.split('.')[0]}`  + '\x1b[32m' + ' est chargée avec succés depuis ' + '\x1b[35m' + `${folder}`)
-        bot.on(event.name, (...args) => event.execute(...args, bot))
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir)) {
+      const full = path.join(dir, entry);
+      const stat = fs.statSync(full);
+      if (stat.isDirectory()) { walk(full); continue; }
+      if (!entry.endsWith('.js')) continue;
+
+      const mod = require(full);
+
+      // 1) Pattern objet
+      if (mod && typeof mod.execute === 'function' && mod.name) {
+        const handler = (...args) => mod.execute(...args, bot, context);
+        if (mod.once) bot.once(mod.name, handler);
+        else bot.on(mod.name, handler);
+        console.log(`\x1b[32m[EventLoader]\x1b[0m event: \x1b[35m${mod.name}\x1b[0m <- ${path.relative(root, full)}`);
+        continue;
       }
-    });
-}
+
+      // 2) Registrar explicite (fonction marquée)
+      if (typeof mod === 'function' && mod.__register === true) {
+        mod(bot, context);
+        console.log(`\x1b[32m[EventLoader]\x1b[0m registrar: \x1b[35m${path.relative(root, full)}\x1b[0m`);
+        continue;
+      }
+
+      // 3) Ignoré (utilitaire, fonction non marquée, etc.)
+      // (Ça évite d'exécuter annonceYouTube.js au chargement)
+      // console.log(`[EventLoader] ignoré: ${path.relative(root, full)}`);
+    }
+  };
+
+  walk(root);
+};
