@@ -6,7 +6,7 @@ const Twitch = require('../../Fonctions/Twitch');
 var indice = null;
 
 module.exports = async function annonceAutoTwitch(bot,message) {
-    if (message.channelId == config.channel.envoie){
+    if (message.channelId == config.channel.twitch){
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -33,8 +33,8 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .setTimestamp()
             .setFooter({ text: 'TwiZzyxBot', iconURL: config.clients.logo });
             
-            bot.channels.cache.get(config.channel.retour).send({ embeds: [exampleEmbed] });
-            bot.channels.cache.get(config.channel.retour).send(mention).then(sentMessage => {
+            bot.channels.cache.get(config.channel.stream).send({ embeds: [exampleEmbed] });
+            bot.channels.cache.get(config.channel.stream).send(mention).then(sentMessage => {
                 sentMessage.delete({ timeout: 1000 });
             })
             .catch(console.error);;
@@ -47,7 +47,7 @@ module.exports = async function annonceAutoTwitch(bot,message) {
                 "📢"+ titre+"\n"+
                 "🎮 "+jeu+"\n"+
                 "------------------------------------------------------";
-            bot.channels.cache.get(config.channel.logTest).send(logMessage);
+            bot.channels.cache.get(config.channel.log).send(logMessage);
         }
 
         else if (skipLive == false){
