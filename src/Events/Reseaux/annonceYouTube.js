@@ -1,4 +1,4 @@
-const config = require('../../../config-test'); 
+const config = require('../../../config'); 
 const classique = require('../../Fonctions/Classique');
 const youtube = require('../../Fonctions/YouTube');
 
@@ -12,17 +12,18 @@ module.exports = async function annonceYouTube(bot, message) {
   
 
   // === Vidéo classique (long/short) ===
-  if (message.channelId === config.channel.youtube) {
-    const lienVideo = parts[2]?.trim() || "https://www.youtube.com";
-    
+  if (message.channelId === config.channel.chainePrincipal) {
+    const lienVideo = parts[2]?.trim();
+
     const channelCible = isShort ? config.channel.clip : config.channel.videos;
+    
     const mention = isShort ? "<@&1014452932713922610>" : "@everyone";
     const titreAnnonce = isShort
       ? "# <:YouTube:748225835269488751>__**NOUVEAU SHORT**__<:YouTube:748225835269488751>"
       : "# <:YouTube:748225835269488751>__**NOUVELLE VIDÉO**__<:YouTube:748225835269488751>";
 
     const messageFinal = `${titreAnnonce}\n${texte}\n\n||${mention}||`;
-
+    
     // Envoi principal
     bot.channels.cache.get(channelCible)?.send(messageFinal);
 
