@@ -1,4 +1,4 @@
-const config = require('../../../config'); 
+const config = require('../../../config-test'); 
 const classique = require('../../Fonctions/Classique');
 const youtube = require('../../Fonctions/YouTube');
 
@@ -8,11 +8,13 @@ module.exports = async function annonceYouTube(bot, message) {
 
   // On extrait le lien pour l'annonce LOUNGE minimaliste
   const parts = msg.split('|');
+  const partsReplay = msg.split("]")
   
 
   // === Vidéo classique (long/short) ===
   if (message.channelId === config.channel.youtube) {
     const lienVideo = parts[2]?.trim() || "https://www.youtube.com";
+    
     const channelCible = isShort ? config.channel.clip : config.channel.videos;
     const mention = isShort ? "<@&1014452932713922610>" : "@everyone";
     const titreAnnonce = isShort
@@ -29,7 +31,6 @@ module.exports = async function annonceYouTube(bot, message) {
     console.log(logText + classique.temps());
     bot.channels.cache.get(config.channel.log)?.send(logText + classique.temps());
 
-    // --- Duplication LOUNGE (message minimal) ---
     if (isLounge && config.channel.lounge && config.channel.lounge !== channelCible) {
       bot.channels.cache.get(config.channel.lounge)
         ?.send(`# BEST OF LOUNGE<:WaluiPersil:1194341885750292531>\n${lienVideo}`);
@@ -40,7 +41,7 @@ module.exports = async function annonceYouTube(bot, message) {
 
   // === Rediff (replay) ===
   else if (message.channelId === config.channel.twizzyxReplay) {
-    const lienVideo = parts[1]?.trim() || "https://www.youtube.com";
+    const lienVideo = partsReplay[1]?.trim() || "https://www.youtube.com";
     const replayMsg =
       "# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n" + msg;
 
