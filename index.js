@@ -5,6 +5,7 @@ const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
 const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
 const ticketHandler = require('./src/Structure/Handler/TicketHandler');
 const registerJoinLeave = require('./src/Events/joinLeave');
+const configTest = require('./config-test');
 
 const bot = new Client({ 
     intents: [
@@ -34,7 +35,7 @@ bot.on('messageCreate', (message) => {
 });
 
 // Initialisation des gestionnaires d'événements et de commandes
-require('./src/Structure/Handler/Event')(bot, { joinLeaveChannelId: config.channel.joinLeave });
+require('./src/Structure/Handler/Event')(bot, { joinLeaveChannelId: config.channel.joinleave });
 require('./src/Structure/Handler/Command')(bot);
 
 // Initialisation du gestionnaire de tickets
