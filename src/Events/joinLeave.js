@@ -76,5 +76,7 @@ function registerJoinLeave(client, context = {}) {
   console.log('[joinLeave] handlers enregistrés. Salon par défaut :', config?.channel?.joinLeave || '(non défini)');
 }
 
+registerJoinLeave.isAccountRecent = isAccountRecent;
+
 registerJoinLeave.__register = true;
 module.exports = registerJoinLeave;
