@@ -1,4 +1,5 @@
-const joinLeave = require('./joinLeave'); 
+const { PermissionsBitField } = require('discord.js');
+const joinLeave = require('./joinLeave');
 const config = require('../../config');
 
 function registerAutoRole(client) {
@@ -10,64 +11,81 @@ function registerAutoRole(client) {
     return (Date.now() - created.getTime()) < days * 24 * 60 * 60 * 1000;
   };
 
-  const getRole = (guild, roleIdOrName) => {
+  const getRole = async (guild, roleIdOrName) => {
     if (!guild) return null;
+    // assure le cache des rôles
+    if (guild.roles.cache.size === 0) {
+      await guild.roles.fetch().catch(() => {});
+    }
     const byId = guild.roles.cache.get(roleIdOrName);
     if (byId) return byId;
     return guild.roles.cache.find(r => r.name === roleIdOrName) || null;
   };
 
-  client.on('guildMemberAdd', async (member) => {
+  const canAssign = (me, role) => {
+    if (!me.permissions.has(PermissionsBitField.Flags.ManageRoles)) {
+      console.warn('[autorole] Permission MANAGE_ROLES manquante.');
+      return false;
+    }
+    const cmp = me.roles.highest.comparePositionTo(role);
+    if (cmp <= 0) {
+      console.warn(`[autorole] Hiérarchie insuffisante: mon plus haut rôle (${me.roles.highest.name} pos=${me.roles.highest.position}) `
+        + `<= rôle cible (${role.name} pos=${role.position}).`);
+      return false;
+    }
+    return true;
+  };
+
+  const giveRole = async (member) => {
     try {
+      if (member.user.bot) return; // inutile pour les bots
+
       const recent = isAccountRecent(member.user, 60);
-
-      const memberRoleKey = config?.roles?.member;
-      const recentRoleKey = config?.roles?.recent;
-
-      if (!memberRoleKey && !recentRoleKey) {
-        console.warn('[autorole] Aucun rôle configuré (config.roles.member / config.roles.recent)');
+      const key = recent ? config?.roles?.recent : config?.roles?.member;
+      if (!key) {
+        console.warn(`[autorole] Rôle ${recent ? 'recent' : 'member'} non configuré.`);
         return;
       }
 
-      // Choix du rôle
-      const targetKey = recent ? recentRoleKey : memberRoleKey;
-      if (!targetKey) {
-        console.warn(`[autorole] Rôle manquant pour ${recent ? 'recent' : 'member'}`);
-        return;
-      }
-
-      const role = getRole(member.guild, targetKey);
+      const role = await getRole(member.guild, key);
       if (!role) {
-        console.warn(`[autorole] Rôle introuvable: ${targetKey} sur ${member.guild?.name} (${member.guild?.id})`);
+        console.warn(`[autorole] Rôle introuvable: ${key} sur ${member.guild?.name} (${member.guild?.id})`);
         return;
       }
 
-      // Vérifs basiques de permission/hiérarchie
       const me = member.guild.members.me || await member.guild.members.fetch(client.user.id).catch(() => null);
       if (!me) return;
 
-      if (!me.permissions.has('ManageRoles')) {
-        console.warn('[autorole] Le bot n’a pas la permission MANAGE_ROLES.');
-        return;
-      }
+      if (!canAssign(me, role)) return;
 
-      if (me.roles.highest.comparePositionTo(role) <= 0) {
-        console.warn(`[autorole] Rôle ${role.name} au-dessus/égal au rôle du bot — impossible d’assigner.`);
-        return;
-      }
-
-      // Assignation (évite de re-assigner si déjà présent)
       if (!member.roles.cache.has(role.id)) {
         await member.roles.add(role, recent ? 'Compte < 60 jours' : 'Autorole par défaut');
-        console.log(`[autorole] ${member.user.tag} → ajouté rôle "${role.name}" (${recent ? 'recent' : 'member'})`);
+        console.log(`[autorole] ${member.user.tag} → rôle "${role.name}" (${recent ? 'recent' : 'member'})`);
       }
     } catch (e) {
-      console.error('[autorole] erreur sur guildMemberAdd:', e);
+      console.error('[autorole] erreur assignation:', e);
+    }
+  };
+
+  // 1) Arrivée du membre
+  client.on('guildMemberAdd', async (member) => {
+    // Si screening actif et non accepté, on attend la levée de pending
+    if (member.pending) {
+      console.log(`[autorole] ${member.user.tag} en pending, en attente d'acceptation du règlement.`);
+      return;
+    }
+    await giveRole(member);
+  });
+
+  // 2) Validation du règlement (pending -> false)
+  client.on('guildMemberUpdate', async (oldMember, newMember) => {
+    if (oldMember.pending && !newMember.pending) {
+      await giveRole(newMember);
     }
   });
 
-  console.log('[autorole] handler enregistré (autorole à 60 jours).');
+  console.log('[autorole] handler enregistré (autorole <60j).');
 }
 
-registerAutoRole.__register = true; // pour ton loader
+registerAutoRole.__register = true;
 module.exports = registerAutoRole;
