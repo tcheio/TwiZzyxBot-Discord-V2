@@ -1,25 +1,19 @@
-// src/Events/Planning/autoReactPlanning.js
 const rules = require("../Donnees/planningEmoji");
 const { PermissionsBitField } = require("discord.js");
-const { channel } = require("../../config");
+const config  = require("../../config");
 
-const PLANNING_CHANNEL_IDS = [channel.envoie];
-const MIN_LEN = 60;          // on ne réagit que sur des blocs "planning"
-const MIN_REACTIONS = 2;     // utilisé seulement en mode 3 réactions (planning initial)
+const PLANNING_CHANNEL_IDS = config.channel.planning;
+const MIN_LEN = 60;          
+const MIN_REACTIONS = 2;     
 const MAX_REACTIONS = 3;
 
-// Priorité de groupes si "group" est fourni dans planningEmoji.js
 const GROUP_PRIORITY = { game: 3, platform: 2, format: 1, generic: 0 };
+const SLEEP_EMOJI_ID = "1290987425857929267";
 
-// Émoji custom "sleep" pour absence
-const SLEEP_EMOJI_ID = "1290987425857929267"; // <:twizzy12Sleep:1290987425857929267>
-
-// -------------------- Utils --------------------
 function normalize(s) {
   return (s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
 
-/** Agrège {emoji -> {score, group}} depuis planningEmoji.js et le contenu */
 function aggregateFromRules(content) {
   const txt = normalize(content);
   const aggregate = new Map();
@@ -36,14 +30,12 @@ function aggregateFromRules(content) {
     if (!prev) {
       aggregate.set(r.emoji, { score: base, group });
     } else {
-      // petit bonus si plusieurs mots-clés matchent le même emoji
       prev.score += base * 0.5;
     }
   }
   return aggregate;
 }
 
-/** Fallbacks construits uniquement à partir du fichier d’emojis */
 function buildFallbackList() {
   const byEmoji = new Map();
   for (const r of rules) {
@@ -53,7 +45,6 @@ function buildFallbackList() {
     if (!cur) {
       byEmoji.set(r.emoji, { score, group });
     } else {
-      // garde le meilleur score rencontré pour cet emoji
       if (score > cur.score) cur.score = score;
       cur.group = group;
     }
@@ -70,7 +61,6 @@ function buildFallbackList() {
     .map(([emoji]) => emoji);
 }
 
-/** Renvoie jusqu’à max emojis pertinents */
 function pickEmojis(content, max = 3) {
   const aggregate = aggregateFromRules(content);
 
@@ -84,7 +74,6 @@ function pickEmojis(content, max = 3) {
     })
     .map(([emoji]) => emoji);
 
-  // Fallbacks depuis le fichier si pas assez
   if (sorted.length < max) {
     const fallbacks = buildFallbackList();
     for (const f of fallbacks) {
@@ -96,7 +85,6 @@ function pickEmojis(content, max = 3) {
   return sorted.slice(0, max);
 }
 
-// -------------------- Listener --------------------
 module.exports = {
   name: "messageCreate",
   once: false,
@@ -108,7 +96,6 @@ module.exports = {
     try {
       if (!message.guild || message.author.bot) return;
 
-      // Canal ciblé
       const channelOk = PLANNING_CHANNEL_IDS.length
         ? PLANNING_CHANNEL_IDS.includes(message.channel.id)
         : (message.channel.name?.toLowerCase?.().includes("planning"));
@@ -121,11 +108,9 @@ module.exports = {
       const perms = message.channel.permissionsFor(me);
       if (!perms?.has(PermissionsBitField.Flags.AddReactions)) return;
 
-      // Détermination du type de message
       const isEveryone = message.mentions?.everyone === true;
 
       if (isEveryone) {
-        // --- PLANNING INITIAL : 3 réactions ---
         const emojis = pickEmojis(message.content, MAX_REACTIONS);
 
         let count = 0;
@@ -134,7 +119,6 @@ module.exports = {
           try { await message.react(e); count++; } catch {}
         }
 
-        // Filet de sécurité (rarement utile)
         if (count < MIN_REACTIONS) {
           const fb = buildFallbackList();
           for (const e of fb) {
@@ -144,16 +128,13 @@ module.exports = {
           }
         }
       } else {
-        // --- CHANGEMENT DE PROGRAMME : 1 réaction ---
         const txt = normalize(message.content);
 
-        // Cas spécial absence → émoji custom "sleep"
         if (/\b(off|absent|pas la|pas là)\b/.test(txt)) {
           try { await message.react(SLEEP_EMOJI_ID); } catch {}
           return;
         }
 
-        // Sinon, 1 émoji pertinent depuis le fichier
         const [emoji] = pickEmojis(message.content, 1);
         if (!emoji) return;
 

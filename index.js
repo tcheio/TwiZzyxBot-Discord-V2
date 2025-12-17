@@ -1,11 +1,10 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const config = require('./config');
+const config = require('./config-test');
 const annonceAutoTwitch = require('./src/Events/Reseaux/annonceTwitch');
 const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
 const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
 const ticketHandler = require('./src/Structure/Handler/TicketHandler');
 const registerJoinLeave = require('./src/Events/joinLeave');
-const configTest = require('./config-test');
 
 const bot = new Client({ 
     intents: [
@@ -41,4 +40,4 @@ require('./src/Structure/Handler/Command')(bot);
 // Initialisation du gestionnaire de tickets
 //ticketHandler(bot);
 
-bot.login(config.clients.tokenTest);
+bot.login(config.clients.token);

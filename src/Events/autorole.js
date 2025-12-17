@@ -1,6 +1,6 @@
 const { PermissionsBitField } = require('discord.js');
 const joinLeave = require('./joinLeave');
-const config = require('../../config');
+const config = require('../../config-test');
 
 function registerAutoRole(client) {
   const isAccountRecent = (user, days) => {
@@ -13,7 +13,6 @@ function registerAutoRole(client) {
 
   const getRole = async (guild, roleIdOrName) => {
     if (!guild) return null;
-    // assure le cache des rôles
     if (guild.roles.cache.size === 0) {
       await guild.roles.fetch().catch(() => {});
     }
@@ -38,21 +37,18 @@ function registerAutoRole(client) {
 
   const giveRole = async (member) => {
     try {
-      if (member.user.bot) return; // inutile pour les bots
-
+      if (member.user.bot) return;
       const recent = isAccountRecent(member.user, 60);
       const key = recent ? config?.roles?.recent : config?.roles?.member;
       if (!key) {
         console.warn(`[autorole] Rôle ${recent ? 'recent' : 'member'} non configuré.`);
         return;
       }
-
       const role = await getRole(member.guild, key);
       if (!role) {
         console.warn(`[autorole] Rôle introuvable: ${key} sur ${member.guild?.name} (${member.guild?.id})`);
         return;
       }
-
       const me = member.guild.members.me || await member.guild.members.fetch(client.user.id).catch(() => null);
       if (!me) return;
 
@@ -69,7 +65,6 @@ function registerAutoRole(client) {
 
   // 1) Arrivée du membre
   client.on('guildMemberAdd', async (member) => {
-    // Si screening actif et non accepté, on attend la levée de pending
     if (member.pending) {
       console.log(`[autorole] ${member.user.tag} en pending, en attente d'acceptation du règlement.`);
       return;

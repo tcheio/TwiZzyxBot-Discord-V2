@@ -48,10 +48,8 @@ function registerJoinLeave(client, context = {}) {
 
     const tag = member.user?.tag || member.displayName || member.id;
 
-    // Vérifie âge du compte
-    const recent = isAccountRecent(member.user, 30);
+    const recent = isAccountRecent(member.user, 60);
 
-    // Message
     const baseMsg = `✅ **<@${member.id}>** a rejoint le serveur.`;
 
     const warn = recent
@@ -62,7 +60,6 @@ function registerJoinLeave(client, context = {}) {
       .catch(err => console.error('[joinLeave] send add:', err));
   });
 
-  // === LEAVE ===
   client.on('guildMemberRemove', async (member) => {
     const channel = await getChannel(member.guild);
     if (!channel) return;
