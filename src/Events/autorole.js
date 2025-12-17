@@ -1,6 +1,6 @@
 const { PermissionsBitField } = require('discord.js');
 const joinLeave = require('./joinLeave');
-const config = require('../../config-test');
+const config = require('../../config');
 
 function registerAutoRole(client) {
   const isAccountRecent = (user, days) => {

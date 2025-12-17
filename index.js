@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const config = require('./config-test');
+const config = require('./config');
 const annonceAutoTwitch = require('./src/Events/Reseaux/annonceTwitch');
 const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
 const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
