@@ -1,12 +1,7 @@
-// src/Structure/Handler/Event.js
 const fs = require('fs');
 const path = require('path');
 
-/**
- * Charge les events depuis src/Events.
- * - Objet { name, once?, execute } -> attaché
- * - Fonction "registrar" -> exécutée UNIQUEMENT si marquée __register === true
- */
+
 module.exports = function loadEvents(bot, context = {}) {
   const root = path.resolve(__dirname, '../../Events');
 
@@ -34,10 +29,6 @@ module.exports = function loadEvents(bot, context = {}) {
         console.log(`\x1b[32m[EventLoader]\x1b[0m registrar: \x1b[35m${path.relative(root, full)}\x1b[0m`);
         continue;
       }
-
-      // 3) Ignoré (utilitaire, fonction non marquée, etc.)
-      // (Ça évite d'exécuter annonceYouTube.js au chargement)
-      // console.log(`[EventLoader] ignoré: ${path.relative(root, full)}`);
     }
   };
 
