@@ -55,16 +55,16 @@ const contentMap = {
       "https://media.discordapp.net/attachments/1101573944538042458/1101574256220962876/LG_UHC_-_IPDL.png"
     ]
   },
-  "among": {
+  "yokai": {
     "keywords": [],
     "minias": [
-      "https://media.discordapp.net/attachments/1064668600285282315/1066800722861109349/Among_us.gif"
+      "https://media.discordapp.net/attachments/1456291440140484855/1456314404982362144/GIF_YKW.gif?ex=6957e9fb&is=6956987b&hm=ef4520d06e6b8c9d4d4c33d2e19e4b3e9b0389471320298b8c3eda3dbf7bcabf&=&width=912&height=513"
     ]
   },
   "pkm": {
     "keywords": [],
     "minias": [
-      "https://images-ext-2.discordapp.net/external/horKKxFAj8ZRHeDJS8Xcx0N0ngEIMKJPpU0TqgOE4kQ/https/i.ibb.co/vx7mPX7/GIF-POKEMON.gif"
+      "https://media.discordapp.net/attachments/1456291440140484855/1456314378885402776/GIF_PKM.gif?ex=6957e9f4&is=69569874&hm=f2c1601ef0cbeed0cb05ed3a09031573f05c17d0737fcfd994a3aa36a39beaa6&=&width=550&height=309"
     ]
   },
   "mk": {
@@ -82,14 +82,20 @@ const contentMap = {
   "ie": {
     "keywords": [],
     "minias": [
-      "https://media.discordapp.net/attachments/1064668600285282315/1227215204673130528/IE_V2.gif?ex=66279839&is=66152339&hm=e4cafbc9dbe66c35dcacbce4f0bbbc3cb3d9b2fdb15e37f2e1cee52cb4199792&="
+      "https://media.discordapp.net/attachments/1456291440140484855/1456310726032490701/GIF_INAZUMA.gif?ex=6957e68e&is=6956950e&hm=00004e8a0f3fb694e588e9ed998399a0d33dc2f6c73281ba3ae1760184b68d6b&=&width=550&height=309"
+    ]
+  },
+  "ievr": {
+    "keywords": [],
+    "minias": [
+      "https://media.discordapp.net/attachments/1456291440140484855/1456301452996771985/GIF_INAZUMA_VR.gif?ex=6957ddeb&is=69568c6b&hm=fd4547023e28199963456cae374a50d2529cb1f54e51af4394b67c3eebfffd55&=&width=912&height=513"
     ]
   },
 
   "mc": {
     "keywords": [],
     "minias": [
-      "https://images-ext-2.discordapp.net/external/5EgjXqovZZbX-J2JzsThelYNqjfXGnurl3FhTd9_AZw/https/i.ibb.co/Hpfvh2b/GIF-MC.gif"
+      "https://media.discordapp.net/attachments/1456291440140484855/1456310777882611894/GIF_MC.gif?ex=6957e69a&is=6956951a&hm=c7960cc07739e06adec5d896d3304f218748247853afa8240f21297390953f30&=&width=550&height=309"
     ]
   },
 

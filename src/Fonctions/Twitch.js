@@ -29,6 +29,7 @@ function analyseTitre(titre, jeu) {
   const titleWords = titre.toLowerCase().split(/\s+/).filter(Boolean);
   const jeuLower = (jeu || '').toLowerCase();
 
+  // Cas spécifique Minecraft (analyse par mots-clés)
   if (jeu === 'Minecraft') {
     const scores = {};
     for (const [key, data] of Object.entries(contentMap)) {
@@ -42,11 +43,24 @@ function analyseTitre(titre, jeu) {
   }
 
   const pref = [];
+
+  // ----- NOUVEAU CAS : INAZUMA ELEVEN VICTORY ROAD -----
+  // On teste Victory Road AVANT le inazuma générique
+  if (
+    jeuLower.includes('inazuma eleven victory road') ||
+    jeuLower.includes('inazuma eleven: victory road') ||
+    jeuLower.includes('victory road')
+  ) {
+    pref.push('ievr');
+  }
+
   if (jeuLower.includes('pokémon') || jeuLower.includes('pokemon')) pref.push('pkm');
   if (jeuLower.includes('mario kart')) pref.push('mk');
-  if (jeuLower.includes('inazuma')) pref.push('ie');
-  if (jeuLower.includes('among us')) pref.push('among');
+  if (jeuLower.includes('yo-kai')) pref.push('yokai');
   if (jeuLower.includes('mario')) pref.push('mario');
+
+  // Inazuma Eleven "générique" (autres jeux IE)
+  if (jeuLower.includes('inazuma')) pref.push('ie');
 
   return pickValidKey(pref);
 }
@@ -54,13 +68,14 @@ function analyseTitre(titre, jeu) {
 function createDesc(indice) {
   const key = contentMap[indice] ? indice : pickValidKey(['default', 'mc']);
   const labels = {
-    klk: 'Kill la Kill (UHC ?)',
-    lg: 'Loup-Garou (UHC ?)',
-    among: 'Among Us',
+    klk: 'Kill la Kill UHC',
+    lg: 'Loup-Garou UHC',
+    yokai: 'Yo-Kai Watch',
     pkm: 'Pokémon',
     mk: 'Mario Kart',
     mario: 'Mario',
     ie: 'Inazuma Eleven',
+    ievr: 'Inazuma Eleven Victory Road',
     mc: 'Minecraft',
     uhc: 'UHC',
     default: 'le live du soir'
@@ -77,7 +92,7 @@ function createDesc(indice) {
   const rand = phrases[Math.floor(Math.random() * phrases.length)];
   const label = labels[key] || labels.default;
 
-  // Si ça ressemble déjà à une phrase “complète”, renvoie tel quel (au cas où tu passes une phrase)
+  // Si ça ressemble déjà à une phrase “complète”, renvoie tel quel
   if (/^(on se fait|toujours|l'ultra|des cubes|on se pose|mais non|j'adore|que du|disasterclass)/i.test(label)) {
     return label;
   }

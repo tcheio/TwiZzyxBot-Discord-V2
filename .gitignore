@@ -1,4 +1,5 @@
-/config.js
+/config-prod.js
+/config-test.js
 /node_modules
 .DS_Store
 config-test.js

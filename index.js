@@ -5,8 +5,6 @@ const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
 const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
 const ticketHandler = require('./src/Structure/Handler/TicketHandler');
 const registerJoinLeave = require('./src/Events/joinLeave');
-const configTest = require('./config-test');
-
 const bot = new Client({ 
     intents: [
         GatewayIntentBits.Guilds,
@@ -41,4 +39,4 @@ require('./src/Structure/Handler/Command')(bot);
 // Initialisation du gestionnaire de tickets
 //ticketHandler(bot);
 
-bot.login(config.clients.tokenTest);
+bot.login(config.clients.token);
