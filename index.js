@@ -4,7 +4,7 @@ const annonceAutoTwitch = require('./src/Events/Reseaux/annonceTwitch');
 const repingTwitch = require('./src/Events/Reseaux/repingTwitch');
 const annonceYouTube = require('./src/Events/Reseaux/annonceYouTube');
 const ticketHandler = require('./src/Structure/Handler/TicketHandler');
-
+const registerJoinLeave = require('./src/Events/joinLeave');
 const bot = new Client({ 
     intents: [
         GatewayIntentBits.Guilds,
@@ -33,10 +33,10 @@ bot.on('messageCreate', (message) => {
 });
 
 // Initialisation des gestionnaires d'événements et de commandes
-require('./src/Structure/Handler/Event')(bot);
+require('./src/Structure/Handler/Event')(bot, { joinLeaveChannelId: config.channel.joinleave });
 require('./src/Structure/Handler/Command')(bot);
 
 // Initialisation du gestionnaire de tickets
-//ticketHandler(bot);
+ticketHandler(bot);
 
-bot.login(config.clients.tokenTest);
+bot.login(config.clients.token);

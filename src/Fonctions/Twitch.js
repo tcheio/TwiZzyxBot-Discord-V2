@@ -1,149 +1,132 @@
 const contentMap = require('../Donnees/contentMap');
 
 function testTitre(msg) {
-    return msg.split('|')[0].trim();
+  return msg.split('|')[0].trim();
 }
 
-
-function maxIntent(tab){
-    max = -1;
-    maxres = 0;
-    for (i=0; i<tab.length;i++){
-        if (tab[i] > maxres){
-            max = i;
-            maxres = tab[i];
-        }
+function maxIntent(tab) {
+  let max = -1;
+  let maxres = -Infinity;
+  for (let i = 0; i < tab.length; i++) {
+    if (tab[i] > maxres) {
+      max = i;
+      maxres = tab[i];
     }
-    return max.toString();
+  }
+  return String(max);
+}
+
+function pickValidKey(preferred = []) {
+  const keys = Object.keys(contentMap);
+  if (keys.length === 0) return 'default';
+  for (const k of preferred) if (k && contentMap[k]) return k;
+  if (contentMap['default']) return 'default';
+  if (contentMap['mc']) return 'mc';
+  return keys[0];
 }
 
 function analyseTitre(titre, jeu) {
-    const titleWords = titre.toLowerCase().split(" ");
-    let scores = {};
-  
-    // Si Minecraft → on fait l’analyse par mots-clés
-    if (jeu === "Minecraft") {
-      for (const [key, data] of Object.entries(contentMap)) {
-        if (!data.keywords || data.keywords.length === 0) continue;
-        scores[key] = 0;
-        for (const word of titleWords) {
-          if (data.keywords.includes(word)) {
-            scores[key]++;
-          }
-        }
-      }
-  
-      const bestMatch = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
-      return bestMatch && bestMatch[1] > 0 ? bestMatch[0] : "MC";
+  const titleWords = titre.toLowerCase().split(/\s+/).filter(Boolean);
+  const jeuLower = (jeu || '').toLowerCase();
+
+  // Cas spécifique Minecraft (analyse par mots-clés)
+  if (jeu === 'Minecraft') {
+    const scores = {};
+    for (const [key, data] of Object.entries(contentMap)) {
+      if (!data || !Array.isArray(data.keywords) || data.keywords.length === 0) continue;
+      let s = 0;
+      for (const w of titleWords) if (data.keywords.includes(w)) s++;
+      if (s > 0) scores[key] = s;
     }
-  
-    // Pour les jeux non-Minecraft, on matche par nom direct
-    const jeubis = jeu.split(" ");
-    const jeuLower = jeu.toLowerCase();
-  
-    if (jeuLower.includes("pokémon")) return "pkm";
-    if (jeuLower.includes("mario kart")) return "mk";
-    if (jeuLower.includes("inazuma")) return "IE";
-    if (jeuLower.includes("among us")) return "among";
-    if (jeuLower.includes("yu-gi-oh")) return "ygo";
-    if (jeuLower.includes("mario")) return "mario";
-  
-    return "autre";
+    const best = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
+    return best ? best[0] : pickValidKey(['mc']);
   }
 
+  const pref = [];
+
+  // ----- NOUVEAU CAS : INAZUMA ELEVEN VICTORY ROAD -----
+  // On teste Victory Road AVANT le inazuma générique
+  if (
+    jeuLower.includes('inazuma eleven victory road') ||
+    jeuLower.includes('inazuma eleven: victory road') ||
+    jeuLower.includes('victory road')
+  ) {
+    pref.push('ievr');
+  }
+
+  if (jeuLower.includes('pokémon') || jeuLower.includes('pokemon')) pref.push('pkm');
+  if (jeuLower.includes('mario kart')) pref.push('mk');
+  if (jeuLower.includes('yo-kai')) pref.push('yokai');
+  if (jeuLower.includes('mario')) pref.push('mario');
+
+  // Inazuma Eleven "générique" (autres jeux IE)
+  if (jeuLower.includes('inazuma')) pref.push('ie');
+
+  return pickValidKey(pref);
+}
+
 function createDesc(indice) {
-    const phrases = [
-        " ",
-        "Mais non, on va pas jouer à ",
-        "Que du plaisir avec ",
-        "J'adore ",
-        "Disasterclass in coming sur ce ",
-        "On se pose sur"
-    ];
+  const key = contentMap[indice] ? indice : pickValidKey(['default', 'mc']);
+  const labels = {
+    klk: 'Kill la Kill UHC',
+    lg: 'Loup-Garou UHC',
+    yokai: 'Yo-Kai Watch',
+    pkm: 'Pokémon',
+    mk: 'Mario Kart',
+    mario: 'Mario',
+    ie: 'Inazuma Eleven',
+    ievr: 'Inazuma Eleven Victory Road',
+    mc: 'Minecraft',
+    uhc: 'UHC',
+    default: 'le live du soir'
+  };
 
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+  const phrases = [
+    ' ',
+    'Mais non, on va pas jouer à ',
+    'Que du plaisir avec ',
+    "J'adore ",
+    'Disasterclass in coming sur ',
+    'On se pose sur '
+  ];
+  const rand = phrases[Math.floor(Math.random() * phrases.length)];
+  const label = labels[key] || labels.default;
 
-    const descMap = {
-        "0": "KLK",
-        "1": "LG",
-        "2": "Naruto",
-        "3": "DS",
-        "6": "AOT",
-        "7": "The Boys",
-        "8": "Sky Defender",
-        "9": "FMA",
-        "10": "Eigthy-Six",
-        "11": "Death Note",
-        "12": "JJK",
-        "13": "Dawa ou FDP",
-        "14": "Madoka",
-        "15": "HxH",
-        "16": "Bleach",
-        "17": "Fast Band",
-        "18": "Industrial Craft",
-        "19": "Evangelion",
-        "20": "Konosuba",
-        "21": "L'Ultra HardCore Minecraft est sorti avant Fortnite",
-        "22": "Toujours plus de survie",
-        "23": " Minecraft",
-        "pkm": " Pokémon",
-        "wiiSport": " Wii Sport",
-        "batman": " Batman",
-        "mk": " Mario Kart",
-        "IE": " Inazuma Eleven",
-        "among": " Among Us",
-        "ygo": " Yu-Gi-Oh!",
-        "spidey": " Spiderman",
-        "lyoko": " Code Lyoko",
-        "mario": "Mario",
-        "MC": " Minecraft"
-    };
-
-    const desc = descMap[indice];
-
-    if (!desc) {
-        return "On se fait un stream tranquille en détente";
-    }
-
-    // Si la phrase est déjà complète (commence par "On se fait", "Toujours", etc.)
-    if (/^(On se fait|Toujours|L'Ultra|Des cubes|On se pose|Mais non|J'adore|Que du|Disasterclass)/.test(desc)) {
-        return desc;
-    }
-
-    // Sinon, construire la phrase aléatoire
-    return randomPhrase + desc;
+  // Si ça ressemble déjà à une phrase “complète”, renvoie tel quel
+  if (/^(on se fait|toujours|l'ultra|des cubes|on se pose|mais non|j'adore|que du|disasterclass)/i.test(label)) {
+    return label;
+  }
+  return rand + label;
 }
 
 function chercheJeu(msg) {
-    const splitIndex = msg.indexOf("/");
-    
-    if (splitIndex === -1) {
-        console.warn("Pattern `)/` non trouvé dans le message.");
-        return ""; // ou un fallback genre "Inconnu"
-    }
-
-    const jeu = msg.slice(splitIndex + 1).trim();
-    return jeu;
+  const splitIndex = msg.indexOf('/');
+  if (splitIndex === -1) return '';
+  return msg.slice(splitIndex + 1).trim();
 }
 
 function minia(indice) {
-    const id = indice.toLowerCase();
-    const entry = contentMap[id] || contentMap["default"];
-  
-    if (!entry.minias || entry.minias.length === 0) {
-      return contentMap["default"].minias[0];
-    }
-  
-    const rand = Math.floor(Math.random() * entry.minias.length);
-    return entry.minias[rand];
+  const id = String(indice).toLowerCase();
+  let entry = contentMap[id];
+  if (!entry || !Array.isArray(entry.minias) || entry.minias.length === 0) {
+    entry = contentMap['default'];
   }
-  
+  if (!entry || !Array.isArray(entry.minias) || entry.minias.length === 0) {
+    for (const v of Object.values(contentMap)) {
+      if (v && Array.isArray(v.minias) && v.minias.length > 0) return v.minias[0];
+      if (v && Array.isArray(v.minia) && v.minia.length > 0) return v.minia[0];
+    }
+    return null;
+  }
+  const r = Math.floor(Math.random() * entry.minias.length);
+  return entry.minias[r];
+}
 
 module.exports = {
-    testTitre,
-    maxIntent,
-    analyseTitre,
-    createDesc,
-    chercheJeu,
-    minia,
-}
+  testTitre,
+  maxIntent,
+  analyseTitre,
+  createDesc,
+  chercheJeu,
+  minia,
+};

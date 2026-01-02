@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Bot PROD",
+      "program": "${workspaceFolder}/index.js",
+      "env": {
+        "BOT_ENV": "prod"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Bot TEST",
+      "program": "${workspaceFolder}/index.js",
+      "env": {
+        "BOT_ENV": "test"
+      }
+    }
+  ]
+}

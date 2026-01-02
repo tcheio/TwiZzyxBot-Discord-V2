@@ -7,7 +7,6 @@ var indice = null;
 
 module.exports = async function annonceAutoTwitch(bot,message) {
     if (message.channelId == config.channel.twitch){
-        //mention = "@twizzyx"
         mention = "<@&748220271839805520>";
         if (skipLive){
             if (AllLive == false){
@@ -28,7 +27,7 @@ module.exports = async function annonceAutoTwitch(bot,message) {
             .setThumbnail(config.clients.logoTwitch)
             .setURL('https://twitch.tv/twizzyxpassympa')
             .addFields(
-                {name: '<:Twitch:748225816973803562>**TwiZzyx** est en stream sur Twitch', value: "C'est zinzin"},
+                {name: '<:twitch:1411973521873047632>**TwiZzyx** est en stream sur Twitch', value: "C'est zinzin"},
                 {name: "Joue à", value: jeu})
             .setImage(Twitch.minia(indice))
             .setTimestamp()
