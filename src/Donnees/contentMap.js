@@ -76,7 +76,7 @@ const contentMap = {
   "mario": {
     "keywords": [],
     "minias": [
-      "https://media.discordapp.net/attachments/1064668600285282315/1184574391313498212/MARIO-min.gif?ex=658c77df&is=657a02df&hm=1e26852a190a3e9b183e0c33eba620febc0853f6cb421eae4c8ab8127b7d2057&="
+      "https://media.discordapp.net/attachments/1456291440140484855/1456742727906754630/GIF_MARIO.gif?ex=695978e3&is=69582763&hm=f0fd3d11f52009acc3e307c09a3192897426cf988c415a271dc2e3b900b6ff1e&=&width=550&height=309"
     ]
   },
   "ie": {
@@ -109,8 +109,7 @@ const contentMap = {
   "default": {
     "keywords": [],
     "minias": [
-      "https://cdn.discordapp.com/attachments/748245620409761932/1167425216205557770/BYE.gif",
-      "https://cdn.discordapp.com/attachments/1064668600285282315/1064668676768415744/demJfjp.gif.gif"
+      "https://media.discordapp.net/attachments/1456291440140484855/1456743300966125598/GIF_CLASSIQUE_1.gif?ex=6959796b&is=695827eb&hm=6c94cad535c05ec27899f46b8e942e9744a604fddc44df5e07cbe381a97b4a56&=&width=550&height=309"
     ]
   }
 };
