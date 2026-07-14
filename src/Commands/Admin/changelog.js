@@ -20,7 +20,7 @@ class command {
 
     
     async execute(bot, interaction) {
-        if (interaction.member.permissions.has(PermissionsBitField.Flags.Administrators)) {
+        if (interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
         var now = new Date();
         const changelog = new EmbedBuilder()
         .setColor('#E49B0F')

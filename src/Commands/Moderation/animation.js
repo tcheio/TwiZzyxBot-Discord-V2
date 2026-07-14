@@ -1,22 +1,6 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
 
-function temps(){
-    var now = new Date();
-    //Traitement Minute 
-    minute = now.getMinutes().toString();
-    if (minute.length == 1){ minute = "0"+now.getMinutes(); }
-
-    //Traitement Mois
-    mois = parseInt((now.getUTCMonth()+1))
-    mois = mois.toString();
-    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
-
-    tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
-
-    return tempsDate;
-}
-
 class command {
     constructor() {
         this.name = "animation",
@@ -91,7 +75,8 @@ class command {
                 .setImage("https://media.discordapp.net/attachments/1064668600285282315/1134839745906745415/GIF_BUSINESS.gif?width=862&height=485")
                 .setTimestamp()
                 .setFooter({ text: config.clients.name, iconURL: config.clients.logo});
-                
+
+                interaction.reply({ embeds: [annonce] });
             }
 
             else if (args == "lg"){

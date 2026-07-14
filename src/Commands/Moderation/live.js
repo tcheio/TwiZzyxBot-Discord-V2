@@ -1,21 +1,6 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const config = require('../../../config');
-
-function temps(){
-    var now = new Date();
-    //Traitement Minute 
-    minute = now.getMinutes().toString();
-    if (minute.length == 1){ minute = "0"+now.getMinutes(); }
-
-    //Traitement Mois
-    mois = parseInt((now.getUTCMonth()+1))
-    mois = mois.toString();
-    if (mois.length == 1){ mois = "0"+parseInt((now.getUTCMonth()+1)); console.log}
-
-    tempsDate = (now.getHours())+":"+minute+", le " + now.getDate()+"/"+mois+"/"+now.getFullYear();
-
-    return tempsDate;
-}
+const state = require('../../Structure/StreamState');
 
 class command {
     constructor() {
@@ -37,7 +22,7 @@ class command {
             const args = interaction.options.getString('action');
             
             if (args == "all"){
-                AllLive = false;
+                state.AllLive = false;
                 const SKIP = new EmbedBuilder()
                 .setColor('#FF0000')
                 .setTitle('✅ **__Le stream sera annoncé à tous__**')
@@ -50,7 +35,7 @@ class command {
             }
 
             else if (args == "normal"){
-                AllLive = true;
+                state.AllLive = true;
                 const SKIP = new EmbedBuilder()
                 .setColor('#FF0000')
                 .setTitle('✅ **__Le stream sera annoncé à tous__**')
@@ -64,7 +49,7 @@ class command {
             }
 
             else if (args == "cancel"){
-                skipLive = false;
+                state.skipLive = false;
                 const SKIP = new EmbedBuilder()
                 .setColor('#FF0000')
                 .setTitle('✅ **__Le prochain stream ne sera pas annoncé__**')

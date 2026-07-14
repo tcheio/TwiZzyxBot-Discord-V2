@@ -11,7 +11,7 @@ function registerJoinLeave(client, context = {}) {
   const resolveChannelId = (guild) => {
     if (context && typeof context.joinLeaveChannelId === 'string') return context.joinLeaveChannelId;
     if (context && typeof context.joinLeaveChannelId === 'object') return context.joinLeaveChannelId[guild.id];
-    return config?.channel?.joinLeave;
+    return config?.channel?.joinleave;
   };
 
   const getChannel = async (guild) => {
@@ -120,7 +120,7 @@ function registerJoinLeave(client, context = {}) {
       .catch(err => console.error('[joinLeave] send remove:', err));
   });
 
-  console.log('[joinLeave] handlers enregistrés. Salon par défaut :', config?.channel?.joinLeave || '(non défini)');
+  console.log('[joinLeave] handlers enregistrés. Salon par défaut :', config?.channel?.joinleave || '(non défini)');
 }
 
 registerJoinLeave.isAccountRecent = isAccountRecent;
