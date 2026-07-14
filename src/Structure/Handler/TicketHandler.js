@@ -2,13 +2,12 @@ const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, Butto
 const config = require('../../../config');
 
 module.exports = (client) => {
-  flags: MessageFlags.Ephemeral
   client.on('interactionCreate', async interaction => {
     if (!interaction.isButton()) return;
 
     const category = interaction.customId;
 
-    if (interaction.isButton()) {
+    try {
       // Création du channel avec le nom du joueur + catégorie du ticket
       if (['Report', 'Question', 'Partenariat'].includes(category)) {
         const channel = await interaction.guild.channels.create({
@@ -24,7 +23,7 @@ module.exports = (client) => {
               allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages],
             },
             {
-              id: '1014479248532197408',
+              id: config.Info.staff,
               allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages],
             },
           ],
@@ -74,7 +73,7 @@ module.exports = (client) => {
 
       } else if (category === 'deleteTicket') {
         // Vérification des permissions
-        if (!interaction.member.roles.cache.has('1014479248532197408')) { // Remplace par l'ID de ton rôle staff
+        if (!interaction.member.roles.cache.has(config.Info.staff)) {
           return interaction.reply({ content: "Vous n'avez pas la permission de supprimer ce ticket.", flags: 1 << 6 });
         }
 
@@ -91,13 +90,15 @@ module.exports = (client) => {
         });
 
         await interaction.reply({ content: "Le ticket va être supprimé.", flags: 1 << 6 });
-        setTimeout(() => channel.delete(), 5000);
+        setTimeout(() => channel.delete().catch(err => console.error('[TicketHandler] delete:', err)), 5000);
       }
+    } catch (error) {
+      console.error('[TicketHandler] interactionCreate (bouton):', error);
     }
   });
 
 // Commande Slash pour ajouter un utilisateur au ticket
-client.on('ready', async () => {
+client.once('ready', async () => {
   try {
     await client.application.commands.create(
       new SlashCommandBuilder()
@@ -125,8 +126,10 @@ client.on('interactionCreate', async interaction => {
     const user = interaction.options.getUser('utilisateur');
     const channel = interaction.channel;
 
-    if (!channel.name.startsWith(interaction.user.username)) {
-      return interaction.reply({ content: 'Cette commande ne peut être utilisée que dans un ticket.', flags: 1 << 6 });
+    const isOwnTicket = channel.name.startsWith(`${interaction.user.username}-`);
+    const isStaff = interaction.member.roles.cache.has(config.Info.staff);
+    if (!isOwnTicket && !isStaff) {
+      return interaction.reply({ content: 'Cette commande ne peut être utilisée que dans votre propre ticket.', flags: 1 << 6 });
     }
 
     try {
@@ -144,8 +147,12 @@ client.on('interactionCreate', async interaction => {
 });
 
   // Fonction pour envoyer ou mettre à jour le message de création de ticket
-  client.on('ready', async () => {
+  client.once('ready', async () => {
     const channel = client.channels.cache.get(config.channel.ticket);
+    if (!channel) {
+      console.warn('[TicketHandler] Salon de tickets introuvable (config.channel.ticket).');
+      return;
+    }
 
     const embed = new EmbedBuilder()
       .setColor('#FF0000') 

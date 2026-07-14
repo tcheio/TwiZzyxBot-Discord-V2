@@ -1,12 +1,6 @@
 const { EmbedBuilder, PermissionsBitField, MessageFlags } = require('discord.js');
 const config = require('../../../config');
-
-function temps() {
-    const now = new Date();
-    const minute = String(now.getMinutes()).padStart(2, '0');
-    const mois = String(now.getUTCMonth() + 1).padStart(2, '0');
-    return `${now.getHours()}:${minute}, le ${now.getDate()}/${mois}/${now.getFullYear()}`;
-}
+const { temps } = require('../../Fonctions/Classique');
 
 class command {
     constructor() {
