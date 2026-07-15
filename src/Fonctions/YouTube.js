@@ -3,19 +3,9 @@ function rechercheCaract(msg) {
 }
 
 /**
- * Détecte si le message mentionne "LOUNGE" (insensible à la casse)
- * @param {string} msg
- * @returns {boolean}
- */
-function rechercheLounge(msg) {
-  if (!msg) return false;
-  return msg.toLowerCase().includes("lounge");
-}
-
-/**
  * Crée la description formatée à partir d'un message formaté "titre | description | lien | durée"
  * @param {string} msg
- * @returns {{ texte: string, isShort: boolean, isLounge: boolean }}
+ * @returns {{ texte: string, isShort: boolean }}
  */
 function createDesc(msg) {
   const parts = msg.split('|');
@@ -26,21 +16,19 @@ function createDesc(msg) {
   const duree = parseInt(parts[3]);
 
   const isShort = !isNaN(duree) && duree <= 120;
-  const isLounge = rechercheLounge(msg);
 
   if (isShort) {
-    return { texte: `${titre}\n${lien}`, isShort: true, isLounge };
+    return { texte: `${titre}\n${lien}`, isShort: true };
   }
 
   const descriptionLine = descriptionBlock
     .split('\n')
     .find(line => line.trim() !== "")?.trim() || "Description non trouvée";
 
-  return { texte: `${titre}\n*${descriptionLine}*\n${lien}`, isShort: false, isLounge };
+  return { texte: `${titre}\n*${descriptionLine}*\n${lien}`, isShort: false };
 }
 
 module.exports = {
   rechercheCaract,
-  rechercheLounge,
   createDesc,
 };
