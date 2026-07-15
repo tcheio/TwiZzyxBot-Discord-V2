@@ -98,7 +98,7 @@ module.exports = (client) => {
   });
 
   // Fonction pour envoyer ou mettre à jour le message de création de ticket
-  client.once('ready', async () => {
+  client.once('clientReady', async () => {
     const channel = client.channels.cache.get(config.channel.ticket);
     if (!channel) {
       console.warn('[TicketHandler] Salon de tickets introuvable (config.channel.ticket).');
