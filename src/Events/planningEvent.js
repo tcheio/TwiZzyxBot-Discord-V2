@@ -2,35 +2,47 @@ const rules = require("../Donnees/planningEmoji");
 const { PermissionsBitField } = require("discord.js");
 const config  = require("../../config");
 
-const PLANNING_CHANNEL_IDS = config.channel.planning;
-const MIN_LEN = 60;          
-const MIN_REACTIONS = 2;     
+const PLANNING_CHANNEL_IDS = Array.isArray(config.channel.planning) ? config.channel.planning : [];
+const MIN_LEN = 60;
+const MIN_REACTIONS = 2;
 const MAX_REACTIONS = 3;
 
-const GROUP_PRIORITY = { game: 3, platform: 2, format: 1, generic: 0 };
-const SLEEP_EMOJI_ID = "1290987425857929267";
+// "custom" = émotes personnalisées TwiZzyx, toujours prioritaires sur le reste.
+const GROUP_PRIORITY = { custom: 4, game: 3, platform: 2, format: 1, generic: 0 };
+const SLEEP_EMOJI_ID = "1284835963901710336"; // :Twizzyxsleep:
 
 function normalize(s) {
   return (s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
 
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Pré-compilation des regex à mot entier (une fois au chargement du module) :
+// évite qu'une clé courte comme "jeu" ne matche à tort "jeudi", ou "top" dans un mot plus long,
+// et évite de refaire ce travail à chaque message reçu (perf).
+const compiledRules = rules.map(r => ({
+  emoji: r.emoji,
+  score: (typeof r.score === "number") ? r.score : 1,
+  group: (typeof r.group === "string") ? r.group : "generic",
+  matchers: (Array.isArray(r.keys) ? r.keys : [])
+    .map(k => new RegExp(`(?<![a-z0-9])${escapeRegex(normalize(k))}(?![a-z0-9])`, "i")),
+}));
+
 function aggregateFromRules(content) {
   const txt = normalize(content);
   const aggregate = new Map();
 
-  for (const r of rules) {
-    const keys = Array.isArray(r.keys) ? r.keys : [];
-    const hit = keys.some(k => txt.includes(normalize(k)));
+  for (const r of compiledRules) {
+    const hit = r.matchers.some(re => re.test(txt));
     if (!hit) continue;
 
     const prev = aggregate.get(r.emoji);
-    const group = (typeof r.group === "string") ? r.group : "generic";
-    const base = (typeof r.score === "number") ? r.score : 1;
-
     if (!prev) {
-      aggregate.set(r.emoji, { score: base, group });
+      aggregate.set(r.emoji, { score: r.score, group: r.group });
     } else {
-      prev.score += base * 0.5;
+      prev.score += r.score * 0.5;
     }
   }
   return aggregate;
@@ -38,15 +50,13 @@ function aggregateFromRules(content) {
 
 function buildFallbackList() {
   const byEmoji = new Map();
-  for (const r of rules) {
-    const group = (typeof r.group === "string") ? r.group : "generic";
-    const score = (typeof r.score === "number") ? r.score : 1;
+  for (const r of compiledRules) {
     const cur = byEmoji.get(r.emoji);
     if (!cur) {
-      byEmoji.set(r.emoji, { score, group });
+      byEmoji.set(r.emoji, { score: r.score, group: r.group });
     } else {
-      if (score > cur.score) cur.score = score;
-      cur.group = group;
+      if (r.score > cur.score) cur.score = r.score;
+      cur.group = r.group;
     }
   }
 
