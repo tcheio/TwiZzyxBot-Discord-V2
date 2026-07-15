@@ -1,6 +1,13 @@
 const config = require('../../../config');
 const classique = require('../../Fonctions/Classique');
 const youtube = require('../../Fonctions/YouTube');
+const { pickBestEmoji } = require('../../Fonctions/AutoEmoji');
+
+async function reactBestEffort(sentMessage, sourceText) {
+  const emoji = pickBestEmoji(sourceText);
+  if (!emoji || !sentMessage) return;
+  try { await sentMessage.react(emoji); } catch (err) { console.error('[AutoEmoji]', err); }
+}
 
 module.exports = async function annonceYouTube(bot, message) {
   const msg = message.content;
@@ -18,7 +25,8 @@ module.exports = async function annonceYouTube(bot, message) {
     const messageFinal = `${titreAnnonce}\n${texte}\n\n||${mention}||`;
 
     // Envoi principal
-    bot.channels.cache.get(channelCible)?.send(messageFinal);
+    const sentMessage = await bot.channels.cache.get(channelCible)?.send(messageFinal);
+    await reactBestEffort(sentMessage, msg);
 
     // Logs
     const logText = isShort ? "Un short a été publié à " : "Une vidéo a été publiée à ";
@@ -32,7 +40,9 @@ module.exports = async function annonceYouTube(bot, message) {
       "# <:YouTubeBleu:1018805788090839061>__**NOUVEAU REPLAY**__<:YouTubeBleu:1018805788090839061>\n\n\n" + msg;
 
     // Envoi principal
-    bot.channels.cache.get(config.channel.replay)?.send(replayMsg);
+    const sentMessage = await bot.channels.cache.get(config.channel.replay)?.send(replayMsg);
+    await reactBestEffort(sentMessage, msg);
+
     bot.channels.cache.get(config.channel.log)
       ?.send("Une rediff de stream a été publiée à " + classique.temps());
   }

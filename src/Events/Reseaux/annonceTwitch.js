@@ -3,6 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 const classique = require('../../Fonctions/Classique');
 const Twitch = require('../../Fonctions/Twitch');
 const state = require('../../Structure/StreamState');
+const { pickBestEmoji } = require('../../Fonctions/AutoEmoji');
 
 module.exports = async function annonceAutoTwitch(bot, message) {
     if (message.channelId !== config.channel.twitch) return;
@@ -36,7 +37,11 @@ module.exports = async function annonceAutoTwitch(bot, message) {
 
         const streamChannel = bot.channels.cache.get(config.channel.stream);
         if (streamChannel) {
-            await streamChannel.send({ embeds: [exampleEmbed] });
+            const sentMessage = await streamChannel.send({ embeds: [exampleEmbed] });
+            const bestEmoji = pickBestEmoji(msg);
+            if (bestEmoji) {
+                try { await sentMessage.react(bestEmoji); } catch (err) { console.error('[AutoEmoji]', err); }
+            }
             streamChannel.send(mention)
                 .then(sentMessage => setTimeout(() => sentMessage.delete().catch(() => {}), 1000))
                 .catch(console.error);
