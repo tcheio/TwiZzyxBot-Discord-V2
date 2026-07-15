@@ -1,4 +1,4 @@
-const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, SlashCommandBuilder, MessageFlags } = require('discord.js');
+const { PermissionsBitField, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
 const config = require('../../../config');
 
 module.exports = (client) => {
@@ -97,57 +97,8 @@ module.exports = (client) => {
     }
   });
 
-// Commande Slash pour ajouter un utilisateur au ticket
-client.once('ready', async () => {
-  try {
-    await client.application.commands.create(
-      new SlashCommandBuilder()
-        .setName('ajouter')
-        .setDescription('Ajouter un utilisateur au ticket.')
-        .addUserOption(option =>
-          option
-            .setName('utilisateur')
-            .setDescription('Sélectionnez un utilisateur à ajouter au ticket')
-            .setRequired(true)
-        )
-    );
-
-    console.log('Commande /ajouter enregistrée avec succès.');
-  } catch (error) {
-    console.error('Erreur lors de l\'enregistrement de la commande /ajouter:', error);
-  }
-});
-
-// Gérer la commande /ajouter
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
-
-  if (interaction.commandName === 'ajouter') {
-    const user = interaction.options.getUser('utilisateur');
-    const channel = interaction.channel;
-
-    const isOwnTicket = channel.name.startsWith(`${interaction.user.username}-`);
-    const isStaff = interaction.member.roles.cache.has(config.Info.staff);
-    if (!isOwnTicket && !isStaff) {
-      return interaction.reply({ content: 'Cette commande ne peut être utilisée que dans votre propre ticket.', flags: 1 << 6 });
-    }
-
-    try {
-      await channel.permissionOverwrites.create(user, {
-        ViewChannel: true,
-        SendMessages: true,
-      });
-
-      return interaction.reply({ content: `${user.tag} a été ajouté au ticket.`, ephemeral: false });
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout de l\'utilisateur au ticket:', error);
-      return interaction.reply({ content: 'Une erreur est survenue lors de l\'ajout de l\'utilisateur.', flags: 1 << 6 });
-    }
-  }
-});
-
   // Fonction pour envoyer ou mettre à jour le message de création de ticket
-  client.once('ready', async () => {
+  client.once('clientReady', async () => {
     const channel = client.channels.cache.get(config.channel.ticket);
     if (!channel) {
       console.warn('[TicketHandler] Salon de tickets introuvable (config.channel.ticket).');

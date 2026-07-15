@@ -3,7 +3,7 @@ const config = require('../../config');
 
 
 module.exports = {
-    name: 'ready',
+    name: 'clientReady',
     once: true,
     execute(client) {
         
