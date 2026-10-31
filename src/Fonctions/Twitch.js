@@ -1,7 +1,8 @@
 const contentMap = require('../Donnees/contentMap');
 
 function testTitre(msg) {
-  return msg.split('|')[0].trim();
+  // Pingcord échappe le "|" du titre en "\|" (pour éviter le spoiler "||"), on coupe donc aussi sur "\|"
+  return msg.split(/\\?\|/)[0].trim();
 }
 
 function maxIntent(tab) {
